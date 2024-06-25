@@ -16,6 +16,9 @@ public class LinkedInApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
+
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
         stage.setScene(scene);
         stage.setTitle("LinkedIn App");
         stage.show();
