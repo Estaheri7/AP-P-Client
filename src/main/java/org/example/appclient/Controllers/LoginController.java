@@ -3,10 +3,12 @@ package org.example.appclient.Controllers;
 import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.effect.Effect;
+import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
 
 import java.io.*;
@@ -18,7 +20,7 @@ public class LoginController {
     private final Gson gson = new Gson();
 
     @FXML
-    private Button createAccountButton;
+    private Button signInButton;
 
     @FXML
     private TextField emailTextField;
@@ -27,23 +29,43 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
+    private Label loggingErrorLabel;
+
+    @FXML
+    private Label successLabel;
+
+    @FXML
     private PasswordField passwordTextField;
 
     @FXML
-    private CheckBox visibleCheckBox;
+    private TextField passwordTextFieldVisible;
+
+    @FXML
+    private CheckBox passwordCheckBox;
 
     @FXML
     void onCreateAccountButton(ActionEvent event) {
+        try {
+            Parent signupPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/signup.fxml"));
 
+            Scene signupPageScene = new Scene(signupPage);
+            Stage currentStage = (Stage) signInButton.getScene().getWindow();
+            currentStage.setScene(signupPageScene);
+            currentStage.setFullScreen(true);
+            currentStage.setFullScreenExitHint("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void onLoginButton(ActionEvent event) {
+    void onSignInButton(ActionEvent event) {
         HttpURLConnection connection = null;
+        loggingErrorLabel.setVisible(false);
+        successLabel.setVisible(false);
         try {
             String email = emailTextField.getText();
             String password = passwordTextField.getText();
-
             HashMap<String, String> userPair = new HashMap<>();
             userPair.put("email", email);
             userPair.put("password", password);
@@ -63,8 +85,11 @@ public class LoginController {
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                     String token = reader.readLine();
                     JwtManager.setJwtToken(token);
-                    System.out.println(JwtManager.getJwtToken());
+                    successLabel.setVisible(true);
+                    // go to main page
                 }
+            } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
+                loggingErrorLabel.setVisible(true);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -72,7 +97,21 @@ public class LoginController {
     }
 
     @FXML
-    void onVisible(ActionEvent event) {
+    void showCheckbox(ActionEvent event) {
+        if (passwordCheckBox.isSelected()) {
+            passwordTextFieldVisible.setVisible(true);
+            passwordTextFieldVisible.setManaged(true);
+            passwordTextField.setVisible(false);
+            passwordTextField.setManaged(false);
+        } else {
+            passwordTextFieldVisible.setVisible(false);
+            passwordTextFieldVisible.setManaged(false);
+            passwordTextField.setVisible(true);
+            passwordTextField.setManaged(true);
+        }
+    }
 
+    public void initialize() {
+        passwordTextFieldVisible.textProperty().bindBidirectional(passwordTextField.textProperty());
     }
 }
