@@ -1,48 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.LoginController">
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LoginController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label minHeight="-Infinity" minWidth="-Infinity" text="LinkedIn" textFill="#280fc9">
+      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" spacing="10.0">
+         <HBox alignment="CENTER" spacing="10.0">
+            <Label text="Linked" textFill="#1d7754" translateX="-140.0">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
-               <padding>
-                  <Insets bottom="50.0" />
-               </padding>
             </Label>
-         </children>
-      </HBox>
-      <TextField fx:id="emailTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Email">
-         <VBox.margin>
-            <Insets bottom="15.0" />
-         </VBox.margin></TextField>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-         <children>
-            <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="238.0" promptText="Password" />
-            <CheckBox fx:id="visibleCheckBox" mnemonicParsing="false" onAction="#onVisible" text="Visible">
-               <HBox.margin>
-                  <Insets top="3.5" />
-               </HBox.margin>
-            </CheckBox>
-         </children>
-      </HBox>
-      <Button fx:id="loginButton" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="30.0" prefWidth="170.0" text="Log in">
-         <VBox.margin>
-            <Insets bottom="25.0" />
-         </VBox.margin></Button>
-      <Label text="Don't have an account?" />
-      <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" text="Create Account" />
+            <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="-150.0">
+               <image>
+                  <Image url="@images/linkedInIcon.png" />
+               </image>
+            </ImageView>
+         </HBox>
+         <Label alignment="CENTER" text="Sign in">
+            <font>
+               <Font name="System Bold" size="24.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" text="Connect, learn, and grow in your career.">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+         <TextField fx:id="emailTextField" promptText="Email" />
+         <HBox alignment="CENTER" spacing="10.0">
+            <PasswordField fx:id="passwordTextField" promptText="Password" />
+            <TextField fx:id="passwordTextFieldVisible" managed="false" promptText="Password" visible="false" />
+            <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#showCheckbox" text="Show" />
+         </HBox>
+         <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" text="Sign in">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Label fx:id="loggingErrorLabel" text="Email or Password is incorrect!" textFill="RED" visible="false">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="successLabel" text="Login successful!" textFill="#00ff5d" translateY="-33.0" visible="false">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" text="Don't have an account?">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Label>
+         <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" text="Create Account">
+            <font>
+               <Font size="13.0" />
+            </font>
+         </Button>
+      </VBox>
    </children>
-</VBox>
+</StackPane>
