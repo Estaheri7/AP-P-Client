@@ -17,6 +17,7 @@ public class LinkedInApp extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
 
+//        stage.setResizable(false);
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         stage.setScene(scene);
