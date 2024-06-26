@@ -111,9 +111,7 @@ public class EditIntroController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    reloadProfile();
-                    Stage stage = (Stage) cancelButton.getScene().getWindow();
-                    stage.close();
+                    ProfileController.reloadProfile(applyButton);
                 } else {
                     try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
                         System.out.println(br.readLine());
@@ -161,15 +159,6 @@ public class EditIntroController {
     private void onCancelButton(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
-    }
-
-    private void reloadProfile() throws IOException {
-        Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
-        Scene profilePageScene = new Scene(profilePage);
-        Stage currentStage = (Stage) applyButton.getScene().getWindow();
-        currentStage.setScene(profilePageScene);
-        currentStage.setFullScreen(true);
-        currentStage.setFullScreenExitHint("");
     }
 
     public void initialize() {
