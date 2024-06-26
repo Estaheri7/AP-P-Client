@@ -111,7 +111,7 @@ public class UpdateEducationController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    ProfileController.reloadProfile(applyButton);
+//                    ProfileController.reloadProfile(applyButton);
                 } else {
                     System.out.println(connection.getResponseMessage());
                 }

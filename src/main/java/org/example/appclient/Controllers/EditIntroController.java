@@ -111,7 +111,7 @@ public class EditIntroController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    ProfileController.reloadProfile(applyButton);
+//                    ProfileController.reloadProfile(applyButton);
                 } else {
                     try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
                         System.out.println(br.readLine());
