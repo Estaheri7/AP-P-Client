@@ -21,7 +21,7 @@ public class FollowingController {
     private ScrollPane followingScrollPane;
 
     public void displayFollowing() {
-        ArrayList<String> followingEmail = FetcherEmail.fetchEmails("followings", "following");
+        ArrayList<String> followingEmail = FetcherEmail.fetchEmails("followings", "followed");
         followingLabel.setText(followingEmail.size() + " Followings");
         usersVBox.getChildren().clear();
         for (String senderEmail : followingEmail) {
