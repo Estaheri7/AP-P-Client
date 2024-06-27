@@ -181,6 +181,15 @@ public class ProfileController {
 
     @FXML
     void onConnectButton(ActionEvent event) {
+        String buttonText = connectButton.getText();
+        if (buttonText.equals("Connect")) {
+            loadSendConnection();
+        } else if (buttonText.equals("Message")) {
+            // TODO go to message
+        }
+    }
+
+    private void loadSendConnection() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/sendConnection.fxml"));
             Parent root = loader.load();
@@ -287,7 +296,12 @@ public class ProfileController {
 
     @FXML
     void onFollowButton(ActionEvent event) {
-
+        String buttonText = followButton.getText();
+        if (buttonText.equals("Follow")) {
+            FollowController.follow(profileEmail);
+        } else if (buttonText.equals("Unfollow")) {
+            FollowController.unfollow(profileEmail);
+        }
     }
 
     @FXML
@@ -410,9 +424,15 @@ public class ProfileController {
     }
 
     private void fillProfile() {
-        if (ConnectController.isConnectionPending()) {
+        if (ConnectController.isConnectionPending(profileEmail)) {
             connectButton.setText("Pending...");
             connectButton.setDisable(true);
+        } else if (ConnectController.isConnected(profileEmail)) {
+            connectButton.setText("Message");
+            connectButton.setDisable(false);
+        }
+        if (FollowController.hasFollowed(profileEmail)) {
+            followButton.setText("Unfollow");
         }
 
         HashMap<String, Object> profile = fetchUserProfile();
