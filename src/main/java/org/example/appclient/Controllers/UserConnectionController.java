@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
 
@@ -139,7 +140,7 @@ public class UserConnectionController {
         String lastName = userDetail.get("lastName");
         String headline = userDetail.get("headline");
         String city = userDetail.get("city");
-        String country = userDetail.get("country"); // Assuming country is part of the userDetail map
+        String country = userDetail.get("country");
         String avatarURL = userDetail.get("avatar_url");
 
         HBox connectionEntry = new HBox();
@@ -162,6 +163,13 @@ public class UserConnectionController {
                     imageView.setOnMouseClicked(event -> goToProfile(email));
                     connectionEntry.getChildren().add(imageView);
                     inputStream.close();
+                } else {
+                    Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+                    imageView.setOnMouseClicked(event -> goToProfile(email));
+                    connectionEntry.getChildren().add(imageView);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -178,16 +186,48 @@ public class UserConnectionController {
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
 
 //        int nameSize = (name + lastName).length();
-        Button messageButton = new Button("Message");
-        messageButton.setTranslateY(25);
+        Button button = new Button("Connect");
+        button.setTranslateY(25);
 //        messageButton.setTranslateX(nameSize * 7 + 300);
-        messageButton.setOnAction(event -> {
-            // TODO go to chat page
-            System.out.println("Message button clicked for: " + email);
-        });
+        onButton(button, email);
         connectionEntry.setPadding(new Insets(10, 10, 10, 10));
-        connectionEntry.getChildren().addAll(userDetailsVBox, messageButton);
+        connectionEntry.getChildren().addAll(userDetailsVBox, button);
         connectionsVBox.getChildren().add(connectionEntry);
+    }
+
+    private void onButton(Button button, String email) {
+        if (ConnectController.isConnectionPending(email)) {
+            button.setText("Pending");
+            button.setDisable(true);
+        } else if (ConnectController.isConnected(email)) {
+            button.setText("Message");
+        }
+        button.setOnAction(event -> {
+            if (button.getText().equals("Connect")) {
+                loadSendConnection(button);
+            } else if (button.getText().equals("Message")) {
+                // TODO go to message room
+                System.out.println("Go to message");
+            }
+        });
+    }
+
+    private void loadSendConnection(Button btn) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/sendConnection.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("send connection");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(btn.getScene().getWindow());
+            dialogStage.setResizable(false);
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void initialize() {
@@ -203,7 +243,7 @@ public class UserConnectionController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/profile.fxml"));
             Parent root = loader.load();
 
-            Stage currentStage = (Stage) searchByName.getScene().getWindow();
+            Stage currentStage = (Stage) connectionLabel.getScene().getWindow();
             Scene scene = new Scene(root);
             currentStage.setScene(scene);
             currentStage.setFullScreen(true);
