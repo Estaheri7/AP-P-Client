@@ -75,20 +75,37 @@ public class ConnectController {
         }
     }
 
-    public static boolean isConnectionPending() {
+    public static boolean isConnectionPending(String receiver) {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
 
                 String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
 
-                URL url = new URL("http://localhost:8080/connections/pending/" + email + "?profile=" + ProfileController.getProfileEmail());
+                URL url = new URL("http://localhost:8080/connections/pending/" + email + "?profile=" + receiver);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
 
                 int responseCode = connection.getResponseCode();
                 return responseCode == HttpURLConnection.HTTP_OK;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static boolean isConnected(String receiver) {
+        if (JwtManager.isJwtTokenAvailable()) {
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL("http://localhost:8080/connect/isAccepted/" + receiver);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
+
+                return connection.getResponseCode() == HttpURLConnection.HTTP_OK;
             } catch (IOException e) {
                 e.printStackTrace();
             }
