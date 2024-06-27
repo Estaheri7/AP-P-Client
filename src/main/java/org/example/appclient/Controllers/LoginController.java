@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -70,6 +71,12 @@ public class LoginController {
 
     @FXML
     void onSignInButton(ActionEvent event) {
+
+        signIn();
+
+    }
+
+    private void signIn(){
         HttpURLConnection connection = null;
         loggingErrorLabel.setVisible(false);
         successLabel.setVisible(false);
@@ -143,7 +150,23 @@ public class LoginController {
         profileStage.show();
     }
 
-    public void initialize() {
+    @FXML
+    void initialize() {
+
+        passwordTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                signIn();
+            }
+        });
+
+
+        passwordTextFieldVisible.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                signIn();
+            }
+        });
+
+
         passwordTextFieldVisible.textProperty().bindBidirectional(passwordTextField.textProperty());
     }
 }
