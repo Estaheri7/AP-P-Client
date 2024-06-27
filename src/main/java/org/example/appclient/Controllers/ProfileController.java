@@ -181,7 +181,21 @@ public class ProfileController {
 
     @FXML
     void onConnectButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/sendConnection.fxml"));
+            Parent root = loader.load();
 
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("send connection");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(connectButton.getScene().getWindow());
+            dialogStage.setResizable(false);
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -396,6 +410,11 @@ public class ProfileController {
     }
 
     private void fillProfile() {
+        if (ConnectController.isConnectionPending()) {
+            connectButton.setText("Pending...");
+            connectButton.setDisable(true);
+        }
+
         HashMap<String, Object> profile = fetchUserProfile();
 
         Type hashmapType = new TypeToken<HashMap<String, Object>>(){}.getType();
