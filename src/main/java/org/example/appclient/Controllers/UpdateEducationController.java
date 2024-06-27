@@ -112,6 +112,8 @@ public class UpdateEducationController {
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
 //                    ProfileController.reloadProfile(applyButton);
+                    Stage stage = (Stage) applyButton.getScene().getWindow();
+                    stage.close();
                 } else {
                     System.out.println(connection.getResponseMessage());
                 }

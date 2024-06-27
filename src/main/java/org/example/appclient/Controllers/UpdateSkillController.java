@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -61,10 +62,12 @@ public class UpdateSkillController {
                 }
 
                 int responseCode = connection.getResponseCode();
-                if (!(responseCode == HttpURLConnection.HTTP_OK)) {
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Stage stage = (Stage) saveButton.getScene().getWindow();
+                    stage.close();
+                } else {
                     System.out.println(connection.getResponseMessage());
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

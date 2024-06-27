@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
 <!--   <fx:include source="topbar.fxml"/>-->
    <children>
       <ScrollPane prefHeight="1226.0" prefWidth="1571.0" VBox.vgrow="ALWAYS">
@@ -139,26 +140,41 @@
                                     <Button fx:id="skillsUpdateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkillsUpdateButton" prefHeight="36.0" prefWidth="178.0" text="Update" translateX="205.0" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="skill1TextField" disable="true" editable="false" prefHeight="24.0" prefWidth="574.0" promptText="skill 1" />
-                              <TextField fx:id="skill2TextField" disable="true" editable="false" promptText="skill2">
+                              <TextField fx:id="skill1TextField" disable="true" editable="false" prefHeight="24.0" prefWidth="574.0" promptText="skill 1">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font></TextField>
+                              <TextField fx:id="skill2TextField" disable="true" editable="false" promptText="skill 2">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
                               </TextField>
                               <TextField fx:id="skill3TextField" disable="true" editable="false" promptText="skill 3">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
                               </TextField>
                               <TextField fx:id="skill4TextField" disable="true" editable="false" promptText="skill 4">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
                               </TextField>
                               <TextField fx:id="skill5TextField" disable="true" editable="false" promptText="skill 5">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
                               </TextField>
                            </children>
                         </VBox>
@@ -171,7 +187,26 @@
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" text="Update" translateX="180.0" />
+                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" text="Update" translateX="120.0" />
+                                    <VBox prefHeight="100.0" prefWidth="143.0" translateX="190.0">
+                                       <children>
+                                          <RadioButton fx:id="onlyMeRadioButton" mnemonicParsing="false" text="Only Me">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </RadioButton>
+                                          <RadioButton fx:id="myConnectionRadioButton" mnemonicParsing="false" text="My Connections">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </RadioButton>
+                                          <RadioButton fx:id="everyoneRadioButton" mnemonicParsing="false" text="Everyone">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </RadioButton>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                               <TextField fx:id="phoneNumberTextField" disable="true" editable="false" promptText="Phone Number" />
