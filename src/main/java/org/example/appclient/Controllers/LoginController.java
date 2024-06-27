@@ -52,9 +52,17 @@ public class LoginController {
 
             Scene signupPageScene = new Scene(signupPage);
             Stage currentStage = (Stage) signInButton.getScene().getWindow();
-            currentStage.setScene(signupPageScene);
-            currentStage.setFullScreen(true);
-            currentStage.setFullScreenExitHint("");
+
+            Stage signupStage = new Stage();
+            signupStage.setScene(signupPageScene);
+            signupStage.initOwner(currentStage);
+            signupStage.initModality(Modality.APPLICATION_MODAL);
+
+            signupStage.setFullScreen(true);
+            signupStage.setFullScreenExitHint("");
+
+            currentStage.hide();
+            signupStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -124,9 +132,15 @@ public class LoginController {
         Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
         Scene profilePageScene = new Scene(profilePage);
         Stage currentStage = (Stage) signInButton.getScene().getWindow();
-        currentStage.setScene(profilePageScene);
-        currentStage.setFullScreen(true);
-        currentStage.setFullScreenExitHint("");
+
+        Stage profileStage = new Stage();
+        profileStage.setScene(profilePageScene);
+        profileStage.initOwner(currentStage);
+        profileStage.initModality(Modality.APPLICATION_MODAL);
+        profileStage.setFullScreen(true);
+        profileStage.setFullScreenExitHint("");
+        currentStage.hide();
+        profileStage.show();
     }
 
     public void initialize() {

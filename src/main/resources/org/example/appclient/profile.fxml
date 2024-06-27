@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
 <!--   <fx:include source="topbar.fxml"/>-->
    <children>
       <ScrollPane prefHeight="1226.0" prefWidth="1571.0" VBox.vgrow="ALWAYS">
@@ -52,20 +52,24 @@
                               </Label>
                               <Label fx:id="headlineLabel" prefHeight="18.0" prefWidth="576.0" text="Student at Amirkabir University of Technology - Tehran Polytechnic" />
                               <Label fx:id="locationLabel" prefWidth="300.0" text="Tehran, Tehran Province, Iran" />
-                              <HBox prefHeight="37.0" prefWidth="574.0">
+                              <HBox prefHeight="26.0" prefWidth="574.0">
                                  <children>
                                     <Hyperlink fx:id="connectionsLink" alignment="CENTER" onAction="#onConnectionsLink" text="1000 connections" />
-                                    <Hyperlink fx:id="followingLink" alignment="CENTER" onAction="#onFollowingLink" prefHeight="26.0" prefWidth="140.0" text="1000 Following" />
                                     <Hyperlink fx:id="followersLink" alignment="CENTER" onAction="#onFollowersLink" prefHeight="26.0" prefWidth="126.0" text="1000 followers" />
+                                    <Hyperlink fx:id="followingLink" alignment="CENTER" onAction="#onFollowingLink" prefHeight="26.0" prefWidth="140.0" text="1000 Following">
+                                       <HBox.margin>
+                                          <Insets left="-20.0" />
+                                       </HBox.margin>
+                                    </Hyperlink>
                                  </children>
                               </HBox>
                               <HBox prefHeight="66.0" prefWidth="574.0">
                                  <children>
-                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="93.0" text="Connect" />
+                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="101.0" text="Connect" />
                                     <Button fx:id="followButton" mnemonicParsing="false" onAction="#onFollowButton" prefHeight="30.0" prefWidth="115.0" text="Follow" translateX="20.0" />
                                  </children>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">

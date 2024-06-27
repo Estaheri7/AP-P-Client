@@ -210,14 +210,22 @@ public class ProfileController {
     @FXML
     void onConnectionsLink(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/connections.fxml"));
-            Parent root = loader.load();
+            Parent connectionsPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/connections.fxml"));
 
             Stage currentStage = (Stage) connectionsLink.getScene().getWindow();
-            Scene scene = new Scene(root);
-            currentStage.setScene(scene);
-            currentStage.setFullScreen(true);
-            currentStage.show();
+            Scene scene = new Scene(connectionsPage);
+            Stage connectionsStage = new Stage();
+            connectionsStage.setScene(scene);
+            connectionsStage.setTitle("connections");
+            connectionsStage.initOwner(currentStage);
+            connectionsStage.initModality(Modality.WINDOW_MODAL);
+
+            connectionsStage.setFullScreen(true);
+            connectionsStage.setFullScreenExitHint("");
+
+            currentStage.hide();
+            connectionsStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

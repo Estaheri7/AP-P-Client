@@ -157,9 +157,17 @@ public class SignupController {
 
         Scene loginScene = new Scene(loginPage);
         Stage currentStage = (Stage) signupButton.getScene().getWindow();
-        currentStage.setScene(loginScene);
-        currentStage.setFullScreen(true);
-        currentStage.setFullScreenExitHint("");
+
+        Stage loginStage = new Stage();
+        loginStage.setScene(loginScene);
+        loginStage.initOwner(currentStage);
+        loginStage.initModality(Modality.APPLICATION_MODAL);
+
+        loginStage.setFullScreen(true);
+        loginStage.setFullScreenExitHint("");
+
+        currentStage.hide();
+        loginStage.show();
     }
 }
 

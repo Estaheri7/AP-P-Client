@@ -240,14 +240,21 @@ public class UserConnectionController {
         try {
             ProfileController.setProfileEmail(email);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/profile.fxml"));
-            Parent root = loader.load();
-
+            Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
             Stage currentStage = (Stage) connectionLabel.getScene().getWindow();
-            Scene scene = new Scene(root);
-            currentStage.setScene(scene);
-            currentStage.setFullScreen(true);
-            currentStage.show();
+            Scene scene = new Scene(profilePage);
+
+            Stage profileStage = new Stage();
+            profileStage.setScene(scene);
+            profileStage.setTitle("Profile");
+            profileStage.initOwner(currentStage);
+            profileStage.initModality(Modality.WINDOW_MODAL);
+
+            profileStage.setFullScreen(true);
+            profileStage.setFullScreenExitHint("");
+
+            currentStage.hide();
+            profileStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
