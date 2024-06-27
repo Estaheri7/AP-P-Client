@@ -8,7 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.example.appclient.util.JwtManager;
 
 import java.io.*;
@@ -70,6 +72,7 @@ public class LoginController {
             userPair.put("email", email);
             userPair.put("password", password);
             String jsonData = gson.toJson(userPair);
+
             URL url = new URL("http://localhost:8080/login");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -84,9 +87,15 @@ public class LoginController {
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                     String token = reader.readLine();
-                    JwtManager.setJwtToken(token);
+                    HashMap<String, String> jwt = gson.fromJson(token, HashMap.class);
+                    JwtManager.setJwtToken(jwt.get("token"));
+                    ProfileController.setProfileEmail((String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken()));
                     successLabel.setVisible(true);
-                    // go to main page
+                    try {
+                        openProfile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
                 loggingErrorLabel.setVisible(true);
@@ -109,6 +118,15 @@ public class LoginController {
             passwordTextField.setVisible(true);
             passwordTextField.setManaged(true);
         }
+    }
+
+    private void openProfile() throws IOException {
+        Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
+        Scene profilePageScene = new Scene(profilePage);
+        Stage currentStage = (Stage) signInButton.getScene().getWindow();
+        currentStage.setScene(profilePageScene);
+        currentStage.setFullScreen(true);
+        currentStage.setFullScreenExitHint("");
     }
 
     public void initialize() {

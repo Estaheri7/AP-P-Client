@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.UserConnectionController">
+   <children>
+      <HBox prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <VBox prefHeight="1080.0" prefWidth="545.0" />
+            <VBox prefHeight="1080.0" prefWidth="782.0">
+               <children>
+                  <HBox prefHeight="69.0" prefWidth="782.0">
+                     <children>
+                        <Label fx:id="connectionLabel" text="1000 Connections" translateX="10.0" translateY="15.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="searchByName" promptText="Search By Name..." translateX="460.0" translateY="40.0" />
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="connectionsScrollPane" prefHeight="665.0" prefWidth="782.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="1080.0" prefWidth="545.0" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="10.5">
+         <image>
+            <Image url="@photo_2024-06-24_17-53-41.jpg" />
+         </image>
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin>
+      </ImageView>
+      <TextField fx:id="searchTextField" promptText="Search..." translateX="5.0" translateY="12.5" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="homeImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Home" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="myNetworkImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="My Network" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="jobsImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" text="Jobs" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="labelImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Label" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="messagingImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Messaging" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="meImageView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Me" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
