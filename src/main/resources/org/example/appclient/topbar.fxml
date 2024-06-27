@@ -36,7 +36,7 @@
          <children>
             <ImageView fx:id="myNetworkImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/My%20Network.png" />
+                  <Image url="@images/MyNetwork.png" />
                </image></ImageView>
             <Label text="My Network" />
          </children>
@@ -60,9 +60,9 @@
             <Label text="Messaging" />
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" translateY="3.0">
          <children>
-            <ImageView fx:id="meImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="meImageView" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
             <Label text="Me" />
          </children>
       </VBox>
