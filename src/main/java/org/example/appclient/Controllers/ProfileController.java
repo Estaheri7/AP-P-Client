@@ -314,11 +314,49 @@ public class ProfileController {
 
     @FXML
     void onFollowersLink(ActionEvent event) {
+        try {
+            Parent followersRoot = FXMLLoader.load(getClass().getResource("/org/example/appclient/followers.fxml"));
+            Scene followerScene = new Scene(followersRoot);
 
+            Stage currentStage = (Stage) followersLink.getScene().getWindow();
+            Stage followersStage = new Stage();
+            followersStage.setScene(followerScene);
+            followersStage.setTitle("Followers");
+            followersStage.initOwner(currentStage);
+            followersStage.initModality(Modality.WINDOW_MODAL);
+            followersStage.setFullScreen(true);
+            followersStage.setFullScreenExitHint("");
+
+            currentStage.hide();
+            followersStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void onFollowingLink(ActionEvent event) {
+
+        try {
+            Parent followingRoot = FXMLLoader.load(getClass().getResource("/org/example/appclient/following.fxml"));
+            Scene followingScene = new Scene(followingRoot);
+
+            Stage currentStage = (Stage) followingLink.getScene().getWindow();
+            Stage followingStage = new Stage();
+            followingStage.setScene(followingScene);
+            followingStage.setTitle("Following");
+            followingStage.initOwner(currentStage);
+            followingStage.initModality(Modality.WINDOW_MODAL);
+            followingStage.setFullScreen(true);
+            followingStage.setFullScreenExitHint("");
+
+            currentStage.hide();
+            followingStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
