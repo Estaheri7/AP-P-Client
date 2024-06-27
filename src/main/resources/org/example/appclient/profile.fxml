@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
-<!--   <fx:include source="topbar.fxml"/>-->
+   <fx:include source="topbar.fxml"/>
    <children>
       <ScrollPane prefHeight="1226.0" prefWidth="1571.0" VBox.vgrow="ALWAYS">
          <content>
