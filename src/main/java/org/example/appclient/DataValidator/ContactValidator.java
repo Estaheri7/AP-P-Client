@@ -14,4 +14,8 @@ public class ContactValidator {
     public static boolean phoneNumberValidator(String phoneNumber) {
         return phoneNumber != null && PHONE_NUMBER_PATTERN.matcher(phoneNumber).matches();
     }
+
+    public static boolean dateValidator(String date) {
+        return EducationValidator.dateValidator(date);
+    }
 }

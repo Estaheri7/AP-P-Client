@@ -16,7 +16,6 @@ public class EducationValidator {
             return false;
         }
 
-        // Define the regex pattern for yyyy-mm-dd format
         String datePattern = "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
         return Pattern.matches(datePattern, date);
     }
