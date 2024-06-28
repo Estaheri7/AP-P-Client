@@ -235,7 +235,24 @@ public class ProfileController {
 
     @FXML
     void onContactUpdateButton(ActionEvent event) {
+        try {
+            UpdateSkillController.setProfileEmail(profileEmail);
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/contactUpdate.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Contact");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(skillsUpdateButton.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
