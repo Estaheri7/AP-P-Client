@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LoginController" style="-fx-background-color: #2b2b2b;">
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LoginController" style="-fx-background-color: #1e1e1e;">
    <children>
-      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" spacing="10.0" style="-fx-background-color: #3a3a3a; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" spacing="10.0" style="-fx-background-color: #353535; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
          <HBox alignment="CENTER" spacing="10.0">
             <Label text="Linked" textFill="#1d7754" translateX="-140.0">
                <font>
