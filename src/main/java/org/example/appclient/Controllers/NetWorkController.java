@@ -31,12 +31,6 @@ public class NetWorkController {
     @FXML
     private Label usersLabel;
 
-    @FXML
-    private Button acceptButton;
-
-    @FXML
-    private Button declineButton;
-
 
     private void displayRequests() {
         String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
@@ -99,28 +93,31 @@ public class NetWorkController {
         Label locationLabel = new Label(city + ", " + country);
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
 
+        Button acceptButton;
+        Button declineButton;
+
         acceptButton = new Button("Accept");
         declineButton = new Button("Decline");
-        acceptButton.setOnAction(event -> acceptConnection(email));
-        declineButton.setOnAction(event -> declineConnection(email));
-
         acceptButton.setPrefWidth(250);
         declineButton.setPrefWidth(250);
         acceptButton.setTranslateY(25);
         declineButton.setTranslateY(25);
+
+        acceptButton.setOnAction(event -> acceptConnection(acceptButton, declineButton,email));
+        declineButton.setOnAction(event -> declineConnection(acceptButton, declineButton, email));
 
         entry.setPadding(new Insets(10, 10, 10, 10));
         entry.getChildren().addAll(userDetailsVBox, acceptButton, declineButton);
         usersVBox.getChildren().add(entry);
     }
 
-    private void acceptConnection(String sender) {
+    private void acceptConnection(Button acceptButton, Button declineButton, String sender) {
         acceptButton.setVisible(false);
         declineButton.setVisible(false);
         ConnectController.acceptConnection(sender);
     }
 
-    private void declineConnection(String sender) {
+    private void declineConnection(Button acceptButton, Button declineButton, String sender) {
         acceptButton.setVisible(false);
         declineButton.setVisible(false);
         ConnectController.declineConnection(sender);
