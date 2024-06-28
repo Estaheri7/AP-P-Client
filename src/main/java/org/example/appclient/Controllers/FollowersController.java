@@ -10,8 +10,6 @@ import java.util.HashMap;
 
 public class FollowersController {
 
-
-
     @FXML
     private Label followerLabel;
 
@@ -22,7 +20,7 @@ public class FollowersController {
     private ScrollPane followersScrollPane;
 
     public void displayFollowers() {
-        ArrayList<String> followersEmail = FetcherEmail.fetchEmails("followers", "follower");
+        ArrayList<String> followersEmail = FetcherEmail.fetchEmails("followers", "follower", ProfileController.getProfileEmail());
         followerLabel.setText(followersEmail.size() + " Followers");
         usersVBox.getChildren().clear();
         for (String senderEmail : followersEmail) {

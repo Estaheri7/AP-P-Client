@@ -32,13 +32,13 @@ import java.util.List;
 public class FetcherEmail {
     private static final Gson gson = new Gson();
 
-    public static ArrayList<String> fetchEmails(String URL , String type) {
+    public static ArrayList<String> fetchEmails(String URL , String type, String requestEmail) {
         ArrayList<String> emails = new ArrayList<>();
 
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
-                URL url = new URL("http://localhost:8080/" + URL+ "//" + ProfileController.getProfileEmail());
+                URL url = new URL("http://localhost:8080/" + URL + "//" + requestEmail);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
@@ -126,7 +126,6 @@ public class FetcherEmail {
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
 
                 int responseCode = connection.getResponseCode();
-                System.out.println(connection.getResponseCode());
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
                     Image image = new Image(inputStream);
