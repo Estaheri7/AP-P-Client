@@ -49,7 +49,6 @@ public class TopBarController {
         String searchKey = searchTextField.getText();
         UserController.setSearchKey(searchKey);
         loadStage();
-
     }
 
     private void loadStage(){
@@ -73,27 +72,10 @@ public class TopBarController {
     }
 
     private void onUsersClicked() {
-
         UserController.setSearchKey("");
-    try {
-        Parent usersPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/users.fxml"));
-        Scene userPageScene = new Scene(usersPage);
-        Stage currentStage = (Stage) meImageView.getScene().getWindow();
-
-        Stage userStage = new Stage();
-        userStage.setScene(userPageScene);
-        userStage.initOwner(currentStage);
-        userStage.initModality(Modality.APPLICATION_MODAL);
-        userStage.setFullScreen(true);
-        userStage.setFullScreenExitHint("");
-        currentStage.hide();
-        userStage.show();
-    }
-        catch (IOException e) {
-        e.printStackTrace();
+        loadStage();
     }
 
-    }
     private void onMeClicked() {
         try {
             String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
@@ -117,7 +99,26 @@ public class TopBarController {
         }
     }
     private void onMessagingClicked() {}
-    private void onMyNetworkClicked() {}
+
+    private void onMyNetworkClicked() {
+        try {
+            Parent netWorkPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/network.fxml"));
+            Scene netWorkPageScene = new Scene(netWorkPage);
+            Stage currentStage = (Stage) meImageView.getScene().getWindow();
+
+            Stage netWorkStage = new Stage();
+            netWorkStage.setScene(netWorkPageScene);
+            netWorkStage.initOwner(currentStage);
+            netWorkStage.initModality(Modality.APPLICATION_MODAL);
+            netWorkStage.setFullScreen(true);
+            netWorkStage.setFullScreenExitHint("");
+            currentStage.hide();
+            netWorkStage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private String fetchProfileDetailsByEmail() {
         HttpURLConnection connection = null;
@@ -188,11 +189,15 @@ public class TopBarController {
         String avatar = fetchProfileDetailsByEmail();
         fillAvatar(avatar);
         meImageView.setOnMouseClicked(event -> onMeClicked());
+
         usersImageView.setOnMouseClicked(event -> onUsersClicked());
+
         searchTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 search();
             }
         });
+
+        myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
     }
 }

@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -407,6 +409,13 @@ public class ProfileController {
         onlyMeRadioButton.setOnAction(this::handlePrivacyRadioButtonAction);
         myConnectionRadioButton.setOnAction(this::handlePrivacyRadioButtonAction);
         everyoneRadioButton.setOnAction(this::handlePrivacyRadioButtonAction);
+
+        avatarImageView.setFitWidth(142);
+        avatarImageView.setFitHeight(142);
+        avatarImageView.setPreserveRatio(true);
+
+        Circle clip = new Circle(71, 71, 71);
+        avatarImageView.setClip(clip);
 
         fillProfile();
     }

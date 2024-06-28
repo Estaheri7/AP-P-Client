@@ -156,7 +156,6 @@ public class FetcherEmail {
         Label headlineLabel = new Label(headline);
         Label locationLabel = new Label(city + ", " + country);
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
-
 //        int nameSize = (name + lastName).length();
         Button button = new Button("Connect");
         button.setTranslateY(25);
@@ -176,6 +175,7 @@ public class FetcherEmail {
         }
         button.setOnAction(event -> {
             if (button.getText().equals("Connect")) {
+                ConnectController.setConnectionReceiver(email);
                 loadSendConnection(button);
             } else if (button.getText().equals("Message")) {
                 // TODO go to message room
