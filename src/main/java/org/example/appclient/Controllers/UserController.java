@@ -156,6 +156,7 @@ public class UserController {
         }
         button.setOnAction(event -> {
             if (button.getText().equals("Connect")) {
+                ConnectController.setConnectionReceiver(email);
                 loadSendConnection(button);
             } else if (button.getText().equals("Message")) {
                 // TODO go to message room

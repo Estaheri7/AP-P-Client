@@ -39,7 +39,8 @@
                               <ImageView fx:id="avatarImageView" fitHeight="142.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
 <!--                                    <Image url="@images/linkedInIcon.png" />-->
-                                 </image></ImageView>
+                                 </image>
+                              </ImageView>
                               <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#onEditButton" text="Edit" translateX="370.0" translateY="110.0" />
                            </children>
                         </HBox>

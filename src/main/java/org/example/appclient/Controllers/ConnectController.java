@@ -18,6 +18,8 @@ public class ConnectController {
 
     private final Gson gson = new Gson();
 
+    private static String connectionReceiver;
+
     @FXML
     private TextField noteTextField;
 
@@ -32,7 +34,7 @@ public class ConnectController {
 
     @FXML
     void onSendButton(ActionEvent event) {
-        sendConnectionRequest(ProfileController.getProfileEmail());
+        sendConnectionRequest(connectionReceiver);
     }
 
     private void sendConnectionRequest(String receiver) {
@@ -138,5 +140,9 @@ public class ConnectController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void setConnectionReceiver(String connectionReceiver) {
+        ConnectController.connectionReceiver = connectionReceiver;
     }
 }
