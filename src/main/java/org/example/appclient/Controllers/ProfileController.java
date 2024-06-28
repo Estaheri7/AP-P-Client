@@ -307,8 +307,12 @@ public class ProfileController {
         String buttonText = followButton.getText();
         if (buttonText.equals("Follow")) {
             FollowController.follow(profileEmail);
+            followButton.setText("Unfollow");
+            // TODO display increased number
         } else if (buttonText.equals("Unfollow")) {
             FollowController.unfollow(profileEmail);
+            followButton.setText("Follow");
+            // TODO display decreased number
         }
     }
 
