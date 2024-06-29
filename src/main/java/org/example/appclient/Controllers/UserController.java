@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
@@ -100,6 +101,8 @@ public class UserController {
         userEntry.setSpacing(10);
         userEntry.setPrefWidth(650);
 
+
+        ImageView imageView = new ImageView();
         if (avatar != null && !avatar.isEmpty()) {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/user/avatar/" + email).openConnection();
@@ -110,11 +113,10 @@ public class UserController {
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
                     Image image = new Image(inputStream);
-                    ImageView imageView = new ImageView(image);
+                    imageView = new ImageView(image);
                     imageView.setFitWidth(50);
                     imageView.setFitHeight(50);
                     imageView.setOnMouseClicked(event -> goToProfile(email));
-                    userEntry.getChildren().add(imageView);
                     inputStream.close();
                 }
             } catch (IOException e) {
@@ -122,12 +124,15 @@ public class UserController {
             }
         } else {
             Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
-            ImageView imageView = new ImageView(image);
+            imageView = new ImageView(image);
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);
             imageView.setOnMouseClicked(event -> goToProfile(email));
-            userEntry.getChildren().add(imageView);
         }
+
+        Circle circle = new Circle(25, 25, 25);
+        imageView.setClip(circle);
+        userEntry.getChildren().add(imageView);
 
         VBox userDetailsVBox = new VBox();
         userDetailsVBox.setPrefWidth(480);
