@@ -10,8 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MediaController {
-    public static void uploadFile(File file, String url) throws IOException {
-        String fullURL = "http://localhost:8080" + url + "/" + JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
+    public static void uploadFile(File file, String url, String unique) throws IOException {
+        String fullURL = "http://localhost:8080" + url + "/" + unique;
         HttpURLConnection connection = (HttpURLConnection) new URL(fullURL).openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("PUT");
@@ -43,7 +43,7 @@ public class MediaController {
 
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            System.out.println("Image uploaded successfully.");
+            System.out.println("Media uploaded successfully.");
         } else {
             System.out.println("Failed to upload image: " + connection.getResponseMessage());
         }
