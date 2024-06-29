@@ -58,6 +58,7 @@ public class UserConnectionController {
 
     public void initialize() {
         usersVBox = new VBox();
+        usersVBox.setStyle("-fx-background-color: black");
         connectionsScrollPane.setContent(usersVBox);
         displayConnections();
     }
