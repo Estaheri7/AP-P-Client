@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
@@ -32,13 +33,13 @@ import java.util.List;
 public class FetcherEmail {
     private static final Gson gson = new Gson();
 
-    public static ArrayList<String> fetchEmails(String URL , String type) {
+    public static ArrayList<String> fetchEmails(String URL , String type, String requestEmail) {
         ArrayList<String> emails = new ArrayList<>();
 
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
-                URL url = new URL("http://localhost:8080/" + URL+ "//" + ProfileController.getProfileEmail());
+                URL url = new URL("http://localhost:8080/" + URL + "//" + requestEmail);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
@@ -119,6 +120,8 @@ public class FetcherEmail {
         entry.setSpacing(10);
         entry.setPrefWidth(650);
 
+        ImageView imageView = new ImageView();
+
         if (avatarURL != null && !avatarURL.isEmpty()) {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/user/avatar/" + email).openConnection();
@@ -126,15 +129,13 @@ public class FetcherEmail {
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
 
                 int responseCode = connection.getResponseCode();
-                System.out.println(connection.getResponseCode());
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
                     Image image = new Image(inputStream);
-                    ImageView imageView = new ImageView(image);
+                    imageView = new ImageView(image);
                     imageView.setFitWidth(50);
                     imageView.setFitHeight(50);
                     imageView.setOnMouseClicked(event -> goToProfile(email, stageLabel));
-                    entry.getChildren().add(imageView);
                     inputStream.close();
                 }
             } catch (IOException e) {
@@ -142,12 +143,15 @@ public class FetcherEmail {
             }
         } else {
             Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
-            ImageView imageView = new ImageView(image);
+            imageView = new ImageView(image);
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);
             imageView.setOnMouseClicked(event -> goToProfile(email, stageLabel));
-            entry.getChildren().add(imageView);
         }
+
+        Circle circle = new Circle(25, 25, 25);
+        imageView.setClip(circle);
+        entry.getChildren().add(imageView);
 
         VBox userDetailsVBox = new VBox();
         userDetailsVBox.setPrefWidth(480);
@@ -157,7 +161,6 @@ public class FetcherEmail {
         Label headlineLabel = new Label(headline);
         Label locationLabel = new Label(city + ", " + country);
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
-
 //        int nameSize = (name + lastName).length();
         Button button = new Button("Connect");
         button.setTranslateY(25);
@@ -177,6 +180,7 @@ public class FetcherEmail {
         }
         button.setOnAction(event -> {
             if (button.getText().equals("Connect")) {
+                ConnectController.setConnectionReceiver(email);
                 loadSendConnection(button);
             } else if (button.getText().equals("Message")) {
                 // TODO go to message room

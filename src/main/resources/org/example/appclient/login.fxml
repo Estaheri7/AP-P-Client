@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-background-color: " xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LoginController">
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LoginController" style="-fx-background-color: #1e1e1e;">
    <children>
-      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" spacing="10.0" style="-fx-background-color: #292323;">
+      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" spacing="10.0" style="-fx-background-color: #353535; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
          <HBox alignment="CENTER" spacing="10.0">
             <Label text="Linked" textFill="#1d7754" translateX="-140.0">
                <font>
@@ -27,23 +27,26 @@
                </image>
             </ImageView>
          </HBox>
-         <Label alignment="CENTER" text="Sign in" textFill="WHITE">
+         <Label alignment="CENTER" text="Sign in" textFill="#ffffff">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>
          </Label>
-         <Label alignment="CENTER" text="Connect, learn, and grow in your career." textFill="#e4dada">
+         <Label alignment="CENTER" text="Connect, learn, and grow in your career." textFill="#d3d3d3">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <TextField fx:id="emailTextField" promptText="Email" stylesheets="@css/CheckBox.css" />
-         <HBox alignment="CENTER" spacing="10.0">
-            <PasswordField fx:id="passwordTextField" promptText="Password" />
-            <TextField fx:id="passwordTextFieldVisible" managed="false" promptText="Password" visible="false" />
-            <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#showCheckbox" style="-fx-border-color: #1d7754; -fx-skin: #1d7754;" text="Show" textFill="#e4dada" />
+
          </HBox>
          <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign in">
+         <TextField fx:id="emailTextField" promptText="Email" style="-fx-background-color: #555555; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+         <HBox alignment="CENTER" spacing="10.0">
+            <PasswordField fx:id="passwordTextField" promptText="Password" style="-fx-background-color: #555555; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+            <TextField fx:id="passwordTextFieldVisible" managed="false" promptText="Password" visible="false" style="-fx-background-color: #555555; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+            <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#showCheckbox" text="Show" style="-fx-text-fill: #d3d3d3;" />
+         </HBox>
+         <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" text="Sign in" style="-fx-background-color: #1d7754; -fx-text-fill: #ffffff;">
             <font>
                <Font size="15.0" />
             </font>
@@ -58,12 +61,13 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <Label alignment="CENTER" text="Don't have an account?" textFill="#e4dada">
+         <Label alignment="CENTER" text="Don't have an account?" textFill="#d3d3d3">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Label>
-         <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" style="-fx-background-color: #1d7754;" text="Create Account">
+
+         <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" text="Create Account" style="-fx-background-color: #1d7754; -fx-text-fill: #ffffff;">
             <font>
                <Font size="13.0" />
             </font>

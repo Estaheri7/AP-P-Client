@@ -32,8 +32,6 @@ public class UserConnectionController {
 
     private final Gson gson = new Gson();
 
-    private final FetcherEmail fetcher = new FetcherEmail();
-
     @FXML
     private ScrollPane connectionsScrollPane;
 
@@ -47,12 +45,12 @@ public class UserConnectionController {
     private Label connectionLabel;
 
     public void displayConnections() {
-        ArrayList<String> senderEmails = FetcherEmail.fetchEmails("connections", "sender");
+        ArrayList<String> senderEmails = FetcherEmail.fetchEmails("connections", "sender", ProfileController.getProfileEmail());
         connectionLabel.setText(senderEmails.size() + " Connection");
         usersVBox.getChildren().clear();
         for (String senderEmail : senderEmails) {
             HashMap<String, String> userDetail = FetcherEmail.fetchProfileDetailsByEmail(senderEmail);
-            fetcher.addEntry(userDetail, usersVBox, connectionLabel);
+            FetcherEmail.addEntry(userDetail, usersVBox, connectionLabel);
         }
     }
 

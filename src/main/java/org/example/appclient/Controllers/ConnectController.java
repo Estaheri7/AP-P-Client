@@ -18,6 +18,8 @@ public class ConnectController {
 
     private final Gson gson = new Gson();
 
+    private static String connectionReceiver;
+
     @FXML
     private TextField noteTextField;
 
@@ -32,7 +34,7 @@ public class ConnectController {
 
     @FXML
     void onSendButton(ActionEvent event) {
-        sendConnectionRequest(ProfileController.getProfileEmail());
+        sendConnectionRequest(connectionReceiver);
     }
 
     private void sendConnectionRequest(String receiver) {
@@ -111,5 +113,36 @@ public class ConnectController {
             }
         }
         return false;
+    }
+
+    public static void acceptConnection(String sender) {
+        doConnection("accept-connection", sender);
+    }
+
+    public static void declineConnection(String sender) {
+        doConnection("decline-connection", sender);
+    }
+
+    private static void doConnection(String route, String sender) {
+        if (JwtManager.isJwtTokenAvailable()) {
+            HttpURLConnection connection = null;
+            try {
+                String receiver = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
+
+                URL url = new URL("http://localhost:8080/" + route + "//" +  receiver + "?sender=" + sender);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("PUT");
+                connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
+                connection.setDoOutput(true);
+
+                connection.getResponseCode();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void setConnectionReceiver(String connectionReceiver) {
+        ConnectController.connectionReceiver = connectionReceiver;
     }
 }
