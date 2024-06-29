@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -31,6 +32,18 @@ public class ProfileController {
 
     @FXML
     private DialogPane dialogPane;
+
+    @FXML
+    private ScrollPane postScrollPane;
+
+    @FXML
+    private Button addPostButton;
+
+    @FXML
+    private Label userPostLabel;
+
+    @FXML
+    private VBox postVBox;
 
     @FXML
     private TextField FieldTextField;
@@ -153,6 +166,12 @@ public class ProfileController {
     private RadioButton everyoneRadioButton;
 
     private ToggleGroup toggleGroup;
+
+    private String avatarURL = "";
+
+    private int currentPage = 0;
+
+    private static final int POSTS_PER_PAGE = 3;
 
     @FXML
     void onAllEducationsButton(ActionEvent event) {
@@ -360,7 +379,6 @@ public class ProfileController {
 
     @FXML
     void onFollowingLink(ActionEvent event) {
-
         try {
             Parent followingRoot = FXMLLoader.load(getClass().getResource("/org/example/appclient/following.fxml"));
             Scene followingScene = new Scene(followingRoot);
@@ -380,7 +398,6 @@ public class ProfileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -410,8 +427,57 @@ public class ProfileController {
 
     }
 
+    @FXML
+    void onAddPostButton(ActionEvent event) {
+        try {
+            UpdateSkillController.setProfileEmail(profileEmail);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/addPost.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Post");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(addPostButton.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
         avatarImageView.setOnMouseClicked(event -> uploadImage("avatar"));
+        avatarImageView.setFitWidth(142);
+        avatarImageView.setFitHeight(142);
+
+        avatarImageView.setPreserveRatio(false);
+        avatarImageView.setSmooth(true);
+        avatarImageView.setStyle("-fx-min-width: 142;" +
+                "-fx-min-height: 142");
+
+        Circle clip = new Circle(71, 71, 71);
+        avatarImageView.setClip(clip);
+
+        // Setting fixed width and height for backgroundImageView
+        backgroundImageView.setFitWidth(483);
+        backgroundImageView.setFitHeight(138);
+        backgroundImageView.setPreserveRatio(false);
+        backgroundImageView.setSmooth(true);
+
+        Rectangle rectangleClip = new Rectangle(483, 138);
+        rectangleClip.setArcHeight(10);
+        rectangleClip.setArcWidth(10);
+        backgroundImageView.setClip(rectangleClip);
+
+        backgroundImageView.setStyle("-fx-min-width: 483;" +
+                "-fx-min-height: 138;" +
+                "-fx-max-width: 483;" +
+                "-fx-max-height: 138;");
+
 
         // privacy contact
         toggleGroup = new ToggleGroup();
@@ -427,14 +493,30 @@ public class ProfileController {
         myConnectionRadioButton.setOnAction(this::handlePrivacyRadioButtonAction);
         everyoneRadioButton.setOnAction(this::handlePrivacyRadioButtonAction);
 
-        avatarImageView.setFitWidth(142);
-        avatarImageView.setFitHeight(142);
-        avatarImageView.setPreserveRatio(true);
-
-        Circle clip = new Circle(71, 71, 71);
-        avatarImageView.setClip(clip);
-
         fillProfile();
+
+        postVBox = new VBox();
+//        postVBox.setStyle("-fx-background-color: #272727");
+        postScrollPane.setContent(postVBox);
+
+        postScrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.doubleValue() == postScrollPane.getVmax()) {
+                displayPosts();
+            }
+        });
+
+        displayPosts();
+    }
+
+    private void displayPosts() {
+        String name = nameLabel.getText();
+        userPostLabel.setText(name + "'s Posts");
+        ArrayList<HashMap<String, String>> posts = PostController.fetchPostFromUser(profileEmail, currentPage, POSTS_PER_PAGE);
+        currentPage++;
+
+        for (HashMap<String, String> post : posts) {
+            PostController.initPost(post, postVBox, name, avatarURL, userPostLabel);
+        }
     }
 
     private void handlePrivacyRadioButtonAction(ActionEvent event) {
@@ -532,7 +614,7 @@ public class ProfileController {
         locationLabel.setText(user.get("city") + ", " + user.get("country"));
 
         // set avatar
-        String avatarURL = (String) user.get("avatar_url");
+        avatarURL = (String) user.get("avatar_url");
         if (avatarURL != null && !avatarURL.isEmpty()) {
             try {
                 URL url = new URL("http://localhost:8080/user/avatar/" + profileEmail);
@@ -620,6 +702,10 @@ public class ProfileController {
         setVisibilityRadioButton(visibility);
     }
 
+    private void fillProfilePosts() {
+
+    }
+
     private HashMap<String, Object> fetchUserProfile() {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
@@ -694,11 +780,12 @@ public class ProfileController {
         File file = chooseFile();
         if (file != null) {
             try {
+                String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
                 if (type.equals("avatar")) {
-                    MediaController.uploadFile(file, "/upload-avatar");
+                    MediaController.uploadFile(file, "/upload-avatar", email);
                     avatarImageView.setImage(new Image(file.toURI().toString()));
                 } else if (type.equals("background")) {
-                    MediaController.uploadFile(file, "/upload-background");
+                    MediaController.uploadFile(file, "/upload-background", email);
                     backgroundImageView.setImage(new Image(file.toURI().toString()));
                 }
             } catch (IOException e) {
