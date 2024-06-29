@@ -2,8 +2,11 @@ package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -18,6 +21,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.appclient.util.JwtManager;
 
@@ -147,6 +152,15 @@ public class PostController {
             }
         });
 
+        // handling likes display
+        likeLabel.setOnMouseClicked(event -> {
+            ArrayList<HashMap<String, String>> likeEmails = fetchLikesForPost(postId);
+            LikeController.setLikeEmails(likeEmails);
+            LikeController.setTempLabel(likeLabel);
+            displayLikeDialog(likeLabel);
+        });
+
+
         buttonBox.getChildren().addAll(likeLabel, commentLabel, likeButton, commentButton);
 
         Label titleLabel = new Label(title);
@@ -196,6 +210,52 @@ public class PostController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static ArrayList<HashMap<String, String>> fetchLikesForPost(String postId) {
+        ArrayList<HashMap<String, String>> likes = new ArrayList<>();
+        HttpURLConnection connection = null;
+        try {
+            URL url = new URL("http://localhost:8080/posts/likes/" + postId);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+
+                    Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+                    likes = gson.fromJson(response.toString(), type);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return likes;
+    }
+
+    private static void displayLikeDialog(Label likeLabel) {
+        try {
+            FXMLLoader loader = new FXMLLoader(PostController.class.getResource("/org/example/appclient/likeDialog.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Reactions");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(likeLabel.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
