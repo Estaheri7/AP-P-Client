@@ -37,9 +37,6 @@
                <Font size="15.0" />
             </font>
          </Label>
-
-         </HBox>
-         <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign in">
          <TextField fx:id="emailTextField" promptText="Email" style="-fx-background-color: #555555; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
          <HBox alignment="CENTER" spacing="10.0">
             <PasswordField fx:id="passwordTextField" promptText="Password" style="-fx-background-color: #555555; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
@@ -66,7 +63,6 @@
                <Font name="System Bold" size="14.0" />
             </font>
          </Label>
-
          <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" text="Create Account" style="-fx-background-color: #1d7754; -fx-text-fill: #ffffff;">
             <font>
                <Font size="13.0" />
