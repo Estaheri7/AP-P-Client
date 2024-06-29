@@ -3,104 +3,140 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.SignupController">
-    <children>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
-            <children>
-                <Label prefHeight="50.0" prefWidth="75.0" text="Linked" textFill="#1d7754" translateX="-180.0" translateY="-20.0">
-                    <font>
-                        <Font name="System Bold" size="24.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Label>
-                <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="-180.0" translateY="-20.0">
-                    <image>
-                        <Image url="@images/linkedInIcon.png" />
-                    </image>
-                </ImageView>
-                <Label text="Welcome!" translateX="-55.0" translateY="25.0">
-                    <font>
-                        <Font name="System Bold" size="24.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" text="Make the most of your professional life" textAlignment="CENTER" translateX="10.0">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Label>
-        <VBox prefHeight="229.0" prefWidth="600.0">
-            <children>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" translateY="10.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" translateY="-20.0">
-                            <children>
-                                <TextField fx:id="nameTextField" promptText="Name..." />
-                                <Label fx:id="nameError" alignment="CENTER" prefWidth="160.0" text="Label" textFill="RED" visible="false" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" translateY="10.0">
-                            <children>
-                                <TextField fx:id="passwordTextField" promptText="Password..." />
-                                <Label fx:id="passwordError" alignment="CENTER" prefWidth="160.0" text="Label" textFill="RED" visible="false" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" translateY="-20.0">
-                            <children>
-                                <TextField fx:id="lastNameTextField" promptText="LastName..." />
-                                <Label fx:id="lastNameError" alignment="CENTER" prefWidth="160.0" text="Label" textFill="RED" visible="false" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" translateY="10.0">
-                            <children>
-                                <TextField fx:id="rPasswordTextField" promptText="Repeat Pass..." />
-                                <Label fx:id="rPasswordError" alignment="CENTER" prefWidth="160.0" text="Label" textFill="RED" visible="false" />
-                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" translateY="-20.0">
-                            <children>
-                                <TextField fx:id="emailTextField" promptText="Email..." />
-                                <Label fx:id="emailError" alignment="CENTER" prefWidth="160.0" text="Label" textFill="RED" visible="false" />
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" translateY="25.0">
-                    <children>
-                        <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefWidth="150.0" text="Signup">
-                            <font>
-                                <Font name="System Bold" size="15.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="96.0" prefWidth="600.0" translateY="25.0">
-                    <children>
-                        <Label prefHeight="30.0" prefWidth="150.0" text="Already on LinkedIn?" translateY="40.0">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                        <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" text="Sign In" translateY="40.0">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-      <Label fx:id="signupSuccess" alignment="CENTER" prefHeight="18.0" prefWidth="251.0" text="Account created successfully!" textFill="#00ff0d" translateY="-76.0" visible="false" />
-      <Label fx:id="signupError" alignment="CENTER" prefHeight="18.0" prefWidth="251.0" text="Account already exists!" textFill="RED" translateY="-104.0" visible="false" />
-    </children>
-</VBox>
+<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.SignupController">
+    <VBox fx:id="rootVBox" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="536.0" prefWidth="651.0" spacing="10.0" style="-fx-background-color: #292323;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="610.0">
+                <children>
+                    <Label prefHeight="50.0" prefWidth="75.0" text="Linked" textFill="#1d7754" translateX="-180.0" translateY="-20.0">
+                        <font>
+                            <Font name="System Bold" size="24.0" />
+                        </font>
+                    </Label>
+                    <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="-180.0" translateY="-20.0">
+                        <image>
+                            <Image url="@images/linkedInIcon.png" />
+                        </image>
+                    </ImageView>
+                    <Label text="Welcome!" textFill="WHITE" translateX="-55.0" translateY="25.0">
+                        <font>
+                            <Font name="System Bold" size="24.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" text="Make the most of your professional life" textAlignment="CENTER" textFill="#e4dada" translateX="10.0">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="274.0" prefWidth="651.0">
+                <children>
+                    <HBox alignment="CENTER" prefHeight="10.0" prefWidth="651.0" spacing="20.0">
+                        <children>
+                            <VBox prefHeight="26.0" prefWidth="99.0">
+                                <children>
+                                    <TextField fx:id="nameTextField" prefWidth="100.0" promptText="Name..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-font-style: white; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="nameErrorLabel" text="NameError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="lastNameTextField" prefWidth="124.0" promptText="LastName..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="lastNameErrorLabel" text="LastNameError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="emailTextField" promptText="Email..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="emailErrorLabel" text="EmailError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                        </children>
+                        <VBox.margin>
+                            <Insets top="20.0" />
+                        </VBox.margin>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="59.0" prefWidth="651.0" spacing="20.0">
+                        <children>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="passwordTextField" promptText="Password..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="passwordErrorLabel" text="PasswordError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="rPassTextField" promptText="Repeat Pass..." style="-fx-background-color: #403636; -fx-border-color: #1d7754;-fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="rPassErrorLabel" text="rPassError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="countryTextField" promptText="Country..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="countryErrorLabel" text="CountryError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <TextField fx:id="cityTextField" promptText="City..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <Label fx:id="cityErrorLabel" text="CityError" textFill="RED" visible="false" />
+                                </children>
+                            </VBox>
+                        </children>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </HBox>
+                    <VBox alignment="CENTER" prefHeight="54.0" prefWidth="624.0">
+                        <children>
+                            <TextArea fx:id="headlineTextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="62.0" prefWidth="626.0" promptText="Headline..." style="-fx-border-color: #1d7754; -fx-background-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" stylesheets="@css/TextArea.css">
+                                <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                </VBox.margin>
+                            </TextArea>
+                            <Label fx:id="headlineErrorLabel" text="HeadlineError" textFill="RED" translateX="10.0" visible="false" />
+                        </children>
+                        <VBox.margin>
+                            <Insets top="50.0" />
+                        </VBox.margin>
+                    </VBox>
+                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" translateY="25.0">
+                        <children>
+                            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefWidth="150.0" style="-fx-background-color: #1d7754;" text="Signup">
+                                <font>
+                                    <Font name="System Bold" size="15.0" />
+                                </font>
+                            </Button>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="95.0" prefWidth="610.0" translateY="25.0">
+                        <children>
+                            <Label prefHeight="30.0" prefWidth="150.0" text="Already on LinkedIn?" textFill="#e4dada" translateY="40.0">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                            <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign In" translateY="40.0">
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                            </Button>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <Label fx:id="signupSuccess" alignment="CENTER" prefHeight="18.0" prefWidth="251.0" text="Account created successfully!" textFill="#00ff0d" translateY="-76.0" visible="false" />
+            <Label fx:id="signupError" alignment="CENTER" prefHeight="18.0" prefWidth="251.0" text="Account already exists!" textFill="RED" translateY="-104.0" visible="false" />
+        </children>
+    </VBox>
+</AnchorPane>

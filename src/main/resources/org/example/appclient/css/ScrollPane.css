@@ -1,0 +1,6 @@
+
+.scroll-pane {
+    -fx-background-color: #111;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}

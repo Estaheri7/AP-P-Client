@@ -8,7 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.appclient.DataValidator.UserValidator;
@@ -25,34 +27,61 @@ public class SignupController {
     private final Gson gson = new Gson();
 
     @FXML
+    private Label cityErrorLabel;
+
+    @FXML
+    private TextField cityTextField;
+
+    @FXML
+    private Label countryErrorLabel;
+
+    @FXML
+    private TextField countryTextField;
+
+    @FXML
+    private Label emailErrorLabel;
+
+    @FXML
     private TextField emailTextField;
+
+    @FXML
+    private Label headlineErrorLabel;
+
+    @FXML
+    private TextArea headlineTextArea;
+
+    @FXML
+    private Label lastNameErrorLabel;
 
     @FXML
     private TextField lastNameTextField;
 
     @FXML
+    private Label nameErrorLabel;
+
+    @FXML
     private TextField nameTextField;
+
+    @FXML
+    private Label passwordErrorLabel;
 
     @FXML
     private TextField passwordTextField;
 
     @FXML
-    private TextField rPasswordTextField;
+    private Label rPassErrorLabel;
 
     @FXML
-    private Label nameError;
+    private TextField rPassTextField;
 
     @FXML
-    private Label emailError;
+    private VBox rootVBox;
 
     @FXML
-    private Label lastNameError;
+    private Button signInbutton;
 
     @FXML
-    private Label passwordError;
-
-    @FXML
-    private Label rPasswordError;
+    private Button signupButton;
 
     @FXML
     private Label signupError;
@@ -61,19 +90,16 @@ public class SignupController {
     private Label signupSuccess;
 
     @FXML
-    private Button signupButton;
-
-    @FXML
-    private Button signInButton;
-
-    @FXML
     void onSignupButton(ActionEvent event) {
         HttpURLConnection connection = null;
-        nameError.setVisible(false);
-        lastNameError.setVisible(false);
-        emailError.setVisible(false);
-        passwordError.setVisible(false);
-        rPasswordError.setVisible(false);
+        nameErrorLabel.setVisible(false);
+        lastNameErrorLabel.setVisible(false);
+        emailErrorLabel.setVisible(false);
+        passwordErrorLabel.setVisible(false);
+        rPassErrorLabel.setVisible(false);
+        countryErrorLabel.setVisible(false);
+        cityErrorLabel.setVisible(false);
+        headlineErrorLabel.setVisible(false);
         signupError.setVisible(false);
         signupSuccess.setVisible(false);
         try {
@@ -81,30 +107,42 @@ public class SignupController {
             String name = nameTextField.getText();
             String lastName = lastNameTextField.getText();
             String password = passwordTextField.getText();
-            String rPassword = rPasswordTextField.getText();
+            String rPassword = rPassTextField.getText();
+            String country = countryTextField.getText();
+            String city = cityTextField.getText();
+            String headline = headlineTextArea.getText();
 
             if (!UserValidator.nameValidator(name)) {
-                nameError.setText("Invalid format");
-                nameError.setVisible(true);
+                nameErrorLabel.setText("Invalid format");
+                nameErrorLabel.setVisible(true);
                 return;
             } else if (!UserValidator.nameValidator(lastName)) {
-                lastNameError.setText("Invalid format");
-                lastNameError.setVisible(true);
+                lastNameErrorLabel.setText("Invalid format");
+                lastNameErrorLabel.setVisible(true);
                 return;
             } else if (!UserValidator.emailValidator(email)) {
-                emailError.setText("Invalid format");
-                emailError.setVisible(true);
+                emailErrorLabel.setText("Invalid format");
+                emailErrorLabel.setVisible(true);
                 return;
             } else if (!UserValidator.passwordValidator(password)) {
-                passwordError.setText("Invalid format");
-                passwordError.setVisible(true);
+                passwordErrorLabel.setText("Invalid format");
+                passwordErrorLabel.setVisible(true);
                 return;
             }
 
             if (!password.equals(rPassword)) {
-                rPasswordError.setText("Not same");
-                rPasswordError.setVisible(true);
+                rPassErrorLabel.setText("Not same");
+                rPassTextField.setVisible(true);
                 return;
+            }
+            if(country==null || country.isEmpty()) {
+                countryErrorLabel.setText("Country cannot be empty");
+            }
+            else if(city==null || city.isEmpty()) {
+                cityErrorLabel.setText("City cannot be empty");
+            }
+            else if(headline==null || headline.isEmpty()) {
+                headlineErrorLabel.setText("Headline cannot be empty");
             }
 
             HashMap<String, String> userData = new HashMap<>();
@@ -112,6 +150,9 @@ public class SignupController {
             userData.put("firstName", name);
             userData.put("lastName", lastName);
             userData.put("password", password);
+            userData.put("country", country);
+            userData.put("city", city);
+            userData.put("headline", headline);
 
             URL url = new URL("http://localhost:8080/signup");
             connection = (HttpURLConnection) url.openConnection();
@@ -168,6 +209,10 @@ public class SignupController {
 
         currentStage.hide();
         loginStage.show();
+    }
+
+    public void initialize() {
+        headlineTextArea.setStyle("-fx-background-color: #403636;");
     }
 }
 
