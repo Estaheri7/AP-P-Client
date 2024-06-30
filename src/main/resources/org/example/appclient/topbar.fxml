@@ -8,9 +8,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="695.0" style="-fx-background-color: #292323; -fx-border-color: #1d7754;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.TopBarController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1900.0" style="-fx-background-color: #232323; -fx-border-color: #1d7754;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.TopBarController">
    <children>
-      <TextField fx:id="searchTextField" promptText="Search..." style="-fx-background-color: #292323; -fx-border-color: #1d7754;" translateX="5.0" translateY="12.5" />
+      <VBox prefHeight="32.0" prefWidth="32.0" translateX="30.0" translateY="10.0">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-magnifier-32.png" />
+               </image>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+      <TextField fx:id="searchTextField" promptText="Search..." style="-fx-background-color: #292323; -fx-border-color: #1d7754;" translateY="12.5">
+         <HBox.margin>
+            <Insets left="30.0" right="20.0" />
+         </HBox.margin></TextField>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
             <ImageView fx:id="homeImageView" fitHeight="32.0" fitWidth="32.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
@@ -18,17 +33,20 @@
                   <Insets />
                </VBox.margin>
                <image>
-                  <Image url="@images/Home.png" />
+                  <Image url="@images/icons8-home-32.png" />
                </image>
             </ImageView>
             <Label style="-fx-text-fill: #a99f9f;" text="Home" textFill="#ece3e3" />
          </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
             <ImageView fx:id="myNetworkImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/MyNetwork.png" />
+                  <Image url="@images/icons8-connection-32.png" />
                </image></ImageView>
             <Label style="-fx-text-fill: #a99f9f;" text="My Network" />
          </children>
@@ -37,7 +55,7 @@
          <children>
             <ImageView fx:id="usersImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Users.png" />
+                  <Image url="@images/icons8-users-32.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" style="-fx-text-fill: #a99f9f;" text="Users" />
@@ -47,7 +65,7 @@
          <children>
             <ImageView fx:id="messagingImageView" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" translateY="-2.0">
                <image>
-                  <Image url="@images/Messaging.png" />
+                  <Image url="@images/icons8-chat-bubble-32.png" />
                </image></ImageView>
             <Label style="-fx-text-fill: #a99f9f;" text="Messaging" />
          </children>
@@ -56,6 +74,16 @@
          <children>
             <ImageView fx:id="meImageView" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
             <Label style="-fx-text-fill: #a99f9f;" text="Me" />
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" translateX="700.0" translateY="1.0">
+         <children>
+            <ImageView fx:id="logOutImage" fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
+               <image>
+                  <Image url="@images/icons8-open-door-32.png" />
+               </image>
+            </ImageView>
+            <Label style="-fx-text-fill: #a99f9f;" text="Log Out" />
          </children>
       </VBox>
    </children>
