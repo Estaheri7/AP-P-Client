@@ -292,7 +292,7 @@
                               <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1d7754;" text="Add Post" translateY="30.0" />
                            </children>
                         </HBox>
-                        <ScrollPane fx:id="postScrollPane" prefHeight="755.0" prefWidth="454.0" style="-fx-background: #383838; -fx-border-color: #1d7754;" stylesheets="@css/ScrollBar.css" />
+                        <VBox fx:id="mainContainer" prefHeight="970.0" prefWidth="468.0" />
                      </children>
                   </VBox>
                </children>
