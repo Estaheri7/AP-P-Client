@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -33,7 +34,7 @@ import java.util.List;
 public class FetcherEmail {
     private static final Gson gson = new Gson();
 
-    public static ArrayList<String> fetchEmails(String URL , String type, String requestEmail) {
+    public static ArrayList<String> fetchEmails(String URL, String type, String requestEmail) {
         ArrayList<String> emails = new ArrayList<>();
 
         if (JwtManager.isJwtTokenAvailable()) {
@@ -52,7 +53,8 @@ public class FetcherEmail {
                         while ((inputLine = br.readLine()) != null) {
                             response.append(inputLine);
                         }
-                        ArrayList<HashMap<String, String>> datas = gson.fromJson(response.toString(), new TypeToken<List<HashMap<String, String>>>(){}.getType());
+                        ArrayList<HashMap<String, String>> datas = gson.fromJson(response.toString(), new TypeToken<List<HashMap<String, String>>>() {
+                        }.getType());
                         for (HashMap<String, String> data : datas) {
                             String email = data.get(type);
                             if (email != null) {
@@ -91,7 +93,8 @@ public class FetcherEmail {
                             response.append(line);
                         }
 
-                        Type type = new TypeToken<HashMap<String, String>>() {}.getType();
+                        Type type = new TypeToken<HashMap<String, String>>() {
+                        }.getType();
                         profileDetails = gson.fromJson(response.toString(), type);
                     }
                 }
@@ -116,14 +119,27 @@ public class FetcherEmail {
         String country = userDetail.get("country");
         String avatarURL = userDetail.get("avatar_url");
 
+        // Create a ScrollPane to contain the entry
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setPrefWidth(665); // Adjusted width to accommodate a slightly smaller HBox
+        scrollPane.setMaxWidth(665); // Set maximum width if needed
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+
         HBox entry = new HBox();
         entry.setSpacing(10);
-        entry.setPrefWidth(650);
+        entry.setPrefWidth(665); // Adjusted preferred width to fit within ScrollPane with padding
+        entry.setStyle("-fx-background-color: #232323; " +
+                "-fx-border-color: #1d7754; " +
+                "-fx-border-width: 2px;"); // Set background color to black and border color to #1d7754
+        entry.setPadding(new Insets(10));
 
         ImageView imageView = new ImageView();
 
+        // Code for loading avatar image
         if (avatarURL != null && !avatarURL.isEmpty()) {
             try {
+                // Loading avatar image from URL
                 HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/user/avatar/" + email).openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
@@ -142,6 +158,7 @@ public class FetcherEmail {
                 e.printStackTrace();
             }
         } else {
+            // Default image if avatarURL is not available
             Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
             imageView = new ImageView(image);
             imageView.setFitWidth(50);
@@ -155,20 +172,24 @@ public class FetcherEmail {
 
         VBox userDetailsVBox = new VBox();
         userDetailsVBox.setPrefWidth(480);
+        userDetailsVBox.setStyle("-fx-background-color: #232323;"); // Set background color to black
         Label nameLabel = new Label(name + " " + lastName);
-        nameLabel.setFont(new Font(18));
         nameLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
+        nameLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
         Label headlineLabel = new Label(headline);
+        headlineLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
         Label locationLabel = new Label(city + ", " + country);
+        locationLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
-//        int nameSize = (name + lastName).length();
+
         Button button = new Button("Connect");
         button.setTranslateY(25);
-//        messageButton.setTranslateX(nameSize * 7 + 300);
         onButton(button, email);
-        entry.setPadding(new Insets(10, 10, 10, 10));
+
         entry.getChildren().addAll(userDetailsVBox, button);
-        userVBox.getChildren().add(entry);
+
+        scrollPane.setContent(entry); // Set the HBox entry as the content of the ScrollPane
+        userVBox.getChildren().add(scrollPane); // Add the ScrollPane to the userVBox
     }
 
     public static void onButton(Button button, String email) {
@@ -195,7 +216,7 @@ public class FetcherEmail {
             Parent root = loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("send connection");
+            dialogStage.setTitle("Send Connection");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(btn.getScene().getWindow());
             dialogStage.setResizable(false);
@@ -229,5 +250,16 @@ public class FetcherEmail {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        // Your application entry point
+        // Make sure to load the CSS file in your main application setup
+        String css = FetcherEmail.class.getResource("/path/to/styles.css").toExternalForm();
+        Scene scene = new Scene(new VBox()); // replace with your root layout
+        scene.getStylesheets().add(css);
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

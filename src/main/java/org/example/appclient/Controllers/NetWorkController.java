@@ -52,8 +52,9 @@ public class NetWorkController {
         String avatarURL = userDetail.get("avatar_url");
 
         HBox entry = new HBox();
+        entry.setStyle("-fx-background-color:  #232323");
         entry.setSpacing(10);
-        entry.setPrefWidth(650);
+        entry.setPrefWidth(665);
 
         if (avatarURL != null && !avatarURL.isEmpty()) {
             try {
@@ -102,6 +103,9 @@ public class NetWorkController {
         declineButton.setPrefWidth(250);
         acceptButton.setTranslateY(25);
         declineButton.setTranslateY(25);
+        acceptButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: #FFFFFF;");
+        declineButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: #FFFFFF;");
+
 
         acceptButton.setOnAction(event -> acceptConnection(acceptButton, declineButton,email));
         declineButton.setOnAction(event -> declineConnection(acceptButton, declineButton, email));
