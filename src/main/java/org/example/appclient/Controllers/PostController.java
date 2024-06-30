@@ -222,16 +222,14 @@ public class PostController {
 
         VBox dialogVBox = new VBox(10);
         dialogVBox.setPadding(new Insets(10));
-        dialogVBox.setPrefSize(450, 600); // Set fixed size for the dialog
+        dialogVBox.setPrefSize(450, 600);
 
         initPost(post, dialogVBox, name, userAvatar, stageLabel);
 
         dialog.getDialogPane().setContent(dialogVBox);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
 
-        // Handle closing the dialog
         dialog.setOnHidden(event -> isDialogOpen = false);
-
         dialog.showAndWait();
     }
 
