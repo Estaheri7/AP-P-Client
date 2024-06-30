@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AddPostController">
+<DialogPane style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AddPostController">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Label text="Add a new post">
+            <Label text="Add a new post" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="titleTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Title" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <TextField fx:id="titleTextField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Title" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-prompt-text-fill: #666; -fx-text-fill: white" />
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d7754; -fx-background: #1d7754;" stylesheets="@css/ScrollBar.css">
                <content>
-                  <TextArea fx:id="contentTextArea" focusTraversable="false" prefHeight="344.0" prefWidth="342.0" promptText="write your content...">
+                  <TextArea fx:id="contentTextArea" focusTraversable="false" prefHeight="344.0" prefWidth="343.0" promptText="write your content..." style="-fx-background-color: #272727;" stylesheets="@css/TextArea.css">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -36,8 +36,8 @@
             <Label fx:id="mediaAddedSuccessfully" text="Media added successfully" textFill="#189441" visible="false" />
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="400.0" spacing="150.0">
                <children>
-                  <Button fx:id="doneButton" mnemonicParsing="false" onAction="#onDoneButton" prefHeight="26.0" prefWidth="97.0" text="Done" />
-                  <Button fx:id="addMedia" mnemonicParsing="false" onAction="#onAddMediaButton" prefHeight="26.0" prefWidth="94.0" text="Add media">
+                  <Button fx:id="doneButton" mnemonicParsing="false" onAction="#onDoneButton" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #1d7754;" text="Done" textFill="WHITE" />
+                  <Button fx:id="addMedia" mnemonicParsing="false" onAction="#onAddMediaButton" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #1d7754;" text="Add media" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

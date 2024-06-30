@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
-<!--   <fx:include source="topbar.fxml"/>-->
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
+   <fx:include source="topbar.fxml" />
    <children>
-      <ScrollPane prefHeight="1226.0" prefWidth="1571.0" VBox.vgrow="ALWAYS">
+      <ScrollPane prefHeight="1226.0" prefWidth="1500.0" style="-fx-background: #232323; -fx-background-color: #1d7754;" stylesheets="@css/ScrollBar.css" VBox.vgrow="ALWAYS">
          <content>
-            <HBox prefHeight="2000.0" prefWidth="1478.0" spacing="50.0">
+            <HBox prefHeight="2000.0" prefWidth="1478.0" spacing="50.0" style="-fx-background-color: #232323;">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1544.0" prefWidth="574.0" HBox.hgrow="ALWAYS">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1544.0" prefWidth="649.0" style="-fx-background-color: #383838;" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="138.0" prefWidth="557.0">
+                        <HBox maxWidth="-Infinity" prefHeight="138.0" prefWidth="649.0" style="-fx-background-color: #18392C;">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                            <children>
-                              <ImageView fx:id="backgroundImageView" fitHeight="138.0" fitWidth="483.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/defaultBackGround.png" />
-                                 </image></ImageView>
-                              <Button fx:id="backgroundButton" minHeight="14.0" minWidth="21.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="38.0" prefWidth="83.0" text="background" translateX="5.0" translateY="5.0" />
+                              <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="682.0">
+                                 <children>
+                                    <ImageView fx:id="backgroundImageView" fitHeight="183.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/defaultBackGround.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button fx:id="backgroundButton" minWidth="44.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #1d7754;" text="Edit" translateX="300.0" translateY="-5.0">
+                                       <StackPane.margin>
+                                          <Insets right="10.0" top="10.0" />
+                                       </StackPane.margin>
+                                    </Button>
+                                 </children>
+                              </StackPane>
                            </children>
                         </HBox>
                         <HBox prefHeight="142.0" prefWidth="573.0">
@@ -40,59 +42,69 @@
                                  <image>
 <!--                                    <Image url="@images/linkedInIcon.png" />-->
                                  </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#onEditButton" text="Edit" translateX="370.0" translateY="110.0" />
+                              <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#onEditButton" style="-fx-background-color: #1d7754;" text="Edit" translateX="370.0" translateY="110.0">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin></Button>
                            </children>
                         </HBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="nameLabel" prefWidth="300.0" text="Mahdi Oudi" style="-fx-font-size: 30;">
+                              <Label fx:id="nameLabel" prefWidth="300.0" style="-fx-font-size: 30; -fx-text-fill: #ffffff;" text="Mahdi Oudi" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="headlineLabel" prefHeight="18.0" prefWidth="576.0" text="Student at Amirkabir University of Technology - Tehran Polytechnic" />
-                              <Label fx:id="locationLabel" prefWidth="300.0" text="Tehran, Tehran Province, Iran" />
+                              <Label fx:id="headlineLabel" prefHeight="18.0" prefWidth="576.0" style="-fx-text-fill: #ffffff;" text="Student at Amirkabir University of Technology - Tehran Polytechnic" />
+                              <Label fx:id="locationLabel" prefWidth="300.0" style="-fx-text-fill: #ffffff;" text="Tehran, Tehran Province, Iran" />
                               <HBox prefHeight="26.0" prefWidth="574.0">
                                  <children>
-                                    <Hyperlink fx:id="connectionsLink" alignment="CENTER" onAction="#onConnectionsLink" text="1000 connections" />
-                                    <Hyperlink fx:id="followersLink" alignment="CENTER" onAction="#onFollowersLink" prefHeight="26.0" prefWidth="126.0" text="1000 followers" />
-                                    <Hyperlink fx:id="followingLink" alignment="CENTER" onAction="#onFollowingLink" prefHeight="26.0" prefWidth="140.0" text="1000 Following">
+                                    <Hyperlink fx:id="connectionsLink" alignment="CENTER" onAction="#onConnectionsLink" style="-fx-text-fill: #1d7754;" text="1000 connections" />
+                                    <Hyperlink fx:id="followersLink" alignment="CENTER" onAction="#onFollowersLink" prefHeight="26.0" prefWidth="126.0" style="-fx-text-fill: #1d7754;" text="1000 followers" />
+                                    <Hyperlink fx:id="followingLink" alignment="CENTER" onAction="#onFollowingLink" prefHeight="26.0" prefWidth="140.0" style="-fx-text-fill: #1d7754;" text="1000 Following">
                                        <HBox.margin>
                                           <Insets left="-20.0" />
                                        </HBox.margin>
                                     </Hyperlink>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="66.0" prefWidth="574.0">
                                  <children>
-                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="101.0" text="Connect" />
-                                    <Button fx:id="followButton" mnemonicParsing="false" onAction="#onFollowButton" prefHeight="30.0" prefWidth="115.0" text="Follow" translateX="20.0" />
+                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d7754;" text="Connect" />
+                                    <Button fx:id="followButton" mnemonicParsing="false" onAction="#onFollowButton" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #1d7754;" text="Follow" translateX="20.0" />
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </HBox>
                            </children>
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="573.0" spacing="20.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" translateY="50.0">
                                  <children>
-                                    <Label text="Education">
+                                    <Label style="-fx-text-fill: #ffffff;" text="Education">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="educationAddButton" mnemonicParsing="false" onAction="#onEducationAddButton" text="Add" translateX="50.0" translateY="5.0" />
-                                    <Button fx:id="allEducationsButton" mnemonicParsing="false" onAction="#onAllEducationsButton" prefHeight="30.0" prefWidth="178.0" text="All educations" translateX="100.0" translateY="5.0" />
-                                    <Button fx:id="educationUpdateButton" mnemonicParsing="false" onAction="#onEducationUpdateButton" text="update" translateX="150.0" translateY="5.0" />
+                                    <Button fx:id="educationAddButton" mnemonicParsing="false" onAction="#onEducationAddButton" style="-fx-background-color: #1d7754;" text="Add" translateX="50.0" translateY="5.0" />
+                                    <Button fx:id="allEducationsButton" mnemonicParsing="false" onAction="#onAllEducationsButton" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="All educations" translateX="100.0" translateY="5.0" />
+                                    <Button fx:id="educationUpdateButton" mnemonicParsing="false" onAction="#onEducationUpdateButton" style="-fx-background-color: #1d7754;" text="update" translateX="150.0" translateY="5.0" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin>
                               </HBox>
                               <GridPane prefWidth="598.0">
                                 <columnConstraints>
@@ -113,23 +125,23 @@
                                   <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Grade:" GridPane.rowIndex="2" />
-                                    <Label text="End Date:" GridPane.rowIndex="3" />
-                                    <Label fx:id="descriptionLabel" text="Description:" GridPane.rowIndex="4" />
-                                    <Label text="Start Date:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label fx:id="communityLabel" text="Community:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Label text="School Name:" />
-                                    <Label text="Field:" GridPane.columnIndex="2" />
-                                    <TextField fx:id="schoolNameTextField" disable="true" editable="false" GridPane.columnIndex="1" />
-                                    <TextField fx:id="FieldTextField" disable="true" editable="false" GridPane.columnIndex="3" />
-                                    <TextField fx:id="gradeTextField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="startDateTextField" disable="true" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <TextField fx:id="endDateTextField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="communityTextField" disable="true" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField fx:id="descriptionTextField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label style="-fx-text-fill: #ffffff;" text="Grade:" GridPane.rowIndex="2" />
+                                    <Label style="-fx-text-fill: #ffffff;" text="End Date:" GridPane.rowIndex="3" />
+                                    <Label fx:id="descriptionLabel" style="-fx-text-fill: #ffffff;" text="Description:" GridPane.rowIndex="4" />
+                                    <Label style="-fx-text-fill: #ffffff;" text="Start Date:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="communityLabel" style="-fx-text-fill: #ffffff;" text="Community:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label style="-fx-text-fill: #ffffff;" text="School Name:" />
+                                    <Label style="-fx-text-fill: #ffffff;" text="Field:" GridPane.columnIndex="2" />
+                                    <TextField fx:id="schoolNameTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="FieldTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" />
+                                    <TextField fx:id="gradeTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="startDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="endDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="communityTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <TextField fx:id="descriptionTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets right="15.0" />
                                  </VBox.margin>
                               </GridPane>
                            </children>
@@ -141,45 +153,51 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Skills">
+                                    <Label style="-fx-text-fill: #ffffff;" text="Skills">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="skillsUpdateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkillsUpdateButton" prefHeight="36.0" prefWidth="178.0" text="Update" translateX="205.0" />
+                                    <Button fx:id="skillsUpdateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkillsUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" translateX="205.0" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin>
                               </HBox>
-                              <TextField fx:id="skill1TextField" disable="true" editable="false" prefHeight="24.0" prefWidth="574.0" promptText="skill 1">
+                              <TextField fx:id="skill1TextField" disable="true" editable="false" maxWidth="-Infinity" prefHeight="30.0" prefWidth="603.0" promptText="skill 1" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
-                                 </font></TextField>
-                              <TextField fx:id="skill2TextField" disable="true" editable="false" promptText="skill 2">
+                                 </font>
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" />
+                                 </VBox.margin></TextField>
+                              <TextField fx:id="skill2TextField" disable="true" editable="false" maxWidth="-Infinity" prefHeight="30.0" prefWidth="603.0" promptText="skill 2" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="skill3TextField" disable="true" editable="false" promptText="skill 3">
+                              <TextField fx:id="skill3TextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="skill 3" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="skill4TextField" disable="true" editable="false" promptText="skill 4">
+                              <TextField fx:id="skill4TextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="skill 4" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="skill5TextField" disable="true" editable="false" promptText="skill 5">
+                              <TextField fx:id="skill5TextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="skill 5" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
@@ -191,25 +209,28 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Contact">
+                                    <Label style="-fx-text-fill: #ffffff;" text="Contact">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" text="Update" translateX="120.0" />
+                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" translateX="120.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin></Button>
                                     <VBox prefHeight="100.0" prefWidth="143.0" translateX="190.0">
                                        <children>
-                                          <RadioButton fx:id="onlyMeRadioButton" mnemonicParsing="false" text="Only Me">
+                                          <RadioButton fx:id="onlyMeRadioButton" mnemonicParsing="false" stylesheets="@css/RadioButton.css" text="Only Me" textFill="WHITE">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </RadioButton>
-                                          <RadioButton fx:id="myConnectionRadioButton" mnemonicParsing="false" text="My Connections">
+                                          <RadioButton fx:id="myConnectionRadioButton" mnemonicParsing="false" stylesheets="@css/RadioButton.css" text="My Connections" textFill="WHITE">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </RadioButton>
-                                          <RadioButton fx:id="everyoneRadioButton" mnemonicParsing="false" text="Everyone">
+                                          <RadioButton fx:id="everyoneRadioButton" mnemonicParsing="false" stylesheets="@css/RadioButton.css" text="Everyone" textFill="WHITE">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -217,20 +238,35 @@
                                        </children>
                                     </VBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="20.0" />
+                                 </VBox.margin>
                               </HBox>
-                              <TextField fx:id="phoneNumberTextField" disable="true" editable="false" promptText="Phone Number" />
-                              <TextField fx:id="addressTextField" disable="true" editable="false" promptText="Address">
+                              <TextField fx:id="phoneNumberTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Phone Number" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" top="30.0" />
+                                 </VBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></TextField>
+                              <TextField fx:id="addressTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Address" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="birthDateTextField" disable="true" editable="false" promptText="Birthdate">
+                              <TextField fx:id="birthDateTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Birthdate" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="20.0" top="10.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Hyperlink fx:id="viewLinkHyperLink" onAction="#onViewLinkHyperLink" prefHeight="24.0" prefWidth="574.0" text="ViewLink" />
-                              <Hyperlink fx:id="fastConnectLink" onAction="#onFastConnectLink" prefWidth="597.0" text="FastConnect" />
+                              <Hyperlink fx:id="viewLinkHyperLink" onAction="#onViewLinkHyperLink" prefHeight="24.0" prefWidth="574.0" style="-fx-text-fill: #1d7754;" text="ViewLink">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="20.0" />
+                                 </VBox.margin></Hyperlink>
+                              <Hyperlink fx:id="fastConnectLink" onAction="#onFastConnectLink" prefWidth="597.0" style="-fx-text-fill: #1d7754;" text="FastConnect">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </VBox.margin></Hyperlink>
                            </children>
                         </VBox>
                      </children>
@@ -240,12 +276,12 @@
                   </VBox>
                   <VBox prefHeight="2000.0" prefWidth="468.0">
                      <HBox.margin>
-                        <Insets left="200.0" right="50.0" />
+                        <Insets left="200.0" right="50.0" top="10.0" />
                      </HBox.margin>
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                            <children>
-                              <Label fx:id="userPostLabel" prefHeight="35.0" prefWidth="296.0" text="user Posts" translateY="-3.0">
+                              <Label fx:id="userPostLabel" prefHeight="35.0" prefWidth="296.0" style="-fx-text-fill: #ffffff;" text="user Posts" translateY="-3.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -253,10 +289,10 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" text="Add Post" translateY="30.0" />
+                              <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1d7754;" text="Add Post" translateY="30.0" />
                            </children>
                         </HBox>
-                        <ScrollPane fx:id="postScrollPane" prefHeight="755.0" prefWidth="454.0" />
+                        <ScrollPane fx:id="postScrollPane" prefHeight="755.0" prefWidth="454.0" style="-fx-background: #383838; -fx-border-color: #1d7754;" stylesheets="@css/ScrollBar.css" />
                      </children>
                   </VBox>
                </children>
