@@ -9,10 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.example.appclient.util.JwtManager;
 
@@ -92,6 +90,8 @@ public class PostController {
         }
         return posts;
     }
+
+    private static boolean isDialogOpen = false;
 
     public static void initPost(HashMap<String, String> post, VBox postVBox, String name, String userAvatar, Label stageLabel) {
         String postId = post.get("id");
@@ -205,6 +205,34 @@ public class PostController {
         postVBox.setPadding(new Insets(10));
         postVBox.setSpacing(10);
         postVBox.getChildren().addAll(header, titleLabel, postContentArea, media, labelBox, buttonBox);
+
+        postVBox.setOnMouseClicked(event -> {
+            if (!isDialogOpen) {
+                displayPostDialog(post, name, userAvatar, stageLabel, postVBox.getScene().getWindow());
+            }
+        });
+    }
+
+    private static void displayPostDialog(HashMap<String, String> post, String name, String userAvatar, Label stageLabel, Window owner) {
+        isDialogOpen = true;
+
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.initOwner(owner);
+        dialog.setTitle("Post Details");
+
+        VBox dialogVBox = new VBox(10);
+        dialogVBox.setPadding(new Insets(10));
+        dialogVBox.setPrefSize(450, 600); // Set fixed size for the dialog
+
+        initPost(post, dialogVBox, name, userAvatar, stageLabel);
+
+        dialog.getDialogPane().setContent(dialogVBox);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+        // Handle closing the dialog
+        dialog.setOnHidden(event -> isDialogOpen = false);
+
+        dialog.showAndWait();
     }
 
     public static void onLikeButton(String postId, Button likeButton, Label likeLabel) {
