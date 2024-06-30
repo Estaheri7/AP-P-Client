@@ -13,16 +13,16 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.SignupController">
-    <VBox fx:id="rootVBox" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="536.0" prefWidth="651.0" spacing="10.0" style="-fx-background-color: #292323;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox fx:id="rootVBox" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="536.0" prefWidth="651.0" spacing="10.0" style="-fx-background-color: #232323;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="610.0">
                 <children>
-                    <Label prefHeight="50.0" prefWidth="75.0" text="Linked" textFill="#1d7754" translateX="-180.0" translateY="-20.0">
+                    <Label prefHeight="50.0" prefWidth="75.0" text="Faked" textFill="#1d7754" translateX="-180.0" translateY="-20.0">
                         <font>
                             <Font name="System Bold" size="24.0" />
                         </font>
                     </Label>
-                    <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="-180.0" translateY="-20.0">
+                    <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="-185.0" translateY="-20.0">
                         <image>
                             <Image url="@images/linkedInIcon.png" />
                         </image>
@@ -45,19 +45,19 @@
                         <children>
                             <VBox prefHeight="26.0" prefWidth="99.0">
                                 <children>
-                                    <TextField fx:id="nameTextField" prefWidth="100.0" promptText="Name..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-font-style: white; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="nameTextField" prefWidth="100.0" promptText="Name..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-font-style: white; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="nameErrorLabel" text="NameError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="lastNameTextField" prefWidth="124.0" promptText="LastName..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="lastNameTextField" prefWidth="124.0" promptText="LastName..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="lastNameErrorLabel" text="LastNameError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="emailTextField" promptText="Email..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="emailTextField" promptText="Email..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="emailErrorLabel" text="EmailError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
@@ -70,25 +70,25 @@
                         <children>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="passwordTextField" promptText="Password..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="passwordTextField" promptText="Password..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="passwordErrorLabel" text="PasswordError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="rPassTextField" promptText="Repeat Pass..." style="-fx-background-color: #403636; -fx-border-color: #1d7754;-fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="rPassTextField" promptText="Repeat Pass..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="rPassErrorLabel" text="rPassError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="countryTextField" promptText="Country..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="countryTextField" promptText="Country..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="countryErrorLabel" text="CountryError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
-                                    <TextField fx:id="cityTextField" promptText="City..." style="-fx-background-color: #403636; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+                                    <TextField fx:id="cityTextField" promptText="City..." style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
                                     <Label fx:id="cityErrorLabel" text="CityError" textFill="RED" visible="false" />
                                 </children>
                             </VBox>
@@ -112,7 +112,7 @@
                     </VBox>
                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" translateY="25.0">
                         <children>
-                            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefWidth="150.0" style="-fx-background-color: #1d7754;" text="Signup">
+                            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefWidth="150.0" style="-fx-background-color: #1d7754;" text="Signup" textFill="WHITE">
                                 <font>
                                     <Font name="System Bold" size="15.0" />
                                 </font>
@@ -126,7 +126,7 @@
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign In" translateY="40.0">
+                            <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign In" textFill="WHITE" translateY="40.0">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>

@@ -1,5 +1,21 @@
+
 .check-box .box {
-    -fx-background-color: black;
-    -fx-border-color: black;
-    -fx-border-width: 1px;
+    -fx-background-color: #1d7754;
+    -fx-border-color: #1d7754;
+    -fx-border-width: 0;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+    -fx-padding: 3;
+}
+
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+    -fx-shape: "M 0 3 L 2 5 L 6 0";
+}
+
+
+.check-box:focused .box {
+    -fx-border-color: #1d7754;
+    -fx-background-color: #1d7754;
 }

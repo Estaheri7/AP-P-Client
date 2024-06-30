@@ -1,6 +1,25 @@
+.scroll-pane > .viewport {
+    -fx-background-color: #1d7754;
+}
 
-.scroll-pane {
-    -fx-background-color: #111;
-    -fx-fit-to-width: true;
-    -fx-fit-to-height: true;
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button,
+.scroll-pane .scroll-bar:horizontal .increment-button,
+.scroll-pane .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #383838;
+    -fx-padding: 0; /* Optional: Adjust padding as needed */
+}
+
+.scroll-pane .scroll-bar:vertical .track,
+.scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: #383838;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb,
+.scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: #383838;
 }

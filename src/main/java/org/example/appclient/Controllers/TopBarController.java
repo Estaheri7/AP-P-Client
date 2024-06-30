@@ -44,6 +44,9 @@ public class TopBarController {
     @FXML
     private TextField searchTextField;
 
+    @FXML
+    private ImageView logOutImage;
+
     private void onHomeClicked() {}
     private void search(){
         String searchKey = searchTextField.getText();
@@ -198,6 +201,33 @@ public class TopBarController {
             }
         });
 
+        logOutImage.setOnMouseClicked(event -> {
+            try {
+                loadLoginPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
+    }
+
+    private void loadLoginPage() throws IOException {
+        JwtManager.setJwtToken("");
+        Parent loginPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/login.fxml"));
+
+        Scene loginScene = new Scene(loginPage);
+        Stage currentStage = (Stage) logOutImage.getScene().getWindow();
+
+        Stage loginStage = new Stage();
+        loginStage.setScene(loginScene);
+        loginStage.initOwner(currentStage);
+        loginStage.initModality(Modality.APPLICATION_MODAL);
+
+        loginStage.setFullScreen(true);
+        loginStage.setFullScreenExitHint("");
+
+        currentStage.hide();
+        loginStage.show();
     }
 }

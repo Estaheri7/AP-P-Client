@@ -4,8 +4,8 @@
     -fx-background-radius: 5;
     -fx-text-fill: white;
     -fx-fill: white;
-    -fx-prompt-text-fill: #AFABAB;
-    -fx-border-color: #1d7754;
+    -fx-prompt-text-fill: #666;
+    -fx-border-color:  #383838;
     -fx-border-radius: 5;
     -fx-border-width: 1;  /* Adjust the border width as needed */
 }
@@ -15,7 +15,7 @@
 }
 
 .text-area .content {
-    -fx-background-color: #403636;
+    -fx-background-color:     #383838;
     -fx-background-radius: 0;
     -fx-box-border: #1d7754;
     -fx-border-width: 1;
@@ -23,7 +23,7 @@
 
 .text-area:focused .content {
     -fx-background-insets: 0;
-    -fx-background-color: #403636;
+    -fx-background-color:     #383838;
     -fx-background-radius: 0;
     -fx-border-color: #1d7754;
 }

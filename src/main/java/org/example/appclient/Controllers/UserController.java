@@ -145,6 +145,7 @@ public class UserController {
         //        int nameSize = (name + lastName).length();
         Button button = new Button("Connect");
         button.setTranslateY(25);
+        button.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white");
 //        messageButton.setTranslateX(nameSize * 7 + 300);
         onButton(button, email);
         userEntry.setPadding(new Insets(10, 10, 10, 10));
@@ -229,4 +230,5 @@ public class UserController {
     public static void setSearchKey(String searchKey) {
         UserController.searchKey = searchKey;
     }
+
 }

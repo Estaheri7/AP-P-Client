@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxWidth="-Infinity" prefHeight="395.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AllEducationsController">
+<DialogPane maxWidth="-Infinity" prefHeight="395.0" prefWidth="610.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AllEducationsController">
     <header>
-        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="592.0">
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="592.0" style="-fx-background-color: #232323;">
             <children>
-                <Label text="All Educations">
+                <Label text="All Educations" textFill="WHITE">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -19,9 +19,9 @@
                         <Insets left="10.0" top="10.0" />
                     </VBox.margin>
                 </Label>
-                <ScrollPane prefHeight="458.0" prefWidth="634.0">
+                <ScrollPane prefHeight="365.0" prefWidth="610.0" style="-fx-background: #383838; -fx-border-color: #1d7754;" stylesheets="@css/ScrollBar.css">
                     <content>
-                        <VBox fx:id="contentBox" prefHeight="327.0" prefWidth="603.0" />
+                        <VBox fx:id="contentBox" prefHeight="348.0" prefWidth="605.0" style="-fx-background: #232323; -fx-border-color: #1d7754;" />
                     </content></ScrollPane>
             </children>
         </VBox>

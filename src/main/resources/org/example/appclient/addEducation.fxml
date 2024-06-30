@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: #292323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AddEducationController">
+<DialogPane prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.AddEducationController">
    <content>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #292323;">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #232323;">
          <children>
             <Label text="Add a new education" textFill="WHITE" translateY="50.0">
                <font>
@@ -23,7 +23,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="609.0">
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="610.0">
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +40,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="schoolTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;" translateY="7.0">
+                        <TextField fx:id="schoolTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -55,10 +55,10 @@
                   <Label text="Community:" textFill="#e4dada" GridPane.rowIndex="3" />
                   <Label text="End Date:" textFill="#e4dada" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Label text="Description:" textFill="#e4dada" GridPane.rowIndex="4" />
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButton" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #1d7754;" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButton" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #1d7754;" text="Add" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="gradeTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;" translateY="7.0">
+                        <TextField fx:id="gradeTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -68,7 +68,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="communityTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;">
+                        <TextField fx:id="communityTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -77,7 +77,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="descriptionTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;">
+                        <TextField fx:id="descriptionTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -86,7 +86,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="fieldTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;" translateY="7.0">
+                        <TextField fx:id="fieldTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -99,7 +99,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="startDateField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;" translateY="7.0">
+                        <TextField fx:id="startDateField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
@@ -112,7 +112,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="endDateTextField" style="-fx-background-color: #302C2C; -fx-border-color: #1d7754;" translateY="7.0">
+                        <TextField fx:id="endDateTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
