@@ -2,6 +2,8 @@ package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -9,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,7 +21,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
@@ -36,26 +38,36 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
+import static org.example.appclient.Controllers.FetcherEmail.fetchProfileDetailsByEmail;
 import static org.example.appclient.Controllers.FetcherEmail.goToProfile;
 
 public class PostController {
     private static final Gson gson = new Gson();
 
-    private static boolean hasLiked = false;
-
     private static final HashSet<String> nonImageMedia = new HashSet<>();
 
     private static final HashSet<String> imageMedia = new HashSet<>();
 
-    public static ArrayList<HashMap<String, String>> fetchPostFromUser(String user, int page, int pageSize) {
+    private static final ObservableList<HashMap<String, String>> allPosts = FXCollections.observableArrayList();
+
+
+    public static void initializePosts(String user) {
+        ArrayList<HashMap<String, String>> posts = fetchPostFromUser(user);
+        allPosts.setAll(posts);
+    }
+
+    public static ObservableList<HashMap<String, String>> getAllPosts() {
+        return allPosts;
+    }
+
+    public static ArrayList<HashMap<String, String>> fetchPostFromUser(String user) {
         ArrayList<HashMap<String, String>> posts = new ArrayList<>();
 
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
-                URL url = new URL("http://localhost:8080/posts/" + user + "?page=" + page + "&size=" + pageSize);
+                URL url = new URL("http://localhost:8080/posts/" + user);
 
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
@@ -116,6 +128,7 @@ public class PostController {
         postContentArea.setEditable(false);
         postContentArea.setPrefWidth(425);
         postContentArea.setPrefHeight(50);
+        postContentArea.setStyle("-fx-control-inner-background: #000000;");
 
         // see more
         postContentArea.setOnMouseClicked(event -> {
@@ -130,27 +143,51 @@ public class PostController {
         // media handling
         Node media = handleMedia(mediaUrl, postId);
 
-        HBox buttonBox = new HBox(20);
-        buttonBox.setStyle("-fx-border-color: black");
+        // labels
+        HBox labelBox = new HBox(20);
+        labelBox.setPadding(new Insets(0, 0, 0, 10));
         Label likeLabel = new Label(likes + " likes");
         Label commentLabel = new Label(comments + " comments");
+        likeLabel.setStyle("-fx-font-weight: bold;" +
+                "-fx-text-fill: #1d7754");
+        commentLabel.setStyle("-fx-font-weight: bold;" +
+                "-fx-text-fill: #1d7754");
+
+        // buttons
+        HBox buttonBox = new HBox(20);
+        buttonBox.setStyle("-fx-border-color: black");
         buttonBox.setPadding(new Insets(10));
+
+        // like button
         Button likeButton = new Button("Like");
         if (isLiked(postId)) {
             likeButton.setText("Dislike");
         }
-
-        Button commentButton = new Button("Comments");
-        likeButton.setTranslateX(100);
-        commentButton.setTranslateX(100);
-        likeButton.setPrefWidth(70);
-
         String viewerEmail = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
         likeButton.setOnAction(event -> {
             if (!email.equals(viewerEmail)) {
                 onLikeButton(postId, likeButton, likeLabel);
             }
         });
+
+        // comment button
+        Button commentButton = new Button("Comment");
+//        likeButton.setTranslateX(100);
+//        commentButton.setTranslateX(100);
+        likeButton.setPrefWidth(70);
+        commentButton.setPrefWidth(70);
+
+        commentButton.setOnAction(event -> {
+            CommentController.setPostId(postId);
+            displayAddComment(commentLabel);
+        });
+
+        Button sendButton = new Button("Send");
+        sendButton.setPrefWidth(70);
+        Button repostButton = new Button("Repost");
+        repostButton.setPrefWidth(70);
+        sendButton.setTranslateX(60);
+        repostButton.setTranslateX(60);
 
         // handling likes display
         likeLabel.setOnMouseClicked(event -> {
@@ -160,17 +197,17 @@ public class PostController {
             displayLikeDialog(likeLabel);
         });
 
-
-        buttonBox.getChildren().addAll(likeLabel, commentLabel, likeButton, commentButton);
+        labelBox.getChildren().addAll(likeLabel, commentLabel);
+        buttonBox.getChildren().addAll(likeButton, commentButton, repostButton, sendButton);
 
         Label titleLabel = new Label(title);
         titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
         postVBox.setPadding(new Insets(10));
         postVBox.setSpacing(10);
-        postVBox.getChildren().addAll(header, titleLabel, postContentArea, media, buttonBox);
+        postVBox.getChildren().addAll(header, titleLabel, postContentArea, media, labelBox, buttonBox);
     }
 
-    private static void onLikeButton(String postId, Button likeButton, Label likeLabel) {
+    public static void onLikeButton(String postId, Button likeButton, Label likeLabel) {
         if (JwtManager.isJwtTokenAvailable()) {
             if (likeButton.getText().equals("Like")) {
                 like(postId, likeButton, likeLabel);
@@ -240,6 +277,55 @@ public class PostController {
         return likes;
     }
 
+    public static ArrayList<HashMap<String, String>> fetchCommentsForPost(String postId) {
+        ArrayList<HashMap<String, String>> comments = new ArrayList<>();
+        if (JwtManager.isJwtTokenAvailable()) {
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL("http://localhost:8080/posts/comments/" + postId);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            response.append(line);
+                        }
+
+                        Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+                        comments = gson.fromJson(response.toString(), type);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return comments;
+    }
+
+    public static void displayAddComment(Label commentLabel) {
+        try {
+            CommentController.setTempLabel(commentLabel);
+
+            FXMLLoader loader = new FXMLLoader(PostController.class.getResource("/org/example/appclient/addComment.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Write comment");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(commentLabel.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void displayLikeDialog(Label likeLabel) {
         try {
             FXMLLoader loader = new FXMLLoader(PostController.class.getResource("/org/example/appclient/likeDialog.fxml"));
@@ -269,7 +355,7 @@ public class PostController {
         likeLabel.setText(Integer.parseInt(currentLikes) - 1 + " likes");
     }
 
-    private static boolean isLiked(String postId) {
+    public static boolean isLiked(String postId) {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
@@ -315,7 +401,7 @@ public class PostController {
         imageMedia.add("gif");
     }
 
-    private static Node handleMedia(String mediaUrl, String postId) {
+    public static Node handleMedia(String mediaUrl, String postId) {
         if (mediaUrl == null || mediaUrl.isEmpty()) {
             return new ImageView();
         }
@@ -368,7 +454,7 @@ public class PostController {
         return mediaNode != null ? mediaNode : new ImageView();
     }
 
-    private static ImageView handleAvatar(String email, String userAvatar, Label stageLabel) {
+    public static ImageView handleAvatar(String email, String userAvatar, Label stageLabel) {
         ImageView avatar = new ImageView();
         avatar.setFitWidth(50);
         avatar.setFitHeight(50);

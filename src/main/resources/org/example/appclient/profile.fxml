@@ -46,7 +46,7 @@
                         </HBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="nameLabel" prefWidth="300.0" text="Mahdi Oudi" style="-fx-font-size: 30;">
+                              <Label fx:id="nameLabel" prefWidth="300.0" style="-fx-font-size: 30;" text="Mahdi Oudi">
                                  <font>
                                     <Font name="System Bold" size="19.0" />
                                  </font>
@@ -256,7 +256,7 @@
                               <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" text="Add Post" translateY="30.0" />
                            </children>
                         </HBox>
-                        <ScrollPane fx:id="postScrollPane" prefHeight="755.0" prefWidth="454.0" />
+                        <VBox fx:id="mainContainer" prefHeight="970.0" prefWidth="468.0" />
                      </children>
                   </VBox>
                </children>

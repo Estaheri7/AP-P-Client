@@ -2,6 +2,7 @@ package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.example.appclient.util.JwtManager;
 
 import java.io.*;
@@ -34,7 +36,9 @@ public class ProfileController {
     private DialogPane dialogPane;
 
     @FXML
-    private ScrollPane postScrollPane;
+    private VBox mainContainer;
+
+    private ListView<HashMap<String, String>> postListView;
 
     @FXML
     private Button addPostButton;
@@ -495,28 +499,23 @@ public class ProfileController {
 
         fillProfile();
 
-        postVBox = new VBox();
 //        postVBox.setStyle("-fx-background-color: #272727");
-        postScrollPane.setContent(postVBox);
 
-        postScrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.doubleValue() == postScrollPane.getVmax()) {
-                displayPosts();
-            }
-        });
-
+        postListView = new ListView<>();
+        postListView.setPrefHeight(700);
+        postListView.setCellFactory(param -> new PostCell());
+        mainContainer.getChildren().add(postListView);
         displayPosts();
     }
 
     private void displayPosts() {
-        String name = nameLabel.getText();
-        userPostLabel.setText(name + "'s Posts");
-        ArrayList<HashMap<String, String>> posts = PostController.fetchPostFromUser(profileEmail, currentPage, POSTS_PER_PAGE);
-        currentPage++;
-
-        for (HashMap<String, String> post : posts) {
-            PostController.initPost(post, postVBox, name, avatarURL, userPostLabel);
-        }
+        Platform.runLater(() -> {
+            String name = nameLabel.getText();
+            userPostLabel.setText(name + "'s Posts");
+            ArrayList<HashMap<String, String>> posts = PostController.fetchPostFromUser(profileEmail);
+            postListView.getItems().clear();
+            postListView.getItems().addAll(posts);
+        });
     }
 
     private void handlePrivacyRadioButtonAction(ActionEvent event) {
@@ -725,6 +724,7 @@ public class ProfileController {
                     onlyMeRadioButton.setVisible(false);
                     everyoneRadioButton.setVisible(false);
                     myConnectionRadioButton.setVisible(false);
+                    addPostButton.setVisible(false);
                 }
 
                 URL url = new URL("http://localhost:8080/profile/" + profileEmail);
