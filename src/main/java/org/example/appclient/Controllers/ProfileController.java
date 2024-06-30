@@ -502,7 +502,9 @@ public class ProfileController {
 //        postVBox.setStyle("-fx-background-color: #272727");
 
         postListView = new ListView<>();
+        postListView.setStyle("-fx-background-color: #232323FF");
         postListView.setPrefHeight(700);
+        PostCell.setTempLabel(userPostLabel);
         postListView.setCellFactory(param -> new PostCell());
         mainContainer.getChildren().add(postListView);
         displayPosts();
@@ -632,6 +634,9 @@ public class ProfileController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            avatarImageView.setImage(image);
         }
 
         // set background

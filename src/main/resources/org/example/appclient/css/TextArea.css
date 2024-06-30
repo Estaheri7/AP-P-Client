@@ -7,11 +7,11 @@
     -fx-prompt-text-fill: #666;
     -fx-border-color:  #383838;
     -fx-border-radius: 5;
-    -fx-border-width: 1;  /* Adjust the border width as needed */
+    -fx-border-width: 1;
 }
 
 .text-field:focused, .text-area:focused {
-    -fx-border-color: #1d7754; /* Same border color for focused state */
+    -fx-border-color: #1d7754;
 }
 
 .text-area .content {

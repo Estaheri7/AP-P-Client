@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
@@ -191,6 +192,11 @@ public class TopBarController {
 
         String avatar = fetchProfileDetailsByEmail();
         fillAvatar(avatar);
+
+        Circle circle = new Circle(14, 14, 14);
+        meImageView.setPreserveRatio(false);
+        meImageView.setClip(circle);
+
         meImageView.setOnMouseClicked(event -> onMeClicked());
 
         usersImageView.setOnMouseClicked(event -> onUsersClicked());

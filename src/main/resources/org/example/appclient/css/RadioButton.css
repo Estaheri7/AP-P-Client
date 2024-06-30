@@ -1,23 +1,17 @@
-/* styles.css */
-
-/* Default styling for radio buttons */
 .radio-button {
-    -fx-text-fill: white; /* Text color */
+    -fx-text-fill: white;
 }
 
-/* Custom styling for radio button circle */
 .radio-button .radio {
-    -fx-background-color: transparent; /* Transparent background */
+    -fx-background-color: transparent;
 }
 
-/* Styling for the circle (dot) inside the radio button */
 .radio-button .radio > .dot {
-    -fx-background-color: transparent; /* Transparent background */
-    -fx-border-color: #1d7754; /* Border color of the dot */
-    -fx-background-radius: 0%; /* Ensures the dot is circular */
+    -fx-background-color: transparent;
+    -fx-border-color: #1d7754;
+    -fx-background-radius: 0%;
 }
 
-/* Styling for the dot when radio button is selected */
 .radio-button:selected .radio > .dot {
-    -fx-background-color: #1d7754; /* Color of the dot when selected */
+    -fx-background-color: #1d7754;
 }

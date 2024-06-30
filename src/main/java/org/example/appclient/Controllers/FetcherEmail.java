@@ -119,27 +119,24 @@ public class FetcherEmail {
         String country = userDetail.get("country");
         String avatarURL = userDetail.get("avatar_url");
 
-        // Create a ScrollPane to contain the entry
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setPrefWidth(665); // Adjusted width to accommodate a slightly smaller HBox
-        scrollPane.setMaxWidth(665); // Set maximum width if needed
+        scrollPane.setPrefWidth(665);
+        scrollPane.setMaxWidth(665);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
 
         HBox entry = new HBox();
         entry.setSpacing(10);
-        entry.setPrefWidth(665); // Adjusted preferred width to fit within ScrollPane with padding
+        entry.setPrefWidth(665);
         entry.setStyle("-fx-background-color: #232323; " +
                 "-fx-border-color: #1d7754; " +
-                "-fx-border-width: 2px;"); // Set background color to black and border color to #1d7754
+                "-fx-border-width: 2px;");
         entry.setPadding(new Insets(10));
 
         ImageView imageView = new ImageView();
 
-        // Code for loading avatar image
         if (avatarURL != null && !avatarURL.isEmpty()) {
             try {
-                // Loading avatar image from URL
                 HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8080/user/avatar/" + email).openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
@@ -158,7 +155,6 @@ public class FetcherEmail {
                 e.printStackTrace();
             }
         } else {
-            // Default image if avatarURL is not available
             Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
             imageView = new ImageView(image);
             imageView.setFitWidth(50);
@@ -172,14 +168,14 @@ public class FetcherEmail {
 
         VBox userDetailsVBox = new VBox();
         userDetailsVBox.setPrefWidth(480);
-        userDetailsVBox.setStyle("-fx-background-color: #232323;"); // Set background color to black
+        userDetailsVBox.setStyle("-fx-background-color: #232323;");
         Label nameLabel = new Label(name + " " + lastName);
         nameLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
-        nameLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
+        nameLabel.setStyle("-fx-text-fill: white;");
         Label headlineLabel = new Label(headline);
-        headlineLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
+        headlineLabel.setStyle("-fx-text-fill: white;");
         Label locationLabel = new Label(city + ", " + country);
-        locationLabel.setStyle("-fx-text-fill: white;"); // Set text color to white
+        locationLabel.setStyle("-fx-text-fill: white;");
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
 
         Button button = new Button("Connect");
@@ -188,8 +184,8 @@ public class FetcherEmail {
 
         entry.getChildren().addAll(userDetailsVBox, button);
 
-        scrollPane.setContent(entry); // Set the HBox entry as the content of the ScrollPane
-        userVBox.getChildren().add(scrollPane); // Add the ScrollPane to the userVBox
+        scrollPane.setContent(entry);
+        userVBox.getChildren().add(scrollPane);
     }
 
     public static void onButton(Button button, String email) {
@@ -250,16 +246,5 @@ public class FetcherEmail {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        // Your application entry point
-        // Make sure to load the CSS file in your main application setup
-        String css = FetcherEmail.class.getResource("/path/to/styles.css").toExternalForm();
-        Scene scene = new Scene(new VBox()); // replace with your root layout
-        scene.getStylesheets().add(css);
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 }

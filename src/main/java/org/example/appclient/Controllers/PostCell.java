@@ -15,13 +15,14 @@ import java.util.HashMap;
 
 public class PostCell extends ListCell<HashMap<String, String>> {
 
+    private static Label tempLabel;
+
     private VBox content;
-    private Label stageLabel;
 
     public PostCell() {
         super();
         content = new VBox();
-        stageLabel = new Label();
+        content.setStyle("-fx-background-color: #1b1b1b");
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
     }
 
@@ -35,8 +36,12 @@ public class PostCell extends ListCell<HashMap<String, String>> {
         } else {
             content.getChildren().clear();
             HashMap<String, String> user = FetcherEmail.fetchProfileDetailsByEmail(item.get("author"));
-            PostController.initPost(item, content, user.get("firstName") + " " + user.get("lastName"), user.get("avatar_url"), stageLabel);
+            PostController.initPost(item, content, user.get("firstName") + " " + user.get("lastName"), user.get("avatar_url"), tempLabel);
             setGraphic(content);
         }
+    }
+
+    public static void setTempLabel(Label tempLabel) {
+        PostCell.tempLabel = tempLabel;
     }
 }
