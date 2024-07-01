@@ -17,32 +17,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
-   <fx:include source="topbar.fxml" />
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
+<!--   <fx:include source="topbar.fxml" />-->
    <children>
       <ScrollPane prefHeight="1226.0" prefWidth="1500.0" style="-fx-background: #232323; -fx-background-color: #1d7754;" stylesheets="@css/ScrollBar.css" VBox.vgrow="ALWAYS">
          <content>
             <HBox prefHeight="2000.0" prefWidth="1478.0" spacing="50.0" style="-fx-background-color: #232323;">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1544.0" prefWidth="649.0" style="-fx-background-color: #383838;" HBox.hgrow="ALWAYS">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1544.0" prefWidth="649.0" style="-fx-background-color: #1b1b1b;" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox maxWidth="-Infinity" prefHeight="138.0" prefWidth="649.0" style="-fx-background-color: #18392C;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="682.0">
+                              <StackPane prefHeight="138.0" prefWidth="634.0">
                                  <children>
-                                    <ImageView fx:id="backgroundImageView" fitHeight="183.0" fitWidth="634.0" pickOnBounds="true" preserveRatio="false">
+                                    <ImageView fx:id="backgroundImageView" fitHeight="176.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/defaultBackGround.png" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="backgroundButton" minWidth="44.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #1d7754;" text="Edit" translateX="280.0" translateY="-5.0">
-                                       <StackPane.margin>
-                                          <Insets right="10.0" top="10.0" />
-                                       </StackPane.margin>
-                                    </Button>
+                                    <Button fx:id="backgroundButton" minWidth="44.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #1d7754;" text="Edit" textFill="WHITE" translateX="280.0" translateY="-45.0" />
                                  </children>
                               </StackPane>
                            </children>
@@ -57,7 +53,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#onEditButton" style="-fx-background-color: #1d7754;" text="Edit" translateX="370.0" translateY="110.0">
+                              <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#onEditButton" style="-fx-background-color: #1d7754;" text="Edit" textFill="WHITE" translateX="370.0" translateY="110.0">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin></Button>
@@ -88,8 +84,8 @@
                               </HBox>
                               <HBox prefHeight="66.0" prefWidth="574.0">
                                  <children>
-                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d7754;" text="Connect" />
-                                    <Button fx:id="followButton" mnemonicParsing="false" onAction="#onFollowButton" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #1d7754;" text="Follow" translateX="20.0" />
+                                    <Button fx:id="connectButton" mnemonicParsing="false" onAction="#onConnectButton" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d7754;" text="Connect" textFill="WHITE" />
+                                    <Button fx:id="followButton" mnemonicParsing="false" onAction="#onFollowButton" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #1d7754;" text="Follow" textFill="WHITE" translateX="20.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="15.0" />
@@ -109,9 +105,9 @@
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="educationAddButton" mnemonicParsing="false" onAction="#onEducationAddButton" style="-fx-background-color: #1d7754;" text="Add" translateX="50.0" translateY="5.0" />
-                                    <Button fx:id="allEducationsButton" mnemonicParsing="false" onAction="#onAllEducationsButton" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="All educations" translateX="100.0" translateY="5.0" />
-                                    <Button fx:id="educationUpdateButton" mnemonicParsing="false" onAction="#onEducationUpdateButton" style="-fx-background-color: #1d7754;" text="update" translateX="150.0" translateY="5.0" />
+                                    <Button fx:id="educationAddButton" mnemonicParsing="false" onAction="#onEducationAddButton" style="-fx-background-color: #1d7754;" text="Add" textFill="WHITE" translateX="50.0" translateY="5.0" />
+                                    <Button fx:id="allEducationsButton" mnemonicParsing="false" onAction="#onAllEducationsButton" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="All educations" textFill="WHITE" translateX="100.0" translateY="5.0" />
+                                    <Button fx:id="educationUpdateButton" mnemonicParsing="false" onAction="#onEducationUpdateButton" style="-fx-background-color: #1d7754;" text="update" textFill="WHITE" translateX="150.0" translateY="5.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="15.0" />
@@ -143,13 +139,13 @@
                                     <Label fx:id="communityLabel" style="-fx-text-fill: #ffffff;" text="Community:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                     <Label style="-fx-text-fill: #ffffff;" text="School Name:" />
                                     <Label style="-fx-text-fill: #ffffff;" text="Field:" GridPane.columnIndex="2" />
-                                    <TextField fx:id="schoolNameTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" />
-                                    <TextField fx:id="FieldTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" />
-                                    <TextField fx:id="gradeTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="startDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <TextField fx:id="endDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="communityTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField fx:id="descriptionTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="schoolNameTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="1" />
+                                    <TextField fx:id="FieldTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="3" />
+                                    <TextField fx:id="gradeTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="startDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="endDateTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="communityTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <TextField fx:id="descriptionTextField" disable="true" editable="false" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                                  <VBox.margin>
                                     <Insets right="15.0" />
@@ -169,7 +165,7 @@
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="skillsUpdateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkillsUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" translateX="205.0" />
+                                    <Button fx:id="skillsUpdateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkillsUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" textFill="WHITE" translateX="205.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="15.0" />
@@ -225,7 +221,7 @@
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" translateX="120.0">
+                                    <Button fx:id="contactUpdateButton" mnemonicParsing="false" onAction="#onContactUpdateButton" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #1d7754;" text="Update" textFill="WHITE" translateX="120.0">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin></Button>
@@ -300,7 +296,7 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1d7754;" text="Add Post" translateY="30.0" />
+                              <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #1d7754;" text="Add Post" textFill="WHITE" translateY="30.0" />
                            </children>
                         </HBox>
                         <VBox fx:id="mainContainer" prefHeight="970.0" prefWidth="480.0" />

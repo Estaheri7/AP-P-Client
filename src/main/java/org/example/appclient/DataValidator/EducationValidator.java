@@ -25,7 +25,11 @@ public class EducationValidator {
             return false;
         }
 
-        double gradeValue = Double.parseDouble(grade);
-        return gradeValue >=0 && gradeValue <= 20;
+        try {
+            double gradeValue = Double.parseDouble(grade);
+            return gradeValue >= 0 && gradeValue <= 20;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -1,16 +1,9 @@
 package org.example.appclient.Controllers;
 
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import org.example.appclient.util.JwtManager;
-
 import java.util.HashMap;
 
 public class PostCell extends ListCell<HashMap<String, String>> {
@@ -24,6 +17,9 @@ public class PostCell extends ListCell<HashMap<String, String>> {
         content = new VBox();
         content.setStyle("-fx-background-color: #1b1b1b");
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+        // Set the background color of the cell
+        setStyle("-fx-background-color: #1d7754");
     }
 
     @Override

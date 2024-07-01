@@ -467,12 +467,12 @@ public class ProfileController {
         avatarImageView.setClip(clip);
 
         // Setting fixed width and height for backgroundImageView
-        backgroundImageView.setFitWidth(483);
-        backgroundImageView.setFitHeight(138);
+//        backgroundImageView.setFitWidth(483);
+//        backgroundImageView.setFitHeight(138);
         backgroundImageView.setPreserveRatio(false);
         backgroundImageView.setSmooth(true);
 
-        Rectangle rectangleClip = new Rectangle(483, 138);
+        Rectangle rectangleClip = new Rectangle(626, 176);
         rectangleClip.setArcHeight(10);
         rectangleClip.setArcWidth(10);
         backgroundImageView.setClip(rectangleClip);
