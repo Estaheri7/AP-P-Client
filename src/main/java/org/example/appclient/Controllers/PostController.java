@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -24,8 +26,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import org.example.appclient.util.JwtManager;
 
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -141,7 +147,7 @@ public class PostController {
         });
 
         // media handling
-        Node media = handleMedia(mediaUrl, postId);
+        Node media = handleMedia("/post/media/", mediaUrl, postId);
 
         // labels
         HBox labelBox = new HBox(20);
@@ -427,7 +433,7 @@ public class PostController {
         imageMedia.add("gif");
     }
 
-    public static Node handleMedia(String mediaUrl, String postId) {
+    public static Node handleMedia(String requestURL, String mediaUrl, String postId) {
         if (mediaUrl == null || mediaUrl.isEmpty()) {
             return new ImageView();
         }
@@ -437,7 +443,7 @@ public class PostController {
         Node mediaNode = null;
         HttpURLConnection connection = null;
         try {
-            URL url = new URL("http://localhost:8080/post/media/" + postId);
+            URL url = new URL("http://localhost:8080" + requestURL + postId);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -467,6 +473,41 @@ public class PostController {
                             mediaPlayer.play();
                         }
                     });
+                } else if ("pdf".equalsIgnoreCase(fileExtension)) {
+                    PDDocument document = PDDocument.load(connection.getInputStream());
+                    PDFRenderer pdfRenderer = new PDFRenderer(document);
+                    VBox vbox = new VBox();
+
+                    ImageView imageView = new ImageView();
+                    imageView.setFitWidth(425);
+                    imageView.setPreserveRatio(true);
+                    vbox.getChildren().add(imageView);
+
+                    HBox controls = new HBox();
+                    Button prevButton = new Button("Previous");
+                    Button nextButton = new Button("Next");
+                    controls.getChildren().addAll(prevButton, nextButton);
+                    vbox.getChildren().add(controls);
+
+                    final int[] currentPage = {0};
+                    final int totalPages = document.getNumberOfPages();
+
+                    prevButton.setOnAction(event -> {
+                        if (currentPage[0] > 0) {
+                            currentPage[0]--;
+                            updatePdfPage(pdfRenderer, imageView, currentPage[0]);
+                        }
+                    });
+
+                    nextButton.setOnAction(event -> {
+                        if (currentPage[0] < totalPages - 1) {
+                            currentPage[0]++;
+                            updatePdfPage(pdfRenderer, imageView, currentPage[0]);
+                        }
+                    });
+
+                    updatePdfPage(pdfRenderer, imageView, currentPage[0]);
+                    mediaNode = new ScrollPane(vbox);
                 }
             }
         } catch (IOException e) {
@@ -478,6 +519,29 @@ public class PostController {
         }
 
         return mediaNode != null ? mediaNode : new ImageView();
+    }
+
+    private static void updatePdfPage(PDFRenderer pdfRenderer, ImageView imageView, int pageIndex) {
+        try {
+            BufferedImage bufferedImage = pdfRenderer.renderImageWithDPI(pageIndex, 300);
+            WritableImage fxImage = convertToWritableImage(bufferedImage);
+            imageView.setImage(fxImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static WritableImage convertToWritableImage(BufferedImage bufferedImage) {
+        WritableImage writableImage = new WritableImage(bufferedImage.getWidth(), bufferedImage.getHeight());
+        PixelWriter pixelWriter = writableImage.getPixelWriter();
+
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                int argb = bufferedImage.getRGB(x, y);
+                pixelWriter.setArgb(x, y, argb);
+            }
+        }
+        return writableImage;
     }
 
     public static ImageView handleAvatar(String email, String userAvatar, Label stageLabel) {

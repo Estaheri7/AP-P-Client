@@ -210,7 +210,7 @@ public class ProfileController {
         if (buttonText.equals("Connect")) {
             loadSendConnection();
         } else if (buttonText.equals("Message")) {
-            // TODO go to message
+            ChatController.openChat(profileEmail, connectButton);
         }
     }
 
