@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.example.appclient.util.JwtManager;
@@ -34,15 +35,24 @@ public class CommentCell extends ListCell<HashMap<String, String>> {
         Circle circle = new Circle(25, 25, 25);
         imageView.setClip(circle);
         nameText = new Text();
+        nameText.setFill(Color.WHITE);
         dateText = new Text();
+        dateText.setFill(Color.WHITE);
         messageArea = new TextArea();
+        messageArea.setStyle("-fx-control-inner-background: #232323;" +
+                "-fx-background-color: #232323;" +
+                "-fx-border-color: #1d7754;" +
+                "-fx-text-fill: white;");
         messageArea.setPrefWidth(300);
         messageArea.setPrefHeight(50);
         messageArea.setEditable(false);
         messageArea.setWrapText(true);
         messageArea.setFocusTraversable(false);
+        messageArea.getStylesheets().add(getClass().getResource("/org/example/appclient/css/ScrollBar.css").toExternalForm());
         userHBox.getChildren().addAll(imageView, nameText, dateText);
         userDetails.getChildren().addAll(userHBox, messageArea);
+
+        setStyle("-fx-background-color: #1b1b1b;");
     }
 
     @Override
@@ -57,11 +67,9 @@ public class CommentCell extends ListCell<HashMap<String, String>> {
             String commentDate = commentData.get("commentDate");
             String avatarURL = commentData.get("avatarURL");
 
-
-            // TODO change message with username
-            nameText.setText(message);
+            nameText.setText(fullName);
             dateText.setText(commentDate);
-            messageArea.setText(fullName);
+            messageArea.setText(message);
 
             if (avatarURL != null && !avatarURL.isEmpty()) {
                 new Thread(() -> {

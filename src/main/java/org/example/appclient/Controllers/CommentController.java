@@ -121,6 +121,8 @@ public class CommentController {
 
     public void initialize() {
         commentListView = new ListView<>();
+        commentListView.setStyle("-fx-background-color:  #232323;");
+        commentListView.getStylesheets().add(getClass().getResource("/org/example/appclient/css/ScrollBar.css").toExternalForm());
         commentListView.setCellFactory(param -> new CommentCell());
         mainContainer.getChildren().add(commentListView);
         displayComments();

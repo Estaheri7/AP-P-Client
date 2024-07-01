@@ -1,27 +1,36 @@
+.dialog-pane {
+    -fx-background-color: #1b1b1b;
+}
+
+.button {
+    -fx-background-color: #1d7754;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #155a3e;
+}
+
+.button:pressed {
+    -fx-background-color: #10452e;
+}
+
 .scroll-bar {
-    -fx-background-color: #232323;
+    -fx-background-color: #383838;
 }
 
 .scroll-bar:horizontal .increment-button,
 .scroll-bar:horizontal .decrement-button,
 .scroll-bar:horizontal .increment-arrow,
 .scroll-bar:horizontal .decrement-arrow {
-    -fx-background-color: #232323;
+    -fx-background-color: #383838;
 }
 
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button,
 .scroll-bar:vertical .increment-arrow,
 .scroll-bar:vertical .decrement-arrow {
-    -fx-background-color: #232323;
-}
-
-.scroll-bar:vertical .track {
-    -fx-background-color: #232323;
-}
-
-.scroll-bar:horizontal .track {
-    -fx-background-color: #232323;
+    -fx-background-color: #383838;
 }
 
 .scroll-bar .thumb {

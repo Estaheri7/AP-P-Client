@@ -22,7 +22,7 @@
             </ImageView>
          </children>
       </VBox>
-      <TextField fx:id="searchTextField" promptText="Search..." style="-fx-background-color: #292323; -fx-border-color: #1d7754;" translateY="12.5">
+      <TextField fx:id="searchTextField" promptText="Search..." style="-fx-background-color: #292323; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="12.5">
          <HBox.margin>
             <Insets left="30.0" right="20.0" />
          </HBox.margin></TextField>

@@ -19,9 +19,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -118,39 +121,52 @@ public class PostController {
 
         Label nameLabel = new Label(name);
         nameLabel.setTranslateX(-10);
-        nameLabel.setStyle("-fx-font-weight: bold;");
+        nameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill:white ;");
 
         Label createdAtLabel = new Label(createdAt);
         createdAtLabel.setTranslateX(-7);
+        createdAtLabel.setStyle("-fx-text-fill: white ;");
 
         HBox header = new HBox(10);
         header.setPadding(new Insets(10));
         header.getChildren().addAll(avatar, profileInfo);
         profileInfo.getChildren().addAll(nameLabel, createdAtLabel);
 
-        TextArea postContentArea = new TextArea(content);
-        postContentArea.setFont(Font.font("System", FontWeight.THIN, 12));
-        postContentArea.setWrapText(true);
-        postContentArea.setEditable(false);
-        postContentArea.setPrefWidth(425);
-        postContentArea.setPrefHeight(50);
-        postContentArea.setStyle("-fx-control-inner-background: #000000;");
+        TextFlow postContentFlow = new TextFlow();
+        postContentFlow.setPrefWidth(425);
+        postContentFlow.setStyle("-fx-control-background:  #232323;");
+        postContentFlow.setPadding(new Insets(10));
 
-        // see more
-        postContentArea.setOnMouseClicked(event -> {
-            int len = postContentArea.getText().length();
-            if (postContentArea.getPrefHeight() == 50 && len > 70) {
-                postContentArea.setPrefHeight(200);
+        // Parse the content and create Text nodes
+        String[] words = content.split(" ");
+        for (String word : words) {
+            Text textNode = new Text(word + " ");
+            if (word.startsWith("#")) {
+                textNode.setFill(Color.BLUE);
             } else {
-                postContentArea.setPrefHeight(50);
+                textNode.setFill(Color.WHITE);
+            }
+            postContentFlow.getChildren().add(textNode);
+        }
+
+        // Enable clicking on the TextFlow to expand/collapse
+        postContentFlow.setOnMouseClicked(event -> {
+            if (postContentFlow.getPrefHeight() == 50 && content.length() > 70) {
+                postContentFlow.setPrefHeight(200);
+            } else {
+                postContentFlow.setPrefHeight(50);
             }
         });
+
+        postContentFlow.setPrefHeight(50);
+
 
         // media handling
         Node media = handleMedia("/post/media/", mediaUrl, postId);
 
         // labels
         HBox labelBox = new HBox(20);
+
         labelBox.setPadding(new Insets(0, 0, 0, 10));
         Label likeLabel = new Label(likes + " likes");
         Label commentLabel = new Label(comments + " comments");
@@ -161,11 +177,14 @@ public class PostController {
 
         // buttons
         HBox buttonBox = new HBox(20);
-        buttonBox.setStyle("-fx-border-color: black");
+        buttonBox.setStyle("-fx-background-color:  #232323;" );
+
         buttonBox.setPadding(new Insets(10));
 
         // like button
         Button likeButton = new Button("Like");
+        likeButton.setStyle("-fx-background-color: #1d7754;" +
+                "-fx-text-fill: white");
         if (isLiked(postId)) {
             likeButton.setText("Dislike");
         }
@@ -178,6 +197,9 @@ public class PostController {
 
         // comment button
         Button commentButton = new Button("Comment");
+        commentButton.setStyle("-fx-background-color: #1d7754;" +
+                "-fx-text-fill: white");
+
 //        likeButton.setTranslateX(100);
 //        commentButton.setTranslateX(100);
         likeButton.setPrefWidth(70);
@@ -189,11 +211,20 @@ public class PostController {
         });
 
         Button sendButton = new Button("Send");
+        sendButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white;");
         sendButton.setPrefWidth(70);
+
+
         Button repostButton = new Button("Repost");
         repostButton.setPrefWidth(70);
+        repostButton.setStyle("-fx-background-color: #1d7754;" +
+                "-fx-text-fill: white");
         sendButton.setTranslateX(60);
         repostButton.setTranslateX(60);
+        repostButton.setStyle("-fx-background-color: #1d7754;" +
+                "-fx-text-fill: white");
+        sendButton.setStyle("-fx-background-color: #1d7754;" +
+                "fx-text-fill: white");
 
         // handling likes display
         likeLabel.setOnMouseClicked(event -> {
@@ -207,10 +238,11 @@ public class PostController {
         buttonBox.getChildren().addAll(likeButton, commentButton, repostButton, sendButton);
 
         Label titleLabel = new Label(title);
+        titleLabel.setStyle("-fx-text-fill: white");
         titleLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
         postVBox.setPadding(new Insets(10));
         postVBox.setSpacing(10);
-        postVBox.getChildren().addAll(header, titleLabel, postContentArea, media, labelBox, buttonBox);
+        postVBox.getChildren().addAll(header, titleLabel, postContentFlow, media, labelBox, buttonBox);
 
         postVBox.setOnMouseClicked(event -> {
             if (!isDialogOpen) {
@@ -223,10 +255,12 @@ public class PostController {
         isDialogOpen = true;
 
         Dialog<Void> dialog = new Dialog<>();
+        dialog.getDialogPane().getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Dialog.css").toExternalForm());
         dialog.initOwner(owner);
         dialog.setTitle("Post Details");
 
         VBox dialogVBox = new VBox(10);
+        dialogVBox.setStyle("-fx-background-color:  #1b1b1b");
         dialogVBox.setPadding(new Insets(10));
         dialogVBox.setPrefSize(450, 600);
 
