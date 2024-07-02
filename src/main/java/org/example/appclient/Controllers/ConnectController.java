@@ -69,7 +69,10 @@ public class ConnectController {
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     successLabel.setVisible(true);
                 } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
+
                     pendingErrorLabel.setVisible(true);
+                } else {
+                    System.out.println(responseCode);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

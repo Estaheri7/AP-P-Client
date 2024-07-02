@@ -107,6 +107,7 @@ public class NetWorkController {
         declineButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: #FFFFFF;");
 
 
+        System.out.println(email);
         acceptButton.setOnAction(event -> acceptConnection(acceptButton, declineButton,email));
         declineButton.setOnAction(event -> declineConnection(acceptButton, declineButton, email));
 

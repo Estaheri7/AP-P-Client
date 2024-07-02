@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
 
 import java.io.IOException;
@@ -38,9 +37,18 @@ public class LikeController {
     private VBox likeVBox;
 
     public void initialize() {
+
+        likeScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
         likeVBox = new VBox();
+        likeVBox.setStyle("-fx-background-color: #1b1b1b");
         likeVBox.setPadding(new Insets(10));
         likeScrollPane.setContent(likeVBox);
+        likeScrollPane.setStyle("-fx-background-color: #1b1b1b");
+
+        // Set likes label text color to white
+        displayLikeLabel.setStyle("-fx-text-fill: white;");
+
         displayLikes();
     }
 
@@ -60,8 +68,9 @@ public class LikeController {
         String avatarURL = user.get("avatar_url");
 
         HBox userBox = new HBox();
+        userBox.setStyle("-fx-background-color: #1b1b1b");
         userBox.setSpacing(10);
-        userBox.setPrefWidth(556);
+        userBox.setPrefWidth(543.5);
 
         ImageView imageView = new ImageView();
         if (avatarURL != null && !avatarURL.isEmpty()) {
@@ -96,17 +105,19 @@ public class LikeController {
 
         VBox userDetails = new VBox(10);
         Text userName = new Text(name);
+        userName.setStyle("-fx-fill: white;");
         Text time = new Text(likeTime);
+        time.setStyle("-fx-fill: white;");
         HBox nameAndLikeTime = new HBox();
         nameAndLikeTime.setSpacing(10);
         nameAndLikeTime.getChildren().addAll(userName, time);
 
         Text userHeadline = new Text(headline);
+        userHeadline.setStyle("-fx-fill: white;");
 
         userDetails.getChildren().addAll(nameAndLikeTime, userHeadline);
         userBox.getChildren().addAll(imageView, userDetails);
         userBox.setPadding(new Insets(10, 10, 10, 10));
-
 
         likeVBox.getChildren().add(userBox);
     }

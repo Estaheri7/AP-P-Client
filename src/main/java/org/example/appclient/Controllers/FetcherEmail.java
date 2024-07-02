@@ -93,8 +93,7 @@ public class FetcherEmail {
                             response.append(line);
                         }
 
-                        Type type = new TypeToken<HashMap<String, String>>() {
-                        }.getType();
+                        Type type = new TypeToken<HashMap<String, String>>() {}.getType();
                         profileDetails = gson.fromJson(response.toString(), type);
                     }
                 }

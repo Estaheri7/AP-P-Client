@@ -136,7 +136,7 @@ public class LoginController {
     }
 
     private void openProfile() throws IOException {
-        Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
+        Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/Feeds.fxml"));
         Scene profilePageScene = new Scene(profilePage);
         Stage currentStage = (Stage) signInButton.getScene().getWindow();
 

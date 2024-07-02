@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.FeedsController">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1700.0" style="-fx-background-color: #232323;">
+         <children>
+            <VBox maxHeight="-Infinity" prefHeight="439.0" prefWidth="370.0" style="-fx-background-color: #1b1b1b; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <HBox.margin>
+                  <Insets left="30.0" right="30.0" top="40.0" />
+               </HBox.margin>
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="261.0">
+                     <children>
+                        <StackPane prefHeight="93.0" prefWidth="348.0" style="-fx-background-radius: 10;">
+                           <children>
+                              <ImageView fx:id="backgroundImageView" fitHeight="107.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/defaultBackGround.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="avatarImageView" fitHeight="54.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" translateX="15.0" translateY="-30.0">
+                     <image>
+                        <Image url="@images/linkedInIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nameLabel" text="Mahdi Oudi" textFill="WHITE" translateX="15.0" translateY="-25.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="headlineLabel" prefHeight="53.0" prefWidth="314.0" text="computer engineering at tehran amirkabir fucking university" textFill="WHITE" translateX="15.0" translateY="-30.0" />
+                  <VBox prefHeight="155.0" prefWidth="318.0">
+                     <children>
+                        <HBox fx:id="followersHbox" prefHeight="45.0" prefWidth="318.0">
+                           <children>
+                              <Label text="Followers" textFill="WHITE" translateX="15.0" translateY="15.0" />
+                              <Label fx:id="followersLabel" text="1000 Followers" textFill="WHITE" translateX="220.0" translateY="20.0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="followingHbox" prefHeight="34.0" prefWidth="318.0">
+                           <children>
+                              <Label text="Following" textFill="WHITE" translateX="15.0" />
+                              <Label fx:id="followingLabel" text="1000 Following" textFill="WHITE" translateX="220.0" translateY="5.0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="connectionsHbox" prefHeight="41.0" prefWidth="318.0">
+                           <children>
+                              <Label text="Connections" textFill="WHITE" translateX="15.0" />
+                              <Label fx:id="connectionsLabel" text="1000 Connections" textFill="WHITE" translateX="205.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" prefHeight="2000.0" prefWidth="500.0" style="-fx-background-radius: 10;" translateX="80.0">
+               <HBox.margin>
+                  <Insets bottom="40.0" top="40.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="662.0">
+                     <children>
+                        <TextField fx:id="searchTextField" prefHeight="38.0" prefWidth="500.0" promptText="Search hashtag , content" style="-fx-background-color: #1b1b1b; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: white" />
+                     </children>
+                  </HBox>
+                  <Label prefWidth="77.0" text="Feeds" textFill="WHITE" translateX="20.0" translateY="20.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <VBox fx:id="mainContainer" prefHeight="690.0" prefWidth="500.0" style="-fx-background-radius: 10; -fx-border-color: #1d7754; -fx-border-radius: 10;">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="connectionsVbox" maxHeight="-Infinity" prefHeight="800.0" prefWidth="362.0" style="-fx-background-color: #232323; -fx-background-radius: 10; -fx-border-radius: 10;" translateX="50.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="40.0" left="150.0" top="40.0" />
+               </HBox.margin>
+               <children>
+                  <Label text="Connections" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ScrollPane fx:id="connecionsScrollPane" prefHeight="952.0" prefWidth="360.0" style="-fx-background: #232323; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@css/ScrollBar.css">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

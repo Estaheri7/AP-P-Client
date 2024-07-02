@@ -94,6 +94,38 @@ public class PostController {
         return posts;
     }
 
+    public static ArrayList<HashMap<String, String>> fetchPostFeeds() {
+        ArrayList<HashMap<String, String>> posts = new ArrayList<>();
+
+        if (JwtManager.isJwtTokenAvailable()) {
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL("http://localhost:8080/posts/feeds");
+
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                        StringBuilder response = new StringBuilder();
+                        String inputLine;
+                        while ((inputLine = br.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+
+                        Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {}.getType();
+                        posts = gson.fromJson(response.toString(), type);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return posts;
+    }
+
     private static boolean isDialogOpen = false;
 
     public static void initPost(HashMap<String, String> post, VBox postVBox, String name, String userAvatar, Label stageLabel) {

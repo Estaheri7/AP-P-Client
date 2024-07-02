@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LikeController">
+<DialogPane prefWidth="600.0" style="-fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.LikeController">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1b1b;">
          <children>
-            <Label fx:id="displayLikeLabel" text="1000 Likes">
+            <Label fx:id="displayLikeLabel" text="1000 Likes" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
@@ -19,7 +19,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane fx:id="likeScrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="324.0" prefWidth="582.0" />
+            <ScrollPane fx:id="likeScrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="324.0" prefWidth="582.0" style="-fx-background-color: #1b1b1b; -fx-background: #1b1b1b;" stylesheets="@css/ScrollBar.css" />
          </children>
       </VBox>
    </content>
