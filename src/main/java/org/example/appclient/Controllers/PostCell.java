@@ -18,7 +18,6 @@ public class PostCell extends ListCell<HashMap<String, String>> {
         content.setStyle("-fx-background-color: #1b1b1b");
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        // Set the background color of the cell
         setStyle("-fx-background-color: #1d7754");
     }
 

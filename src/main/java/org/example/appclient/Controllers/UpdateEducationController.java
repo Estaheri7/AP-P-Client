@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class UpdateEducationController {
@@ -60,7 +62,10 @@ public class UpdateEducationController {
     private Label startDateError;
 
     @FXML
-    private TextField startDateField;
+    private DatePicker startDatePicker;
+
+    @FXML
+    private DatePicker endDatePicker;
 
     @FXML
     void onApplyButton(ActionEvent event) {
@@ -74,8 +79,8 @@ public class UpdateEducationController {
             try {
                 String schoolName = schoolTextField.getText();
                 String grade = gradeTextField.getText();
-                String endDate = endDateTextField.getText();
-                String startDate = startDateField.getText();
+                String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+                String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
                 String field = fieldTextField.getText();
                 String community = communityTextField.getText();
                 String description = descriptionTextField.getText();
@@ -162,8 +167,8 @@ public class UpdateEducationController {
     private boolean checkValidation() {
         String schoolName = schoolTextField.getText();
         String grade = gradeTextField.getText();
-        String endDate = endDateTextField.getText();
-        String startDate = startDateField.getText();
+        String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+        String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
         String field = fieldTextField.getText();
 
         if (!EducationValidator.schoolNameValidator(schoolName)) {
@@ -194,8 +199,6 @@ public class UpdateEducationController {
 
         schoolTextField.setText(educationData.get("schoolName"));
         gradeTextField.setText(educationData.get("grade"));
-        endDateTextField.setText(educationData.get("endDate"));
-        startDateField.setText(educationData.get("startDate"));
         fieldTextField.setText(educationData.get("field"));
         communityTextField.setText(educationData.get("community"));
         descriptionTextField.setText(educationData.get("description"));

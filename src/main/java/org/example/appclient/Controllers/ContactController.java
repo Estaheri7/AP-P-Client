@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 public class ContactController {
 
     private final Gson gson = new Gson();
+    public DatePicker birthDatePicker;
 
     @FXML
     private Label addressErrorLabel;
@@ -35,9 +37,6 @@ public class ContactController {
     private Label bdErrorLabel;
 
     @FXML
-    private TextField birthDateTField;
-
-    @FXML
     private TextField fastConnectTField;
 
     @FXML
@@ -45,6 +44,18 @@ public class ContactController {
 
     @FXML
     private TextField phoneNumberTField;
+
+    @FXML
+    private TextField workNumberTextField;
+
+    @FXML
+    private TextField homeNumberTextField;
+
+    @FXML
+    private Label homeErrorLabel;
+
+    @FXML
+    private Label workErrorLabel;
 
     @FXML
     private TextField viewLinkTField;
@@ -61,6 +72,8 @@ public class ContactController {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             phoneErrorLabel.setVisible(false);
+            workErrorLabel.setVisible(false);
+            homeErrorLabel.setVisible(false);
             bdErrorLabel.setVisible(false);
             viewlinkErrorLabel.setVisible(false);
             addressErrorLabel.setVisible(false);
@@ -68,8 +81,10 @@ public class ContactController {
                 String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
 
                 String phoneNumber = phoneNumberTField.getText();
+                String workNumber = workNumberTextField.getText();
+                String homeNumber = homeNumberTextField.getText();
                 String address = addressTField.getText();
-                String birthDate = birthDateTField.getText();
+                String birthDate = birthDatePicker.getValue() != null ? birthDatePicker.getValue().toString() : "";
                 String fastConnect = fastConnectTField.getText();
                 String viewLink = viewLinkTField.getText();
 
@@ -86,6 +101,8 @@ public class ContactController {
 
                 HashMap<String, String> newContact = new HashMap<>();
                 newContact.put("phoneNumber", phoneNumber);
+                newContact.put("workNumber", workNumber);
+                newContact.put("homeNumber", homeNumber);
                 newContact.put("address", address);
                 newContact.put("birthDate", birthDate);
                 newContact.put("fastConnect", fastConnect);
@@ -146,19 +163,28 @@ public class ContactController {
         HashMap<String, String> contact = fetchContact();
         phoneNumberTField.setText(contact.get("phoneNumber"));
         addressTField.setText(contact.get("address"));
-        birthDateTField.setText(contact.get("birthDate"));
         fastConnectTField.setText(contact.get("fastConnect"));
         viewLinkTField.setText(contact.get("viewLink"));
     }
 
     private boolean dataValidator() {
         String phoneNumber = phoneNumberTField.getText();
+        String workNumber = workNumberTextField.getText();
+        String homeNumber = homeNumberTextField.getText();
         String address = addressTField.getText();
-        String birthDate = birthDateTField.getText();
+        String birthDate = birthDatePicker.getValue() != null ? birthDatePicker.getValue().toString() : "";
         String viewLink = viewLinkTField.getText();
 
         if (!ContactValidator.phoneNumberValidator(phoneNumber)) {
             phoneErrorLabel.setVisible(true);
+            return false;
+        }
+        if (!ContactValidator.phoneNumberValidator(workNumber)) {
+            workErrorLabel.setVisible(true);
+            return false;
+        }
+        if (!ContactValidator.phoneNumberValidator(homeNumber)) {
+            workErrorLabel.setVisible(true);
             return false;
         }
         if (!ContactValidator.viewLinkValidator(viewLink)) {

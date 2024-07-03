@@ -144,6 +144,9 @@ public class UserController {
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
         //        int nameSize = (name + lastName).length();
         Button button = new Button("Connect");
+        if (email.equals(JwtManager.decodeJwtPayload(JwtManager.getJwtToken()))) {
+            button.setVisible(false);
+        }
         button.setTranslateY(25);
         button.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white");
 //        messageButton.setTranslateX(nameSize * 7 + 300);
@@ -166,7 +169,7 @@ public class UserController {
                 loadSendConnection(button);
             } else if (button.getText().equals("Message")) {
                 // TODO go to message room
-                System.out.println("Go to message");
+                ChatController.openChat(email, button);
             }
         });
     }

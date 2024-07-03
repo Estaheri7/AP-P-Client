@@ -45,7 +45,7 @@ public class AddPostController {
     @FXML
     void onAddMediaButton(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg");
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.pdf");
         FileChooser.ExtensionFilter audioFilter = new FileChooser.ExtensionFilter("Audio Files", "*.mp3", "*.wav", "*.aac", "*.ogg");
         FileChooser.ExtensionFilter videoFilter = new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mkv", "*.avi");
         fileChooser.getExtensionFilters().addAll(imageFilter, audioFilter, videoFilter);

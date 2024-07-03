@@ -127,9 +127,6 @@ public class FetcherEmail {
         HBox entry = new HBox();
         entry.setSpacing(10);
         entry.setPrefWidth(665);
-        entry.setStyle("-fx-background-color: #232323; " +
-                "-fx-border-color: #1d7754; " +
-                "-fx-border-width: 2px;");
         entry.setPadding(new Insets(10));
 
         ImageView imageView = new ImageView();
@@ -167,7 +164,6 @@ public class FetcherEmail {
 
         VBox userDetailsVBox = new VBox();
         userDetailsVBox.setPrefWidth(480);
-        userDetailsVBox.setStyle("-fx-background-color: #232323;");
         Label nameLabel = new Label(name + " " + lastName);
         nameLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
         nameLabel.setStyle("-fx-text-fill: white;");
@@ -178,7 +174,11 @@ public class FetcherEmail {
         userDetailsVBox.getChildren().addAll(nameLabel, headlineLabel, locationLabel);
 
         Button button = new Button("Connect");
+        if (email.equals(JwtManager.decodeJwtPayload(JwtManager.getJwtToken()))) {
+            button.setVisible(false);
+        }
         button.setTranslateY(25);
+        button.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white");
         onButton(button, email);
 
         entry.getChildren().addAll(userDetailsVBox, button);
@@ -200,7 +200,7 @@ public class FetcherEmail {
                 loadSendConnection(button);
             } else if (button.getText().equals("Message")) {
                 // TODO go to message room
-                System.out.println("Go to message");
+                ChatController.openChat(email, button);
             }
         });
     }

@@ -2,15 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ContactController">
+<DialogPane prefHeight="514.0" prefWidth="600.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ContactController">
    <content>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #232323;">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="600.0" style="-fx-background-color: #232323;">
          <children>
             <Label text="Update Contact" textFill="WHITE">
                <VBox.margin>
@@ -20,31 +21,34 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumberTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Phone number" style="-fx-background-color: #383838; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;">
+            <TextField fx:id="phoneNumberTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Phone number" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
             <Label fx:id="phoneErrorLabel" text="Invalid phone number format" textFill="RED" translateX="-170.0" visible="false" />
-            <TextField fx:id="addressTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Address" style="-fx-background-color: #383838; -fx-prompt-text-fill: #d3d3d3;">
+            <TextField fx:id="workNumberTextField" maxWidth="-Infinity" prefWidth="500.0" promptText="Work Number" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+            <Label fx:id="workErrorLabel" text="Invalid work number format" textFill="RED" translateX="-170.0" visible="false" />
+            <TextField fx:id="homeNumberTextField" maxWidth="-Infinity" prefWidth="500.0" promptText="Home Number" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" />
+            <Label fx:id="homeErrorLabel" text="Invalid home number format" textFill="RED" translateX="-170.0" visible="false" />
+            <TextField fx:id="addressTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Address" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
             <Label fx:id="addressErrorLabel" text="Invalid address format" textFill="RED" translateX="-190.0" visible="false" />
-            <TextField fx:id="birthDateTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Birth date" style="-fx-background-color: #383838; -fx-prompt-text-fill: #d3d3d3;">
-               <VBox.margin>
+            <DatePicker fx:id="birthDatePicker" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" stylesheets="@css/DatePicker.css" translateY="7.0">               <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </TextField>
+            </DatePicker>
             <Label fx:id="bdErrorLabel" text="Invalid birth date format" textFill="RED" translateX="-185.0" visible="false" />
-            <TextField fx:id="viewLinkTField" maxWidth="-Infinity" prefWidth="500.0" promptText="View link" style="-fx-background-color: #383838; -fx-prompt-text-fill: #d3d3d3;">
+            <TextField fx:id="viewLinkTField" maxWidth="-Infinity" prefWidth="500.0" promptText="View link" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
             <Label fx:id="viewlinkErrorLabel" text="Invalid view link format" textFill="RED" translateX="-185.0" visible="false" />
-            <TextField fx:id="fastConnectTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Fast connection" style="-fx-background-color: #383838; -fx-prompt-text-fill: #d3d3d3;">
+            <TextField fx:id="fastConnectTField" maxWidth="-Infinity" prefWidth="500.0" promptText="Fast connection" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
