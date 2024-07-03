@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.FollowingController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.FollowingController">
 <!--   <fx:include source="topbar.fxml" />-->
    <children>
       <HBox prefHeight="1080.0" prefWidth="1920.0">
          <children>
             <VBox prefHeight="1080.0" prefWidth="545.0" style="-fx-background-color: #232323;" />
-            <VBox prefHeight="1080.0" prefWidth="782.0">
+            <VBox prefHeight="1080.0" prefWidth="782.0" style="-fx-background-color: #232323;">
                <children>
                   <HBox prefHeight="69.0" prefWidth="782.0" style="-fx-background-color: #232323;">
                      <children>
@@ -23,7 +23,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="followingScrollPane" prefHeight="818.0" prefWidth="782.0" style="-fx-background: #383838; -fx-border-color: #1d7754;" stylesheets="@css/ScrollBar.css" />
+                  <ScrollPane fx:id="followingScrollPane" prefHeight="784.0" prefWidth="782.0" style="-fx-background: #383838; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@css/ScrollBar.css" />
                </children>
             </VBox>
             <VBox prefHeight="1080.0" prefWidth="545.0" style="-fx-background-color: #232323;" />

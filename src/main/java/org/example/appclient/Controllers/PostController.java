@@ -58,16 +58,6 @@ public class PostController {
 
     private static final ObservableList<HashMap<String, String>> allPosts = FXCollections.observableArrayList();
 
-
-    public static void initializePosts(String user) {
-        ArrayList<HashMap<String, String>> posts = fetchPostFromUser(user);
-        allPosts.setAll(posts);
-    }
-
-    public static ObservableList<HashMap<String, String>> getAllPosts() {
-        return allPosts;
-    }
-
     public static ArrayList<HashMap<String, String>> fetchPostFromUser(String user) {
         ArrayList<HashMap<String, String>> posts = new ArrayList<>();
 
@@ -149,7 +139,7 @@ public class PostController {
             postContentFlow.getChildren().add(textNode);
         }
 
-        // Enable clicking on the TextFlow to expand/collapse
+        //see more
         postContentFlow.setOnMouseClicked(event -> {
             if (postContentFlow.getPrefHeight() == 50 && content.length() > 70) {
                 postContentFlow.setPrefHeight(200);

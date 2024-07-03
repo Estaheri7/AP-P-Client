@@ -17,10 +17,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1500.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1500.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ProfileController">
 <!--   <fx:include source="topbar.fxml" />-->
    <children>
-      <ScrollPane prefHeight="1226.0" prefWidth="1500.0" style="-fx-background: #232323; -fx-background-color: #1d7754;" stylesheets="@css/ScrollBar.css" VBox.vgrow="ALWAYS">
+      <ScrollPane prefHeight="1080.0" prefWidth="1500.0" style="-fx-background: #232323; -fx-background-color: #1d7754;" stylesheets="@css/ScrollBar.css" VBox.vgrow="ALWAYS">
          <content>
             <HBox prefHeight="2000.0" prefWidth="1478.0" spacing="50.0" style="-fx-background-color: #232323;">
                <children>
@@ -38,7 +38,7 @@
                                           <Image url="@images/defaultBackGround.png" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="backgroundButton" minWidth="44.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #1d7754;" text="Edit" textFill="WHITE" translateX="280.0" translateY="-45.0" />
+                                    <Button fx:id="backgroundButton" minWidth="44.0" mnemonicParsing="false" onAction="#onBackgroundButton" prefHeight="30.0" prefWidth="44.0" style="-fx-background-color: #1d7754;" text="Edit" textFill="WHITE" translateX="280.0" translateY="-65.0" />
                                  </children>
                               </StackPane>
                            </children>
@@ -256,6 +256,22 @@
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets></TextField>
+                              <TextField fx:id="workNumberTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Work Number" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="homeNumberTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Home Number" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
                               <TextField fx:id="addressTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Address" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
                                     <Insets left="20.0" top="10.0" />
@@ -263,16 +279,16 @@
                               </TextField>
                               <TextField fx:id="birthDateTextField" disable="true" editable="false" maxWidth="-Infinity" prefWidth="603.0" promptText="Birthdate" style="-fx-background-color: #303030; -fx-border-color: #1d7754; -fx-text-fill: white">
                                  <VBox.margin>
-                                    <Insets left="20.0" top="10.0" />
+                                    <Insets left="20.0" top="5.0" />
                                  </VBox.margin>
                               </TextField>
                               <Hyperlink fx:id="viewLinkHyperLink" onAction="#onViewLinkHyperLink" prefHeight="24.0" prefWidth="574.0" style="-fx-text-fill: #1d7754;" text="ViewLink">
                                  <VBox.margin>
-                                    <Insets left="10.0" top="20.0" />
+                                    <Insets left="20.0" top="5.0" />
                                  </VBox.margin></Hyperlink>
                               <Hyperlink fx:id="fastConnectLink" onAction="#onFastConnectLink" prefWidth="597.0" style="-fx-text-fill: #1d7754;" text="FastConnect">
                                  <VBox.margin>
-                                    <Insets left="10.0" top="5.0" />
+                                    <Insets left="20.0" />
                                  </VBox.margin></Hyperlink>
                            </children>
                         </VBox>
@@ -281,7 +297,7 @@
                         <Insets left="70.0" top="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="2000.0" prefWidth="500.0">
+                  <VBox prefHeight="1080.0" prefWidth="500.0">
                      <HBox.margin>
                         <Insets left="200.0" right="50.0" top="10.0" />
                      </HBox.margin>

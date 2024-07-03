@@ -5,6 +5,7 @@ module org.example.appclient {
     requires java.desktop;
     requires javafx.mediaEmpty;
     requires javafx.media;
+    requires org.apache.pdfbox;
 
 
     opens org.example.appclient to javafx.fxml;

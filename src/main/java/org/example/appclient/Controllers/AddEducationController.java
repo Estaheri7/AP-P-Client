@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class AddEducationController {
@@ -35,7 +37,7 @@ public class AddEducationController {
     private Label endDateError;
 
     @FXML
-    private TextField endDateTextField;
+    private DatePicker endDatePicker;
 
     @FXML
     private Label fieldError;
@@ -59,7 +61,7 @@ public class AddEducationController {
     private Label startDateError;
 
     @FXML
-    private TextField startDateField;
+    private DatePicker startDatePicker;
 
     @FXML
     void onAddButton(ActionEvent event) {
@@ -71,8 +73,8 @@ public class AddEducationController {
                 String schoolName = schoolTextField.getText();
                 String field = fieldTextField.getText();
                 String grade = gradeTextField.getText();
-                String endDate = endDateTextField.getText();
-                String startDate = startDateField.getText();
+                String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+                String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
                 String description = descriptionTextField.getText();
                 String community = communityTextField.getText();
 
@@ -104,7 +106,7 @@ public class AddEducationController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-//                    ProfileController.reloadProfile(addButton);
+                    // ProfileController.reloadProfile(addButton);
                     Stage stage = (Stage) addButton.getScene().getWindow();
                     stage.close();
                 } else {
@@ -121,8 +123,8 @@ public class AddEducationController {
     private boolean checkValidation() {
         String schoolName = schoolTextField.getText();
         String grade = gradeTextField.getText();
-        String endDate = endDateTextField.getText();
-        String startDate = startDateField.getText();
+        String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+        String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
         String field = fieldTextField.getText();
 
         if (!EducationValidator.schoolNameValidator(schoolName)) {
@@ -148,4 +150,3 @@ public class AddEducationController {
         return true;
     }
 }
-
