@@ -49,94 +49,46 @@ public class TopBarController {
     private ImageView logOutImage;
 
     private void onHomeClicked() {
-        try {
-            Parent usersPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/Feeds.fxml"));
-            Scene userPageScene = new Scene(usersPage);
-            Stage currentStage = (Stage) meImageView.getScene().getWindow();
-
-            Stage userStage = new Stage();
-            userStage.setScene(userPageScene);
-            userStage.initOwner(currentStage);
-            userStage.initModality(Modality.APPLICATION_MODAL);
-            userStage.setFullScreen(true);
-            userStage.setFullScreenExitHint("");
-            currentStage.hide();
-            userStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadStage("Feeds.fxml");
     }
 
     private void search(){
         String searchKey = searchTextField.getText();
         UserController.setSearchKey(searchKey);
-        loadStage();
-    }
-
-    private void loadStage(){
-        try {
-            Parent usersPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/users.fxml"));
-            Scene userPageScene = new Scene(usersPage);
-            Stage currentStage = (Stage) meImageView.getScene().getWindow();
-
-            Stage userStage = new Stage();
-            userStage.setScene(userPageScene);
-            userStage.initOwner(currentStage);
-            userStage.initModality(Modality.APPLICATION_MODAL);
-            userStage.setFullScreen(true);
-            userStage.setFullScreenExitHint("");
-            currentStage.hide();
-            userStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadStage("users.fxml");
     }
 
     private void onUsersClicked() {
         UserController.setSearchKey("");
-        loadStage();
+        loadStage("users.fxml");
     }
 
     private void onMeClicked() {
-        try {
-            String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
-            ProfileController.setProfileEmail(email);
-
-            Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/profile.fxml"));
-            Scene profilePageScene = new Scene(profilePage);
-            Stage currentStage = (Stage) meImageView.getScene().getWindow();
-
-            Stage profileStage = new Stage();
-            profileStage.setScene(profilePageScene);
-            profileStage.initOwner(currentStage);
-            profileStage.initModality(Modality.APPLICATION_MODAL);
-            profileStage.setFullScreen(true);
-            profileStage.setFullScreenExitHint("");
-            currentStage.hide();
-            profileStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadStage("profile.fxml");
     }
-    private void onMessagingClicked() {}
+
+    private void onMessagingClicked() {
+        loadStage("messagePage.fxml");
+    }
 
     private void onMyNetworkClicked() {
+        loadStage("network.fxml");
+    }
+
+    private void loadStage(String fxml){
         try {
-            Parent netWorkPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/network.fxml"));
-            Scene netWorkPageScene = new Scene(netWorkPage);
+            Parent targetPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/" + fxml));
+            Scene targetPageScene = new Scene(targetPage);
             Stage currentStage = (Stage) meImageView.getScene().getWindow();
 
-            Stage netWorkStage = new Stage();
-            netWorkStage.setScene(netWorkPageScene);
-            netWorkStage.initOwner(currentStage);
-            netWorkStage.initModality(Modality.APPLICATION_MODAL);
-            netWorkStage.setFullScreen(true);
-            netWorkStage.setFullScreenExitHint("");
+            Stage targetStage = new Stage();
+            targetStage.setScene(targetPageScene);
+            targetStage.initOwner(currentStage);
+            targetStage.initModality(Modality.APPLICATION_MODAL);
+            targetStage.setFullScreen(true);
+            targetStage.setFullScreenExitHint("");
             currentStage.hide();
-            netWorkStage.show();
+            targetStage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -227,34 +179,13 @@ public class TopBarController {
         });
 
         logOutImage.setOnMouseClicked(event -> {
-            try {
-                loadLoginPage();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            loadStage("login.fxml");
         });
 
         homeImageView.setOnMouseClicked(event -> onHomeClicked());
 
         myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
-    }
 
-    private void loadLoginPage() throws IOException {
-        JwtManager.setJwtToken("");
-        Parent loginPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/login.fxml"));
-
-        Scene loginScene = new Scene(loginPage);
-        Stage currentStage = (Stage) logOutImage.getScene().getWindow();
-
-        Stage loginStage = new Stage();
-        loginStage.setScene(loginScene);
-        loginStage.initOwner(currentStage);
-        loginStage.initModality(Modality.APPLICATION_MODAL);
-
-        loginStage.setFullScreen(true);
-        loginStage.setFullScreenExitHint("");
-
-        currentStage.hide();
-        loginStage.show();
+        messagingImageView.setOnMouseClicked(event -> onMessagingClicked());
     }
 }

@@ -376,12 +376,11 @@ public class ChatController {
                             Label messageLabel = new Label(message);
                             Label timeLabel = new Label(time);
                             timeLabel.setStyle("-fx-text-fill: white");
-                            messageContainer.getChildren().add(timeLabel);
                             messageLabel.setWrapText(true);
                             messageLabel.setPadding(new Insets(10));
                             messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
 
-                            if (sender.equals(JwtManager.decodeJwtPayload(JwtManager.getJwtToken()))) {
+                            if (isSender(sender)) {
                                 messageContainer.setAlignment(Pos.BOTTOM_RIGHT);
                                 messageLabel.setStyle("-fx-background-color: lightgreen; -fx-background-radius: 10;");
                             } else {
@@ -392,10 +391,15 @@ public class ChatController {
                                 String mediaURL = message.substring("chat_media/".length()).split("\\.")[0];
                                 mediaNode = PostController.handleMedia("/chat-media/", message, mediaURL);
                                 messageContainer.getChildren().add(mediaNode);
-                                messageContainer.setPadding(new Insets(5));
                             } else {
                                 messageContainer.getChildren().add(messageLabel);
                                 messageContainer.setPadding(new Insets(5));
+                            }
+
+                            if (isSender(sender)) {
+                                messageContainer.getChildren().add(0, timeLabel);
+                            } else {
+                                messageContainer.getChildren().add(1, timeLabel);
                             }
 
                             setGraphic(messageContainer);
@@ -417,5 +421,9 @@ public class ChatController {
         FileChooser.ExtensionFilter videoFilter = new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mkv", "*.avi");
         fileChooser.getExtensionFilters().addAll(imageFilter, audioFilter, videoFilter);
         mediaFile = fileChooser.showOpenDialog(sendButton.getScene().getWindow());
+    }
+
+    private boolean isSender(String sender) {
+        return sender.equals(JwtManager.decodeJwtPayload(JwtManager.getJwtToken()));
     }
 }
