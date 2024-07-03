@@ -460,6 +460,18 @@ public class ProfileController {
     }
 
     public void initialize() {
+        // styles
+        addPostButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        editButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        educationUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        allEducationsButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        educationAddButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        backgroundButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        followButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        connectButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        skillsUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        contactUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+
         avatarImageView.setOnMouseClicked(event -> uploadImage("avatar"));
         avatarImageView.setFitWidth(142);
         avatarImageView.setFitHeight(142);
@@ -504,7 +516,6 @@ public class ProfileController {
 
         fillProfile();
 
-//        postVBox.setStyle("-fx-background-color: #272727");
 
         Platform.runLater(() -> {
             postListView = new ListView<>();

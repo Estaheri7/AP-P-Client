@@ -178,7 +178,7 @@ public class FetcherEmail {
             button.setVisible(false);
         }
         button.setTranslateY(25);
-        button.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white");
+        button.getStylesheets().add(FetcherEmail.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
         onButton(button, email);
 
         entry.getChildren().addAll(userDetailsVBox, button);

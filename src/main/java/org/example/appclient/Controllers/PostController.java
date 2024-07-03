@@ -205,8 +205,6 @@ public class PostController {
 
         // like button
         Button likeButton = new Button("Like");
-        likeButton.setStyle("-fx-background-color: #1d7754;" +
-                "-fx-text-fill: white");
         if (isLiked(postId)) {
             likeButton.setText("Dislike");
         }
@@ -219,13 +217,10 @@ public class PostController {
 
         // comment button
         Button commentButton = new Button("Comment");
-        commentButton.setStyle("-fx-background-color: #1d7754;" +
-                "-fx-text-fill: white");
-
 //        likeButton.setTranslateX(100);
 //        commentButton.setTranslateX(100);
         likeButton.setPrefWidth(70);
-        commentButton.setPrefWidth(70);
+        commentButton.setPrefWidth(90);
 
         commentButton.setOnAction(event -> {
             CommentController.setPostId(postId);
@@ -233,20 +228,18 @@ public class PostController {
         });
 
         Button sendButton = new Button("Send");
-        sendButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white;");
         sendButton.setPrefWidth(70);
-
 
         Button repostButton = new Button("Repost");
         repostButton.setPrefWidth(70);
-        repostButton.setStyle("-fx-background-color: #1d7754;" +
-                "-fx-text-fill: white");
-        sendButton.setTranslateX(60);
-        repostButton.setTranslateX(60);
-        repostButton.setStyle("-fx-background-color: #1d7754;" +
-                "-fx-text-fill: white");
-        sendButton.setStyle("-fx-background-color: #1d7754;" +
-                "fx-text-fill: white");
+        sendButton.setTranslateX(70);
+        repostButton.setTranslateX(70);
+
+        // styles
+        likeButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        commentButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        repostButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        sendButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
 
         // handling likes display
         likeLabel.setOnMouseClicked(event -> {

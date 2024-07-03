@@ -369,9 +369,14 @@ public class ChatController {
                         } else {
                             String sender = chat.get("sender");
                             String message = chat.get("message");
+                            String time = chat.get("timestamp");
 
                             HBox messageContainer = new HBox();
+                            messageContainer.setSpacing(3);
                             Label messageLabel = new Label(message);
+                            Label timeLabel = new Label(time);
+                            timeLabel.setStyle("-fx-text-fill: white");
+                            messageContainer.getChildren().add(timeLabel);
                             messageLabel.setWrapText(true);
                             messageLabel.setPadding(new Insets(10));
                             messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");

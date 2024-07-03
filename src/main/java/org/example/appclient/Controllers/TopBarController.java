@@ -48,7 +48,26 @@ public class TopBarController {
     @FXML
     private ImageView logOutImage;
 
-    private void onHomeClicked() {}
+    private void onHomeClicked() {
+        try {
+            Parent usersPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/Feeds.fxml"));
+            Scene userPageScene = new Scene(usersPage);
+            Stage currentStage = (Stage) meImageView.getScene().getWindow();
+
+            Stage userStage = new Stage();
+            userStage.setScene(userPageScene);
+            userStage.initOwner(currentStage);
+            userStage.initModality(Modality.APPLICATION_MODAL);
+            userStage.setFullScreen(true);
+            userStage.setFullScreenExitHint("");
+            currentStage.hide();
+            userStage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void search(){
         String searchKey = searchTextField.getText();
         UserController.setSearchKey(searchKey);
@@ -214,6 +233,8 @@ public class TopBarController {
                 e.printStackTrace();
             }
         });
+
+        homeImageView.setOnMouseClicked(event -> onHomeClicked());
 
         myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
     }

@@ -148,7 +148,7 @@ public class UserController {
             button.setVisible(false);
         }
         button.setTranslateY(25);
-        button.setStyle("-fx-background-color: #1d7754; -fx-text-fill: white");
+        button.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
 //        messageButton.setTranslateX(nameSize * 7 + 300);
         onButton(button, email);
         userEntry.setPadding(new Insets(10, 10, 10, 10));
