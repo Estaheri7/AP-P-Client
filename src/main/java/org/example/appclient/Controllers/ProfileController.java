@@ -53,6 +53,12 @@ public class ProfileController {
     private TextField FieldTextField;
 
     @FXML
+    private TextField workNumberTextField;
+
+    @FXML
+    private TextField homeNumberTextField;
+
+    @FXML
     private TextField addressTextField;
 
     @FXML
@@ -210,7 +216,7 @@ public class ProfileController {
         if (buttonText.equals("Connect")) {
             loadSendConnection();
         } else if (buttonText.equals("Message")) {
-            // TODO go to message
+            ChatController.openChat(profileEmail, connectButton);
         }
     }
 
@@ -454,6 +460,18 @@ public class ProfileController {
     }
 
     public void initialize() {
+        // styles
+        addPostButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        editButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        educationUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        allEducationsButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        educationAddButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        backgroundButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        followButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        connectButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        skillsUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+        contactUpdateButton.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
+
         avatarImageView.setOnMouseClicked(event -> uploadImage("avatar"));
         avatarImageView.setFitWidth(142);
         avatarImageView.setFitHeight(142);
@@ -482,7 +500,6 @@ public class ProfileController {
                 "-fx-max-width: 483;" +
                 "-fx-max-height: 138;");
 
-
         // privacy contact
         toggleGroup = new ToggleGroup();
         onlyMeRadioButton.setToggleGroup(toggleGroup);
@@ -499,25 +516,28 @@ public class ProfileController {
 
         fillProfile();
 
-//        postVBox.setStyle("-fx-background-color: #272727");
 
-        postListView = new ListView<>();
-        postListView.setStyle("-fx-background-color: #232323FF");
-        postListView.setPrefHeight(700);
-        PostCell.setTempLabel(userPostLabel);
-        postListView.setCellFactory(param -> new PostCell());
-        mainContainer.getChildren().add(postListView);
-        displayPosts();
+        Platform.runLater(() -> {
+            postListView = new ListView<>();
+            postListView.setStyle("-fx-background-color: #232323FF; -fx-background-radius: 10;");
+            postListView.setPrefHeight(700);
+            PostCell.setTempLabel(userPostLabel);
+            postListView.setCellFactory(param -> new PostCell());
+            mainContainer.getChildren().add(postListView);
+            displayPosts();
+        });
     }
 
     private void displayPosts() {
-        Platform.runLater(() -> {
-            String name = nameLabel.getText();
+        String name = nameLabel.getText();
+        ArrayList<HashMap<String, String>> posts = PostController.fetchPostFromUser(profileEmail);
+        if (!posts.isEmpty()) {
             userPostLabel.setText(name + "'s Posts");
-            ArrayList<HashMap<String, String>> posts = PostController.fetchPostFromUser(profileEmail);
-            postListView.getItems().clear();
-            postListView.getItems().addAll(posts);
-        });
+        } else {
+            userPostLabel.setText("No Posts");
+        }
+        postListView.getItems().clear();
+        postListView.getItems().addAll(posts);
     }
 
     private void handlePrivacyRadioButtonAction(ActionEvent event) {
@@ -692,6 +712,9 @@ public class ProfileController {
 
         // set contacts
         phoneNumberTextField.setText((String) contact.get("phoneNumber"));
+        workNumberTextField.setText((String) contact.get("workNumber"));
+        homeNumberTextField.setText((String) contact.get("homeNumber"));
+
         addressTextField.setText((String) contact.get("address"));
         String visibility = (String) contact.get("visibility");
         if (contact.get("birthDate") == null) {

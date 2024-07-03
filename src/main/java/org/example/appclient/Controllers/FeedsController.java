@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -26,8 +31,6 @@ import java.util.HashMap;
 
 
 public class FeedsController {
-
-    private static String profileEmail;
 
     @FXML
     private ImageView avatarImageView;
@@ -97,7 +100,9 @@ public class FeedsController {
                 "-fx-max-width: 483;" +
                 "-fx-max-height: 138;");
 
-
+        connectionsHbox.setOnMouseClicked(event -> loadPage("connections.fxml"));
+        followersHbox.setOnMouseClicked(event -> loadPage("followers.fxml"));
+        followingHbox.setOnMouseClicked(event -> loadPage("following.fxml"));
 
         fillProfile();
 
@@ -227,11 +232,27 @@ public class FeedsController {
     }
 
     private void setSearch(){
-
         searchKey = searchTextField.getText();
+    }
 
+    private void loadPage(String fxml) {
+        try {
+            Parent loader = FXMLLoader.load(getClass().getResource("/org/example/appclient/" + fxml));
 
+            Scene pageScene = new Scene(loader);
+            Stage currentStage = (Stage) headlineLabel.getScene().getWindow();
 
+            Stage newStage = new Stage();
+            newStage.setScene(pageScene);
+            newStage.initOwner(currentStage);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.setFullScreen(true);
+            newStage.setFullScreenExitHint("");
+            currentStage.hide();
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

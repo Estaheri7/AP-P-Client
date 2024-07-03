@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxHeight="498.0" maxWidth="610.4" prefHeight="451.0" prefWidth="610.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.EditIntroController">
+<DialogPane maxHeight="498.0" maxWidth="610.4" prefHeight="451.0" prefWidth="610.0" style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.EditIntroController">
    <header>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #232323;">
          <children>
@@ -23,7 +23,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane maxHeight="591.0" maxWidth="621.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="622.0" style="-fx-background: #282828; -fx-border-color: #282828;" stylesheets="@css/ScrollBar.css" translateX="-10.0">
+            <ScrollPane maxHeight="591.0" maxWidth="622.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="622.0" style="-fx-background: #282828; -fx-border-color: #282828;" stylesheets="@css/ScrollBar.css" translateX="-10.0">
                <content>
                   <VBox prefHeight="482.0" prefWidth="580.0" translateX="2.0">
                      <children>
@@ -95,7 +95,7 @@
                         <VBox prefHeight="62.0" prefWidth="559.0">
                            <children>
                               <Label text="City*" />
-                              <TextField fx:id="cityTField" style="-fx-border-color: #1d7754; -fx-background-color: #383838; text-emphasis: white;" />
+                              <TextField fx:id="cityTField" style="-fx-border-color: #1d7754; -fx-background-color: #383838; -fx-text-fill: white;" />
                               <Label fx:id="cityError" prefHeight="18.0" prefWidth="142.0" text="City is required" textFill="RED" visible="false" />
                            </children>
                            <VBox.margin>
