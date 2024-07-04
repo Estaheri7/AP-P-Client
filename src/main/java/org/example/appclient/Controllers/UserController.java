@@ -46,6 +46,8 @@ public class UserController {
     @FXML
     private ScrollPane userScrollPane;
 
+    private ArrayList<HashMap<String, String>> searchedUsers = new ArrayList<>();
+
     private ArrayList<HashMap<String, String>> fetchAllUsers() {
         HttpURLConnection connection = null;
         ArrayList<HashMap<String, String>> users = new ArrayList<>();
@@ -74,14 +76,41 @@ public class UserController {
         return users;
     }
 
+    private ArrayList<HashMap<String, String>> fetchUsersBySkill() {
+        HttpURLConnection connection = null;
+        ArrayList<HashMap<String, String>> users = new ArrayList<>();
+        try {
+            URL url = new URL("http://localhost:8080/search/skill/" + searchKey.substring("#s".length()));
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+
+                    Type type = new TypeToken<ArrayList<HashMap<String, String>>>(){}.getType();
+                    users = gson.fromJson(response.toString(), type);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     private ArrayList<HashMap<String, String>> search() {
         ArrayList<HashMap<String, String>> users = new ArrayList<>();
         ArrayList<HashMap<String, String>> currentUsers = fetchAllUsers();
         for (HashMap<String, String> user : currentUsers) {
             if (searchKey.isEmpty()) {
                 return currentUsers;
-            }
-            if (user.get("firstName").contains(searchKey) || user.get("lastName").contains(searchKey)) {
+            } else if (searchKey.startsWith("#s")) {
+                return fetchUsersBySkill();
+            } else if (user.get("firstName").toLowerCase().contains(searchKey.toLowerCase()) || user.get("lastName").toLowerCase().contains(searchKey.toLowerCase())) {
                 users.add(user);
             }
         }

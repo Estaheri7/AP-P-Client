@@ -222,6 +222,8 @@ public class ProfileController {
 
     private void loadSendConnection() {
         try {
+            ConnectController.setConnectionReceiver(profileEmail);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/sendConnection.fxml"));
             Parent root = loader.load();
 
