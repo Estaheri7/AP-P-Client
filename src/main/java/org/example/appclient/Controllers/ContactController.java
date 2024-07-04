@@ -1,6 +1,7 @@
 package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -160,11 +161,15 @@ public class ContactController {
     }
 
     private void fillContactUpdate() {
-        HashMap<String, String> contact = fetchContact();
-        phoneNumberTField.setText(contact.get("phoneNumber"));
-        addressTField.setText(contact.get("address"));
-        fastConnectTField.setText(contact.get("fastConnect"));
-        viewLinkTField.setText(contact.get("viewLink"));
+        Platform.runLater(() -> {
+            HashMap<String, String> contact = fetchContact();
+            phoneNumberTField.setText(contact.get("phoneNumber"));
+            workNumberTextField.setText(contact.get("workNumber"));
+            homeNumberTextField.setText(contact.get("homeNumber"));
+            addressTField.setText(contact.get("address"));
+            fastConnectTField.setText(contact.get("fastConnect"));
+            viewLinkTField.setText(contact.get("viewLink"));
+        });
     }
 
     private boolean dataValidator() {
@@ -203,6 +208,6 @@ public class ContactController {
     }
 
     public void initialize() {
-        fillContactUpdate();
+        new Thread(() -> fillContactUpdate()).start();
     }
 }

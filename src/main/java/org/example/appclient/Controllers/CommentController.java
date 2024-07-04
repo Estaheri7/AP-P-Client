@@ -44,7 +44,9 @@ public class CommentController {
 
     @FXML
     void onSendButton(ActionEvent event) {
-        addComment();
+        new Thread(() -> {
+            addComment();
+        }).start();
     }
 
     private void addComment() {
@@ -75,8 +77,10 @@ public class CommentController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Stage stage = (Stage) sendButton.getScene().getWindow();
-                    stage.close();
+                    Platform.runLater(() -> {
+                        Stage stage = (Stage) sendButton.getScene().getWindow();
+                        stage.close();
+                    });
                 } else {
                     try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
                         System.out.println(br.readLine());
@@ -125,7 +129,7 @@ public class CommentController {
         commentListView.getStylesheets().add(getClass().getResource("/org/example/appclient/css/ScrollBar.css").toExternalForm());
         commentListView.setCellFactory(param -> new CommentCell());
         mainContainer.getChildren().add(commentListView);
-        displayComments();
+        new Thread(() -> displayComments()).start();
     }
 
     public static void setPostId(String postId) {

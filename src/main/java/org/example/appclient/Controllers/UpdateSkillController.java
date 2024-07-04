@@ -1,6 +1,7 @@
 package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,6 +43,10 @@ public class UpdateSkillController {
 
     @FXML
     void onSaveButton(ActionEvent event) {
+        new Thread(() -> save()).start();
+    }
+
+    private void save() {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             try {
@@ -63,8 +68,10 @@ public class UpdateSkillController {
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Stage stage = (Stage) saveButton.getScene().getWindow();
-                    stage.close();
+                    Platform.runLater(() -> {
+                        Stage stage = (Stage) saveButton.getScene().getWindow();
+                        stage.close();
+                    });
                 } else {
                     System.out.println(connection.getResponseMessage());
                 }
@@ -91,13 +98,17 @@ public class UpdateSkillController {
     }
 
     public void initialize() {
-        HashMap<String, String> skills = fetchSkills();
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                HashMap<String, String> skills = fetchSkills();
 
-        skill1TextField.setText(skills.get("skill1"));
-        skill2TextField.setText(skills.get("skill2"));
-        skill3TextField.setText(skills.get("skill3"));
-        skill4TextField.setText(skills.get("skill4"));
-        skill5TextField.setText(skills.get("skill5"));
+                skill1TextField.setText(skills.get("skill1"));
+                skill2TextField.setText(skills.get("skill2"));
+                skill3TextField.setText(skills.get("skill3"));
+                skill4TextField.setText(skills.get("skill4"));
+                skill5TextField.setText(skills.get("skill5"));
+            });
+        }).start();
     }
 
     private HashMap<String, String> fetchSkills() {

@@ -159,8 +159,7 @@ public class PostController {
         postContentFlow.setStyle("-fx-control-background:  #232323;");
         postContentFlow.setPadding(new Insets(10));
 
-        // Parse the content and create Text nodes
-        String[] words = content.split(" ");
+        String[] words = content.split("\\s+");
         for (String word : words) {
             Text textNode = new Text(word + " ");
             if (word.startsWith("#")) {

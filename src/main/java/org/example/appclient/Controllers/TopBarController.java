@@ -175,7 +175,10 @@ public class TopBarController {
         meImageView.setPreserveRatio(false);
         meImageView.setClip(circle);
 
-        meImageView.setOnMouseClicked(event -> onMeClicked());
+        meImageView.setOnMouseClicked(event -> {
+            ProfileController.setProfileEmail((String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken()));
+            onMeClicked();
+        });
 
         usersImageView.setOnMouseClicked(event -> onUsersClicked());
 

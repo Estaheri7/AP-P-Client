@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.FeedsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.FeedsController">
    <fx:include source="topbar.fxml"/>
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1700.0" style="-fx-background-color: #232323;">
@@ -44,26 +44,35 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="headlineLabel" prefHeight="53.0" prefWidth="314.0" text="computer engineering at tehran amirkabir fucking university" textFill="WHITE" translateX="15.0" translateY="-30.0" />
+                  <Label fx:id="headlineLabel" prefHeight="53.0" prefWidth="314.0" text="computer engineering at tehran amirkabir university" textFill="WHITE" translateX="15.0" translateY="-30.0" />
                   <VBox prefHeight="155.0" prefWidth="318.0">
                      <children>
-                        <HBox fx:id="followersHbox" prefHeight="45.0" prefWidth="318.0">
+                        <HBox fx:id="followersHbox" alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="318.0" style="-fx-background-color: #202020;">
                            <children>
-                              <Label text="Followers" textFill="WHITE" translateX="15.0" translateY="15.0" />
-                              <Label fx:id="followersLabel" text="1000 Followers" textFill="WHITE" translateX="220.0" translateY="20.0" />
+                              <Label text="Followers" textFill="WHITE" translateX="15.0" />
+                              <Label fx:id="followersLabel" text="1000 Followers" textFill="WHITE" translateX="220.0" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox fx:id="followingHbox" prefHeight="34.0" prefWidth="318.0">
+                        <HBox fx:id="followingHbox" alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="318.0" style="-fx-background-color: #202020;">
                            <children>
                               <Label text="Following" textFill="WHITE" translateX="15.0" />
-                              <Label fx:id="followingLabel" text="1000 Following" textFill="WHITE" translateX="220.0" translateY="5.0" />
+                              <Label fx:id="followingLabel" text="1000 Following" textFill="WHITE" translateX="220.0" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox fx:id="connectionsHbox" prefHeight="41.0" prefWidth="318.0">
+                        <HBox fx:id="connectionsHbox" alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="318.0" style="-fx-background-color: #202020;">
                            <children>
                               <Label text="Connections" textFill="WHITE" translateX="15.0" />
-                              <Label fx:id="connectionsLabel" text="1000 Connections" textFill="WHITE" translateX="205.0" />
+                              <Label fx:id="connectionsLabel" text="1000 Connections" textFill="WHITE" translateX="190.0" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
@@ -94,7 +103,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="connectionsVbox" maxHeight="-Infinity" prefHeight="800.0" prefWidth="362.0" style="-fx-background-color: #232323; -fx-background-radius: 10; -fx-border-radius: 10;" translateX="50.0">
+            <VBox fx:id="connectionsVbox" maxHeight="-Infinity" prefHeight="500.0" prefWidth="362.0" style="-fx-background-color: #232323; -fx-background-radius: 10; -fx-border-radius: 10;" translateX="50.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -110,7 +119,7 @@
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ScrollPane fx:id="connecionsScrollPane" prefHeight="952.0" prefWidth="360.0" style="-fx-background: #232323; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@css/ScrollBar.css">
+                  <ScrollPane fx:id="connecionsScrollPane" prefHeight="500.0" prefWidth="360.0" style="-fx-background: #232323; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@css/ScrollBar.css">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></ScrollPane>
