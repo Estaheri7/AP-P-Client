@@ -48,6 +48,9 @@ public class TopBarController {
     @FXML
     private ImageView logOutImage;
 
+    @FXML
+    private ImageView notificationImageView;
+
     private void onHomeClicked() {
         loadStage("Feeds.fxml");
     }
@@ -73,6 +76,10 @@ public class TopBarController {
 
     private void onMyNetworkClicked() {
         loadStage("network.fxml");
+    }
+
+    private void onNotificationClicked() {
+        loadStage("notificationsPage.fxml");
     }
 
     private void loadStage(String fxml){
@@ -187,5 +194,7 @@ public class TopBarController {
         myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
 
         messagingImageView.setOnMouseClicked(event -> onMessagingClicked());
+
+        notificationImageView.setOnMouseClicked(event -> onNotificationClicked());
     }
 }
