@@ -196,12 +196,12 @@ public class FeedsController {
         followersLabel.setText(followers + " followers");
         followingLabel.setText(following + " following");
         headlineLabel.setText((user.get("headline")));
-
     }
 
     private void displayPosts() {
         Platform.runLater(() -> {
             ArrayList<HashMap<String, String>> posts = search();
+            PostCell.setTempLabel(nameLabel);
             postListView.getItems().clear();
             postListView.getItems().addAll(posts);
         });
@@ -212,7 +212,7 @@ public class FeedsController {
         connectionsVbox.getChildren().clear();
         for (String senderEmail : senderEmails) {
             HashMap<String, String> userDetail = FetcherEmail.fetchProfileDetailsByEmail(senderEmail);
-            FetcherEmail.addEntry(userDetail, connectionsVbox , connectionsLabel );
+            FetcherEmail.addEntry(userDetail, connectionsVbox , connectionsLabel);
         }
     }
 
