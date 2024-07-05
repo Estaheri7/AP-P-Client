@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -224,6 +225,9 @@ public class PostController {
         sendButton.setTranslateX(50);
         repostButton.setTranslateX(50);
 
+        //send action
+        sendButton.setOnAction(event -> displayShareDialog(post, stageLabel));
+
         // styles
         likeButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
         commentButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
@@ -277,6 +281,28 @@ public class PostController {
 
         dialog.setOnHidden(event -> isDialogOpen = false);
         dialog.showAndWait();
+    }
+
+    public static void displayShareDialog(HashMap<String, String> post, Label stageLabel) {
+        try {
+            ShareController.setPost(post);
+            ShareController.setTempLabel(stageLabel);
+
+            FXMLLoader loader = new FXMLLoader(PostController.class.getResource("/org/example/appclient/shareDialog.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Share");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(stageLabel.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void onLikeButton(String postId, Button likeButton, Label likeLabel) {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane style="-fx-background-color: #343434;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ShareController">
+   <content>
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;">
+         <children>
+            <Label fx:id="shareLabel" text="Share to" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="mainScrollPane" prefHeight="340.0" prefWidth="600.0" style="-fx-background: #303030; -fx-background-color: #1d7754;" stylesheets="@css/ScrollBar.css" />
+         </children>
+      </VBox>
+   </content>
+</DialogPane>
