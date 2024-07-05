@@ -161,7 +161,7 @@ public class TopBarController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             meImageView.setImage(image);
         }
     }

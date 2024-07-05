@@ -614,7 +614,7 @@ public class PostController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatar.setImage(image);
             avatar.setOnMouseClicked(event -> goToProfile(email, stageLabel));
         }

@@ -118,7 +118,7 @@ public class FeedsController {
         mainContainer.getChildren().add(postListView);
         searchTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                displayPosts(search());
+                new Thread(() -> displayPosts(search())).start();
             }
         });
 
@@ -169,7 +169,7 @@ public class FeedsController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatarImageView.setImage(image);
         }
 
