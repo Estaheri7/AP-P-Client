@@ -393,7 +393,25 @@ public class ChatController {
                                 String mediaURL = message.substring("chat_media/".length()).split("\\.")[0];
                                 mediaNode = PostController.handleMedia("/chat-media/", message, mediaURL);
                                 messageContainer.getChildren().add(mediaNode);
-                            } else {
+                            } else if (message.startsWith("http://localhost:8080/post/")) {
+                                Hyperlink postLink = new Hyperlink(message);
+                                String postId = message.substring("http://localhost:8080/post/".length());
+                                Thread thread = new Thread(() -> {
+                                    HashMap<String, String> post = fetchPostById(postId);
+                                    HashMap<String, String> userDetail = FetcherEmail.fetchProfileDetailsByEmail(post.get("author"));
+                                    String name = userDetail.get("firstName") + " " + userDetail.get("lastName");
+                                    String avatar = userDetail.get("avatar_url");
+                                    postLink.setOnAction(event -> PostController.displayPostDialog(post, name, avatar, nameLabel, messageTextArea.getScene().getWindow()));
+                                });
+                                thread.start();
+                                try {
+                                    thread.join();
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                messageContainer.getChildren().add(postLink);
+                            }
+                            else {
                                 messageContainer.getChildren().add(messageLabel);
                                 messageContainer.setPadding(new Insets(5));
                             }
@@ -414,6 +432,34 @@ public class ChatController {
         fillTop();
         fillChat();
         pollForNewMessages();
+    }
+
+    private HashMap<String, String> fetchPostById(String postId) {
+        HashMap<String, String> post = new HashMap<>();
+        if (JwtManager.isJwtTokenAvailable()) {
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL("http://localhost:8080/post/" + postId);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                        StringBuilder response = new StringBuilder();
+                        String inputLine;
+                        while ((inputLine = br.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+                        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+                        post = gson.fromJson(response.toString(), type);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return post;
     }
 
     private void openFileChooser() {
