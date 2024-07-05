@@ -110,9 +110,9 @@
                             <Insets top="50.0" />
                         </VBox.margin>
                     </VBox>
-                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" translateY="25.0">
+                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="645.0" translateY="25.0">
                         <children>
-                            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefWidth="150.0" style="-fx-background-color: #1d7754;" text="Signup" textFill="WHITE">
+                            <Button fx:id="signupButton" mnemonicParsing="false" onAction="#onSignupButton" prefHeight="30.0" prefWidth="151.0" stylesheets="@css/Button.css" text="Signup" textFill="WHITE">
                                 <font>
                                     <Font name="System Bold" size="15.0" />
                                 </font>
@@ -126,7 +126,7 @@
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754;" text="Sign In" textFill="WHITE" translateY="40.0">
+                            <Button fx:id="signInbutton" mnemonicParsing="false" onAction="#onSignInButton" stylesheets="@css/Button.css" text="Sign In" textFill="WHITE" translateY="40.0">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>

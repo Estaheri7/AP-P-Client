@@ -36,8 +36,8 @@
             <Label fx:id="mediaAddedSuccessfully" text="Media added successfully" textFill="#189441" visible="false" />
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="400.0" spacing="150.0">
                <children>
-                  <Button fx:id="doneButton" mnemonicParsing="false" onAction="#onDoneButton" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #1d7754;" text="Done" textFill="WHITE" />
-                  <Button fx:id="addMedia" mnemonicParsing="false" onAction="#onAddMediaButton" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #1d7754;" text="Add media" textFill="WHITE">
+                  <Button fx:id="doneButton" mnemonicParsing="false" onAction="#onDoneButton" prefHeight="26.0" prefWidth="97.0" stylesheets="@css/Button.css" text="Done" textFill="WHITE" />
+                  <Button fx:id="addMedia" mnemonicParsing="false" onAction="#onAddMediaButton" prefHeight="26.0" prefWidth="94.0" stylesheets="@css/Button.css" text="Add media" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

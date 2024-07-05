@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ChatController">
-    <fx:include source="topbar.fxml"/>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ChatController">
+<!--    <fx:include source="topbar.fxml"/>-->
    <children>
       <HBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #191919;">
          <children>
@@ -65,12 +65,12 @@
                               <Insets bottom="10.0" left="10.0" top="10.0" />
                            </HBox.margin>
                         </TextArea>
-                        <Button fx:id="mediaButton" mnemonicParsing="false" onAction="#onMediaButton" prefHeight="38.0" prefWidth="52.0" style="-fx-background-color: #1d7754; -fx-text-fill: white;" text="Media">
+                        <Button fx:id="mediaButton" mnemonicParsing="false" onAction="#onMediaButton" prefHeight="38.0" prefWidth="52.0" stylesheets="@css/Button.css" text="Media">
                            <HBox.margin>
                               <Insets left="15.0" right="5.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButton" prefHeight="38.0" prefWidth="90.0" style="-fx-background-color: #1d7754; -fx-text-fill: white;" text="Send">
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButton" prefHeight="38.0" prefWidth="90.0" stylesheets="@css/Button.css" text="Send">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>

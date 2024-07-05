@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.UpdateEducationController">
+<DialogPane style="-fx-background-color: #232323;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.UpdateEducationController">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -56,7 +56,7 @@
                   <Label text="Community:" textFill="WHITE" GridPane.rowIndex="3" />
                   <Label text="End Date:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Label text="Description:" textFill="WHITE" GridPane.rowIndex="4" />
-                  <Button fx:id="applyButton" mnemonicParsing="false" onAction="#onApplyButton" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #1d7754;" text="Apply" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Button fx:id="applyButton" mnemonicParsing="false" onAction="#onApplyButton" prefHeight="26.0" prefWidth="105.0" stylesheets="@css/Button.css" text="Apply" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <TextField fx:id="gradeTextField" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white" translateY="7.0">

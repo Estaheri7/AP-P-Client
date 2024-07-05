@@ -11,7 +11,7 @@
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
          <children>
             <TextField fx:id="noteTextField" layoutX="26.0" layoutY="23.0" style="-fx-background-color: #383838; -fx-border-color: #1d7754; -fx-text-fill: white;" />
-            <Button fx:id="sendButton" layoutX="132.0" layoutY="74.0" mnemonicParsing="false" onAction="#onSendButton" style="-fx-background-color: #1d7754;" text="Send" textFill="WHITE" />
+            <Button fx:id="sendButton" layoutX="132.0" layoutY="74.0" mnemonicParsing="false" onAction="#onSendButton" stylesheets="@css/Button.css" text="Send" textFill="WHITE" />
             <Label layoutX="26.0" layoutY="6.0" text="Note:" textFill="WHITE" />
             <Label fx:id="pendingErrorLabel" layoutX="29.0" layoutY="50.0" text="This connection is pending" textFill="RED" visible="false" />
             <Label fx:id="successLabel" alignment="CENTER" layoutX="34.0" layoutY="50.0" text="Connect sent successfuly" textFill="#11a93f" visible="false" />

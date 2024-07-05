@@ -43,7 +43,7 @@
             <TextField fx:id="passwordTextFieldVisible" managed="false" promptText="Password" style="-fx-background-color: #555555; -fx-border-color: #1d7754; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #d3d3d3;" visible="false" />
             <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#showCheckbox" prefHeight="8.0" prefWidth="59.0" style="-fx-text-fill: #d3d3d3;" stylesheets="@css/CheckBox.css" text="Show" />
          </HBox>
-         <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" style="-fx-background-color: #1d7754; -fx-text-fill: #ffffff;" text="Sign in">
+         <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButton" stylesheets="@css/Button.css" text="Sign in">
             <font>
                <Font size="15.0" />
             </font>
@@ -63,7 +63,7 @@
                <Font name="System Bold" size="14.0" />
             </font>
          </Label>
-         <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" style="-fx-background-color: #1d7754; -fx-text-fill: #ffffff;" text="Create Account">
+         <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#onCreateAccountButton" stylesheets="@css/Button.css" text="Create Account">
             <font>
                <Font size="13.0" />
             </font>

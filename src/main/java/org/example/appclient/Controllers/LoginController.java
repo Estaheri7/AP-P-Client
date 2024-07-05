@@ -116,7 +116,7 @@ public class LoginController {
                 loggingErrorLabel.setVisible(true);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 

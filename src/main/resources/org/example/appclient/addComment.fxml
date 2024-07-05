@@ -32,7 +32,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
             </ScrollPane>
-            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButton" style="-fx-background-color: #1d7754;" text="Send" textFill="WHITE">
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButton" stylesheets="@css/Button.css" text="Send" textFill="WHITE">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
