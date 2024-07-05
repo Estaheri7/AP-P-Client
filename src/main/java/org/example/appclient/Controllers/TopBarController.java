@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -90,6 +91,7 @@ public class TopBarController {
 
             Stage targetStage = new Stage();
             targetStage.setScene(targetPageScene);
+            LinkedInApp.setIcon(targetStage);
             targetStage.initOwner(currentStage);
             targetStage.initModality(Modality.APPLICATION_MODAL);
             targetStage.setFullScreen(true);

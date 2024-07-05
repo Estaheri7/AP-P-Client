@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.io.*;
@@ -107,7 +108,7 @@ public class LoginController {
                     ProfileController.setProfileEmail((String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken()));
                     successLabel.setVisible(true);
                     try {
-                        openProfile();
+                        openMainPage();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -135,19 +136,20 @@ public class LoginController {
         }
     }
 
-    private void openProfile() throws IOException {
-        Parent profilePage = FXMLLoader.load(getClass().getResource("/org/example/appclient/Feeds.fxml"));
-        Scene profilePageScene = new Scene(profilePage);
+    private void openMainPage() throws IOException {
+        Parent mainPage = FXMLLoader.load(getClass().getResource("/org/example/appclient/Feeds.fxml"));
+        Scene mainPageScene = new Scene(mainPage);
         Stage currentStage = (Stage) signInButton.getScene().getWindow();
 
-        Stage profileStage = new Stage();
-        profileStage.setScene(profilePageScene);
-        profileStage.initOwner(currentStage);
-        profileStage.initModality(Modality.APPLICATION_MODAL);
-        profileStage.setFullScreen(true);
-        profileStage.setFullScreenExitHint("");
+        Stage mainStage = new Stage();
+        mainStage.setScene(mainPageScene);
+        LinkedInApp.setIcon(mainStage);
+        mainStage.initOwner(currentStage);
+        mainStage.initModality(Modality.APPLICATION_MODAL);
+        mainStage.setFullScreen(true);
+        mainStage.setFullScreenExitHint("");
         currentStage.hide();
-        profileStage.show();
+        mainStage.show();
     }
 
     @FXML

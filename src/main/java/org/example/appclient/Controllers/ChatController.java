@@ -23,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.awt.event.KeyEvent;
@@ -152,6 +153,7 @@ public class ChatController {
 
             Stage profileStage = new Stage();
             profileStage.setScene(scene);
+            LinkedInApp.setIcon(profileStage);
             profileStage.setTitle("Chat");
             profileStage.initOwner(currentStage);
             profileStage.initModality(Modality.WINDOW_MODAL);

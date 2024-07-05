@@ -103,8 +103,8 @@ public class NetWorkController {
         declineButton.setPrefWidth(250);
         acceptButton.setTranslateY(25);
         declineButton.setTranslateY(25);
-        acceptButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: #FFFFFF;");
-        declineButton.setStyle("-fx-background-color: #1d7754; -fx-text-fill: #FFFFFF;");
+        acceptButton.getStylesheets().addAll(getClass().getResource("/org/example/appclient/css/button.css").toExternalForm());
+        declineButton.getStylesheets().addAll(getClass().getResource("/org/example/appclient/css/button.css").toExternalForm());
 
 
         System.out.println(email);

@@ -3,8 +3,10 @@ package org.example.appclient.Controllers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,6 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -26,7 +29,12 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 
@@ -37,6 +45,9 @@ public class FeedsController {
 
     @FXML
     private ImageView backgroundImageView;
+
+    @FXML
+    private Button addPostButton;
 
     @FXML
     private HBox connectionsHbox;
@@ -80,7 +91,28 @@ public class FeedsController {
 
     private String searchKey;
 
+    @FXML
+    void onAddPostButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/addPost.fxml"));
+            Parent root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Post");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(addPostButton.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
+        addPostButton.getStylesheets().addAll(getClass().getResource("/org/example/appclient/css/button.css").toExternalForm());
 
         Circle clip = new Circle(27, 27, 27);
         avatarImageView.setClip(clip);
@@ -110,6 +142,7 @@ public class FeedsController {
         fillProfile();
 
         postListView = new ListView<>();
+        postListView.requestFocus();
         postListView.getStylesheets().add(getClass().getResource("/org/example/appclient/css/ScrollBar.css").toExternalForm());
         postListView.setStyle("-fx-background-color: #232323FF");
         postListView.setPrefHeight(700);
@@ -248,6 +281,7 @@ public class FeedsController {
 
             Stage newStage = new Stage();
             newStage.setScene(pageScene);
+            LinkedInApp.setIcon(newStage);
             newStage.initOwner(currentStage);
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.setFullScreen(true);
@@ -262,6 +296,7 @@ public class FeedsController {
     private void fillFollowingPosts() {
         String selfEmail = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
         ArrayList<String> followingEmails = FetcherEmail.fetchEmails("followings", "followed", selfEmail);
+        ArrayList<HashMap<String, String>> selfPosts = PostController.fetchPostFromUser(selfEmail);
         ArrayList<HashMap<String, String>> posts = PostController.fetchPostFeeds();
         for (String followingEmail : followingEmails) {
             for (HashMap<String, String> post : posts) {
@@ -270,6 +305,7 @@ public class FeedsController {
                 }
             }
         }
-    }
 
+        followingPosts.addAll(selfPosts);
+    }
 }

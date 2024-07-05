@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.appclient.DataValidator.UserValidator;
+import org.example.appclient.LinkedInApp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -201,6 +202,7 @@ public class SignupController {
 
         Stage loginStage = new Stage();
         loginStage.setScene(loginScene);
+        LinkedInApp.setIcon(loginStage);
         loginStage.initOwner(currentStage);
         loginStage.initModality(Modality.APPLICATION_MODAL);
 

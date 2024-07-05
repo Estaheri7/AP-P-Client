@@ -18,6 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.io.BufferedReader;
@@ -233,6 +234,7 @@ public class FetcherEmail {
 
             Stage profileStage = new Stage();
             profileStage.setScene(scene);
+            LinkedInApp.setIcon(profileStage);
             profileStage.setTitle("Profile");
             profileStage.initOwner(currentStage);
             profileStage.initModality(Modality.WINDOW_MODAL);

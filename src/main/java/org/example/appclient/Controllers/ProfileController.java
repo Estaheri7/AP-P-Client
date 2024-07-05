@@ -18,6 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.appclient.LinkedInApp;
 import org.example.appclient.util.JwtManager;
 
 import java.io.*;
@@ -248,6 +249,7 @@ public class ProfileController {
             Stage currentStage = (Stage) connectionsLink.getScene().getWindow();
             Scene scene = new Scene(connectionsPage);
             Stage connectionsStage = new Stage();
+            LinkedInApp.setIcon(connectionsStage);
             connectionsStage.setScene(scene);
             connectionsStage.setTitle("connections");
             connectionsStage.initOwner(currentStage);
@@ -375,6 +377,7 @@ public class ProfileController {
             Stage currentStage = (Stage) followersLink.getScene().getWindow();
             Stage followersStage = new Stage();
             followersStage.setScene(followerScene);
+            LinkedInApp.setIcon(followersStage);
             followersStage.setTitle("Followers");
             followersStage.initOwner(currentStage);
             followersStage.initModality(Modality.WINDOW_MODAL);
@@ -398,6 +401,7 @@ public class ProfileController {
             Stage currentStage = (Stage) followingLink.getScene().getWindow();
             Stage followingStage = new Stage();
             followingStage.setScene(followingScene);
+            LinkedInApp.setIcon(followingStage);
             followingStage.setTitle("Following");
             followingStage.initOwner(currentStage);
             followingStage.initModality(Modality.WINDOW_MODAL);
@@ -442,8 +446,6 @@ public class ProfileController {
     @FXML
     void onAddPostButton(ActionEvent event) {
         try {
-            UpdateSkillController.setProfileEmail(profileEmail);
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/addPost.fxml"));
             Parent root = loader.load();
 
@@ -720,11 +722,11 @@ public class ProfileController {
         addressTextField.setText((String) contact.get("address"));
         String visibility = (String) contact.get("visibility");
         if (contact.get("birthDate") == null) {
-            birthDateTextField.setText("None");
+            birthDateTextField.setVisible(false);
         } else if (!contact.get("birthDate").toString().equals("Jan 1, 1970")) {
             birthDateTextField.setText(contact.get("birthDate").toString());
         } else {
-            birthDateTextField.setText("PRIVATE");
+            birthDateTextField.setVisible(false);
         }
         viewLinkHyperLink.setText((String) contact.get("viewLink"));
         fastConnectLink.setText((String) contact.get("fastConnect"));

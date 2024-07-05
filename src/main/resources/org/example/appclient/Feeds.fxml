@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -86,9 +87,13 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="662.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="662.0">
                      <children>
-                        <TextField fx:id="searchTextField" prefHeight="38.0" prefWidth="500.0" promptText="Search hashtag , content" style="-fx-background-color: #1b1b1b; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: white" />
+                        <TextField fx:id="searchTextField" focusTraversable="false" prefHeight="38.0" prefWidth="397.0" promptText="Search hashtag , content" style="-fx-background-color: #1b1b1b; -fx-border-color: #1d7754; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: white">
+                           <HBox.margin>
+                              <Insets right="30.0" />
+                           </HBox.margin></TextField>
+                        <Button fx:id="addPostButton" mnemonicParsing="false" onAction="#onAddPostButton" text="Add Post" />
                      </children>
                   </HBox>
                   <Label prefWidth="77.0" text="Feeds" textFill="WHITE" translateX="20.0" translateY="20.0">

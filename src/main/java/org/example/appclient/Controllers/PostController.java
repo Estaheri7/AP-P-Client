@@ -169,16 +169,6 @@ public class PostController {
             }
             postContentFlow.getChildren().add(textNode);
         }
-
-        //see more
-        postContentFlow.setOnMouseClicked(event -> {
-            if (postContentFlow.getPrefHeight() == 50 && content.length() > 70) {
-                postContentFlow.setPrefHeight(200);
-            } else {
-                postContentFlow.setPrefHeight(50);
-            }
-        });
-
         postContentFlow.setPrefHeight(50);
 
 
@@ -242,6 +232,7 @@ public class PostController {
 
         // handling likes display
         likeLabel.setOnMouseClicked(event -> {
+            likeLabel.requestFocus();
             ArrayList<HashMap<String, String>> likeEmails = fetchLikesForPost(postId);
             LikeController.setLikeEmails(likeEmails);
             LikeController.setTempLabel(likeLabel);
@@ -259,6 +250,7 @@ public class PostController {
         postVBox.getChildren().addAll(header, titleLabel, postContentFlow, media, labelBox, buttonBox);
 
         postContentFlow.setOnMouseClicked(event -> {
+            postContentFlow.requestFocus();
             if (!isDialogOpen) {
                 displayPostDialog(post, name, userAvatar, stageLabel, postVBox.getScene().getWindow());
             }
@@ -607,7 +599,10 @@ public class PostController {
                     InputStream inputStream = connection.getInputStream();
                     Image image = new Image(inputStream);
                     avatar.setImage(image);
-                    avatar.setOnMouseClicked(event -> goToProfile(email, stageLabel));
+                    avatar.setOnMouseClicked(event -> {
+                        avatar.requestFocus();
+                        goToProfile(email, stageLabel);
+                    });
                     inputStream.close();
                 }
             } catch (IOException e) {
@@ -616,7 +611,10 @@ public class PostController {
         } else {
             Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatar.setImage(image);
-            avatar.setOnMouseClicked(event -> goToProfile(email, stageLabel));
+            avatar.setOnMouseClicked(event -> {
+                avatar.requestFocus();
+                goToProfile(email, stageLabel);
+            });
         }
         return avatar;
     }

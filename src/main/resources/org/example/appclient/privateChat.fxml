@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.ChatController">
-<!--    <fx:include source="topbar.fxml"/>-->
+    <fx:include source="topbar.fxml"/>
    <children>
       <HBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #191919;">
          <children>

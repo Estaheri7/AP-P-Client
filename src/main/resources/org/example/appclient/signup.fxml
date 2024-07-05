@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.SignupController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.SignupController">
     <VBox fx:id="rootVBox" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" prefHeight="536.0" prefWidth="651.0" spacing="10.0" style="-fx-background-color: #232323;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="610.0">
@@ -121,7 +121,7 @@
                     </HBox>
                     <HBox alignment="CENTER" prefHeight="95.0" prefWidth="610.0" translateY="25.0">
                         <children>
-                            <Label prefHeight="30.0" prefWidth="150.0" text="Already on LinkedIn?" textFill="#e4dada" translateY="40.0">
+                            <Label prefHeight="30.0" prefWidth="150.0" text="Already on FakedIn?" textFill="#e4dada" translateX="10.0" translateY="40.0">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
