@@ -3,6 +3,7 @@ package org.example.appclient.Controllers;
 import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -56,12 +57,14 @@ public class ShareController {
         String avatarUrl = userDetail.get("avatar_url");
 
         HBox userHBox = new HBox();
+        userHBox.setAlignment(Pos.CENTER_LEFT);
         userHBox.setSpacing(10);
         Label nameLabel = new Label(name);
         ImageView avatar = PostController.handleAvatar(email, avatarUrl, tempLabel);
         Circle circle = new Circle(25,25,25);
         avatar.setClip(circle);
         Button button = new Button("Share");
+        button.getStylesheets().addAll(getClass().getResource("/org/example/appclient/css/Button.css").toExternalForm());
         button.setOnAction(e -> sharePost(Integer.parseInt(post.get("id")), email));
         userHBox.getChildren().addAll(avatar, nameLabel, button);
         usersVBox.getChildren().add(userHBox);
