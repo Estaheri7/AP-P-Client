@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1900.0" style="-fx-background-color: #232323; -fx-border-color: #1d7754;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.TopBarController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1900.0" style="-fx-background-color: #232323; -fx-border-color: #1d7754;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.appclient.Controllers.TopBarController">
    <children>
       <VBox prefHeight="32.0" prefWidth="32.0" translateX="30.0" translateY="10.0">
          <children>
@@ -70,13 +70,26 @@
             <Label style="-fx-text-fill: #a99f9f;" text="Messaging" />
          </children>
       </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="notificationImageView" fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-notification-32.png" />
+               </image>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ImageView>
+            <Label style="-fx-text-fill: #a99f9f;" text="Notifications" />
+         </children>
+      </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" translateY="3.0">
          <children>
             <ImageView fx:id="meImageView" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
             <Label style="-fx-text-fill: #a99f9f;" text="Me" />
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" translateX="700.0" translateY="1.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" translateX="600.0" translateY="1.0">
          <children>
             <ImageView fx:id="logOutImage" fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" translateY="2.0">
                <image>

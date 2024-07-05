@@ -2,6 +2,7 @@ package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -57,10 +58,12 @@ public class AddPostController {
 
     @FXML
     void onDoneButton(ActionEvent event) {
-        sendPostContent();
-        if (mediaFile != null) {
-            addMedia();
-        }
+        new Thread(() -> {
+            sendPostContent();
+            if (mediaFile != null) {
+                addMedia();
+            }
+        }).start();
     }
 
     private void sendPostContent() {
@@ -91,8 +94,10 @@ public class AddPostController {
                 int responseCode = connection.getResponseCode();
                 System.out.println(responseCode);
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Stage stage = (Stage) doneButton.getScene().getWindow();
-                    stage.close();
+                    Platform.runLater(() -> {
+                        Stage stage = (Stage) doneButton.getScene().getWindow();
+                        stage.close();
+                    });
                 }
             } catch (IOException e) {
                 e.printStackTrace();

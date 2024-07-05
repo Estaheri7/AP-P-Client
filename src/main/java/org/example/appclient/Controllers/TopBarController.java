@@ -48,6 +48,9 @@ public class TopBarController {
     @FXML
     private ImageView logOutImage;
 
+    @FXML
+    private ImageView notificationImageView;
+
     private void onHomeClicked() {
         loadStage("Feeds.fxml");
     }
@@ -73,6 +76,10 @@ public class TopBarController {
 
     private void onMyNetworkClicked() {
         loadStage("network.fxml");
+    }
+
+    private void onNotificationClicked() {
+        loadStage("notificationsPage.fxml");
     }
 
     private void loadStage(String fxml){
@@ -154,7 +161,7 @@ public class TopBarController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             meImageView.setImage(image);
         }
     }
@@ -168,7 +175,10 @@ public class TopBarController {
         meImageView.setPreserveRatio(false);
         meImageView.setClip(circle);
 
-        meImageView.setOnMouseClicked(event -> onMeClicked());
+        meImageView.setOnMouseClicked(event -> {
+            ProfileController.setProfileEmail((String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken()));
+            onMeClicked();
+        });
 
         usersImageView.setOnMouseClicked(event -> onUsersClicked());
 
@@ -187,5 +197,7 @@ public class TopBarController {
         myNetworkImageView.setOnMouseClicked(event -> onMyNetworkClicked());
 
         messagingImageView.setOnMouseClicked(event -> onMessagingClicked());
+
+        notificationImageView.setOnMouseClicked(event -> onNotificationClicked());
     }
 }

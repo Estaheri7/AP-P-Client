@@ -222,6 +222,8 @@ public class ProfileController {
 
     private void loadSendConnection() {
         try {
+            ConnectController.setConnectionReceiver(profileEmail);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/appclient/sendConnection.fxml"));
             Parent root = loader.load();
 
@@ -655,7 +657,7 @@ public class ProfileController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatarImageView.setImage(image);
         }
 

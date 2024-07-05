@@ -1,6 +1,7 @@
 package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -65,59 +66,63 @@ public class AddEducationController {
 
     @FXML
     void onAddButton(ActionEvent event) {
-        if (JwtManager.isJwtTokenAvailable()) {
-            HttpURLConnection connection = null;
-            try {
-                String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
+        new Thread(() -> {
+            if (JwtManager.isJwtTokenAvailable()) {
+                HttpURLConnection connection = null;
+                try {
+                    String email = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
 
-                String schoolName = schoolTextField.getText();
-                String field = fieldTextField.getText();
-                String grade = gradeTextField.getText();
-                String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
-                String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
-                String description = descriptionTextField.getText();
-                String community = communityTextField.getText();
+                    String schoolName = schoolTextField.getText();
+                    String field = fieldTextField.getText();
+                    String grade = gradeTextField.getText();
+                    String endDate = endDatePicker.getValue() != null ? endDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+                    String startDate = startDatePicker.getValue() != null ? startDatePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE) : "";
+                    String description = descriptionTextField.getText();
+                    String community = communityTextField.getText();
 
-                if (!checkValidation()) {
-                    return;
-                }
-
-                URL url = new URL("http://localhost:8080/profile/add/education/" + email);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setDoOutput(true);
-
-                HashMap<String, String> educationData = new HashMap<>();
-                educationData.put("schoolName", schoolName);
-                educationData.put("field", field);
-                educationData.put("grade", grade);
-                educationData.put("endDate", endDate);
-                educationData.put("startDate", startDate);
-                educationData.put("description", description);
-                educationData.put("community", community);
-
-                String jsonData = gson.toJson(educationData);
-                try (OutputStream os = connection.getOutputStream()) {
-                    os.write(jsonData.getBytes());
-                    os.flush();
-                }
-
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    // ProfileController.reloadProfile(addButton);
-                    Stage stage = (Stage) addButton.getScene().getWindow();
-                    stage.close();
-                } else {
-                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
-                        System.out.println(br.readLine());
+                    if (!checkValidation()) {
+                        return;
                     }
+
+                    URL url = new URL("http://localhost:8080/profile/add/education/" + email);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Authorization", "Bearer " + JwtManager.getJwtToken());
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setDoOutput(true);
+
+                    HashMap<String, String> educationData = new HashMap<>();
+                    educationData.put("schoolName", schoolName);
+                    educationData.put("field", field);
+                    educationData.put("grade", grade);
+                    educationData.put("endDate", endDate);
+                    educationData.put("startDate", startDate);
+                    educationData.put("description", description);
+                    educationData.put("community", community);
+
+                    String jsonData = gson.toJson(educationData);
+                    try (OutputStream os = connection.getOutputStream()) {
+                        os.write(jsonData.getBytes());
+                        os.flush();
+                    }
+
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        // ProfileController.reloadProfile(addButton);
+                        Platform.runLater(() -> {
+                            Stage stage = (Stage) addButton.getScene().getWindow();
+                            stage.close();
+                        });
+                    } else {
+                        try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
+                            System.out.println(br.readLine());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
+        }).start();
     }
 
     private boolean checkValidation() {

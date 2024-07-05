@@ -72,6 +72,7 @@ public class FeedsController {
     @FXML
     private TextField searchTextField;
 
+    private ArrayList<HashMap<String, String>> followingPosts = new ArrayList<>();
 
     private String avatarURL = "";
 
@@ -101,9 +102,11 @@ public class FeedsController {
                 "-fx-max-height: 138;");
 
         connectionsHbox.setOnMouseClicked(event -> loadPage("connections.fxml"));
+//        connectionsHbox.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Hbox.css").toExternalForm());
         followersHbox.setOnMouseClicked(event -> loadPage("followers.fxml"));
+//        followersHbox.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Hbox.css").toExternalForm());
         followingHbox.setOnMouseClicked(event -> loadPage("following.fxml"));
-
+//        followingHbox.getStylesheets().add(getClass().getResource("/org/example/appclient/css/Hbox.css").toExternalForm());
         fillProfile();
 
         postListView = new ListView<>();
@@ -111,20 +114,22 @@ public class FeedsController {
         postListView.setStyle("-fx-background-color: #232323FF");
         postListView.setPrefHeight(700);
         postListView.setCellFactory(param -> new PostCell());
+        mainContainer.setPrefHeight(600);
         mainContainer.getChildren().add(postListView);
         searchTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                displayPosts();
+                new Thread(() -> displayPosts(search())).start();
             }
         });
-        displayPosts();
+
+        new Thread(() -> fillFollowingPosts()).start();
+        Platform.runLater(() -> displayPosts(followingPosts));
 
         connectionsVbox = new VBox();
         connectionsVbox.setStyle("-fx-background-color: #232323");
         connecionsScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         connecionsScrollPane.setContent(connectionsVbox);
         displayConnections();
-
     }
 
     private void fillProfile() {
@@ -164,7 +169,7 @@ public class FeedsController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(getClass().getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatarImageView.setImage(image);
         }
 
@@ -196,12 +201,11 @@ public class FeedsController {
         followersLabel.setText(followers + " followers");
         followingLabel.setText(following + " following");
         headlineLabel.setText((user.get("headline")));
-
     }
 
-    private void displayPosts() {
+    private void displayPosts(ArrayList<HashMap<String, String>> posts) {
         Platform.runLater(() -> {
-            ArrayList<HashMap<String, String>> posts = search();
+            PostCell.setTempLabel(nameLabel);
             postListView.getItems().clear();
             postListView.getItems().addAll(posts);
         });
@@ -212,7 +216,7 @@ public class FeedsController {
         connectionsVbox.getChildren().clear();
         for (String senderEmail : senderEmails) {
             HashMap<String, String> userDetail = FetcherEmail.fetchProfileDetailsByEmail(senderEmail);
-            FetcherEmail.addEntry(userDetail, connectionsVbox , connectionsLabel );
+            FetcherEmail.addEntry(userDetail, connectionsVbox , connectionsLabel);
         }
     }
 
@@ -252,6 +256,19 @@ public class FeedsController {
             newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void fillFollowingPosts() {
+        String selfEmail = (String) JwtManager.decodeJwtPayload(JwtManager.getJwtToken());
+        ArrayList<String> followingEmails = FetcherEmail.fetchEmails("followings", "followed", selfEmail);
+        ArrayList<HashMap<String, String>> posts = PostController.fetchPostFeeds();
+        for (String followingEmail : followingEmails) {
+            for (HashMap<String, String> post : posts) {
+                if (post.get("author").equals(followingEmail)) {
+                    followingPosts.add(post);
+                }
+            }
         }
     }
 

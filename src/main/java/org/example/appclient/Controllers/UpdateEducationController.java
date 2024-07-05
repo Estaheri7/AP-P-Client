@@ -2,6 +2,7 @@ package org.example.appclient.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -69,6 +70,10 @@ public class UpdateEducationController {
 
     @FXML
     void onApplyButton(ActionEvent event) {
+        new Thread(() -> apply()).start();
+    }
+
+    private void apply() {
         if (JwtManager.isJwtTokenAvailable()) {
             HttpURLConnection connection = null;
             schoolNameError.setVisible(false);
@@ -117,8 +122,10 @@ public class UpdateEducationController {
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
 //                    ProfileController.reloadProfile(applyButton);
-                    Stage stage = (Stage) applyButton.getScene().getWindow();
-                    stage.close();
+                    Platform.runLater(() -> {
+                        Stage stage = (Stage) applyButton.getScene().getWindow();
+                        stage.close();
+                    });
                 } else {
                     System.out.println(connection.getResponseMessage());
                 }
@@ -195,12 +202,16 @@ public class UpdateEducationController {
     }
 
     public void initialize() {
-        HashMap<String, String> educationData = fillUpdatePage();
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                HashMap<String, String> educationData = fillUpdatePage();
 
-        schoolTextField.setText(educationData.get("schoolName"));
-        gradeTextField.setText(educationData.get("grade"));
-        fieldTextField.setText(educationData.get("field"));
-        communityTextField.setText(educationData.get("community"));
-        descriptionTextField.setText(educationData.get("description"));
+                schoolTextField.setText(educationData.get("schoolName"));
+                gradeTextField.setText(educationData.get("grade"));
+                fieldTextField.setText(educationData.get("field"));
+                communityTextField.setText(educationData.get("community"));
+                descriptionTextField.setText(educationData.get("description"));
+            });
+        }).start();
     }
 }

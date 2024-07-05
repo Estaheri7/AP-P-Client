@@ -159,8 +159,7 @@ public class PostController {
         postContentFlow.setStyle("-fx-control-background:  #232323;");
         postContentFlow.setPadding(new Insets(10));
 
-        // Parse the content and create Text nodes
-        String[] words = content.split(" ");
+        String[] words = content.split("\\s+");
         for (String word : words) {
             Text textNode = new Text(word + " ");
             if (word.startsWith("#")) {
@@ -232,8 +231,8 @@ public class PostController {
 
         Button repostButton = new Button("Repost");
         repostButton.setPrefWidth(70);
-        sendButton.setTranslateX(70);
-        repostButton.setTranslateX(70);
+        sendButton.setTranslateX(50);
+        repostButton.setTranslateX(50);
 
         // styles
         likeButton.getStylesheets().add(PostController.class.getResource("/org/example/appclient/css/Button.css").toExternalForm());
@@ -259,14 +258,14 @@ public class PostController {
         postVBox.setSpacing(10);
         postVBox.getChildren().addAll(header, titleLabel, postContentFlow, media, labelBox, buttonBox);
 
-        postVBox.setOnMouseClicked(event -> {
+        postContentFlow.setOnMouseClicked(event -> {
             if (!isDialogOpen) {
                 displayPostDialog(post, name, userAvatar, stageLabel, postVBox.getScene().getWindow());
             }
         });
     }
 
-    private static void displayPostDialog(HashMap<String, String> post, String name, String userAvatar, Label stageLabel, Window owner) {
+    public static void displayPostDialog(HashMap<String, String> post, String name, String userAvatar, Label stageLabel, Window owner) {
         isDialogOpen = true;
 
         Dialog<Void> dialog = new Dialog<>();
@@ -615,7 +614,7 @@ public class PostController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             avatar.setImage(image);
             avatar.setOnMouseClicked(event -> goToProfile(email, stageLabel));
         }

@@ -67,9 +67,9 @@ public class CommentCell extends ListCell<HashMap<String, String>> {
             String commentDate = commentData.get("commentDate");
             String avatarURL = commentData.get("avatarURL");
 
-            nameText.setText(fullName);
+            nameText.setText(message);
             dateText.setText(commentDate);
-            messageArea.setText(message);
+            messageArea.setText(fullName);
 
             if (avatarURL != null && !avatarURL.isEmpty()) {
                 new Thread(() -> {
@@ -89,7 +89,7 @@ public class CommentCell extends ListCell<HashMap<String, String>> {
                     }
                 }).start();
             } else {
-                Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+                Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
                 imageView.setImage(image);
             }
 

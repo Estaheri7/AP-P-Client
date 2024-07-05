@@ -44,9 +44,8 @@ public class LikeController {
         likeVBox.setStyle("-fx-background-color: #1b1b1b");
         likeVBox.setPadding(new Insets(10));
         likeScrollPane.setContent(likeVBox);
-        likeScrollPane.setStyle("-fx-background-color: #1b1b1b");
+        likeScrollPane.setStyle("-fx-background: #1b1b1b; -fx-background-color: #1d7754");
 
-        // Set likes label text color to white
         displayLikeLabel.setStyle("-fx-text-fill: white;");
 
         displayLikes();
@@ -93,7 +92,7 @@ public class LikeController {
                 e.printStackTrace();
             }
         } else {
-            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/linkedInIcon.png").toExternalForm());
+            Image image = new Image(FetcherEmail.class.getResource("/org/example/appclient/images/defaultAvatar.png").toExternalForm());
             imageView = new ImageView(image);
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);
