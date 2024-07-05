@@ -356,10 +356,10 @@ public class ChatController {
 
         mainContainer.getStylesheets().add(getClass().getResource("/org/example/appclient/css/listview.css").toExternalForm());
 
-        mainContainer.setCellFactory(new Callback<ListView<HashMap<String, String>>, ListCell<HashMap<String, String>>>() {
+        mainContainer.setCellFactory(new Callback<>() {
             @Override
             public ListCell<HashMap<String, String>> call(ListView<HashMap<String, String>> listView) {
-                return new ListCell<HashMap<String, String>>() {
+                return new ListCell<>() {
                     @Override
                     protected void updateItem(HashMap<String, String> chat, boolean empty) {
                         super.updateItem(chat, empty);
